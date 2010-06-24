@@ -1,0 +1,15 @@
+{
+  "name": "New Tab Redirect!",
+  "description": "Sets a user-specified URL to load in new tabs.",
+  "version": "1.0.0.2",
+  "background_page": "background.html",
+  "options_page":"options.html",
+  "chrome_url_overrides": {
+    "newtab": "redirect.html"
+  },
+    "permissions": ["tabs"],
+    "icons": {
+    "128": "icon128.png",
+	"19":"icon19.png"
+  }
+}

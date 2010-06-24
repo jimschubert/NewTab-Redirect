@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>New Tab Page | Options</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="options.js"></script>
+<link rel="stylesheet" href="options.css" type="text/css"/>
+</head>
+<body>
+<div id="status">Options Saved.</div>
+<div id="header"><h1>New Tab Page Options</h1></div>
+<div class="section-header first"><em>Provide custom url here</em></div>
+<p> <span class="desc-text">Url:<span> <input type="text" id="custom-url"> 
+  <button id="save-button" style="font-weight:bold" onclick="save_options()">Save</button>
+  <button onclick="restore_options()">Cancel</button> &nbsp; <input type="checkbox" id="hidetext" /> <small>Hide redirecting text</small>
+</p>
+<em>Note: Saving blank text will cause your new tab to be a blank tab.</em><br/>
+<em>You can even link to files (e.g. file:\\C:\example.html)</em>
+<p>Original Chrome pages:</p>
+<ul id="chromes" class="horizontal-links"></ul>
+<div class="fix"></div>
+<p>Optionally Choose from one of the following:</p>
+<ul id="abouts" class="links">
+</ul>
+<ul id="popular" class="links">
+</ul>
+<div class="fix"></div>
+<div id="footer">
+<em>Created by <a href="http://www.ipreferjim.com">James Schubert, 2009</a>.  james.schubert@gmail.com</em><br />
+<em>Want to contribute? <a href="http://code.google.com/p/newtabredirect/">Join me at Google Code!</a></em>
+</div>
+</body>
+</html>
