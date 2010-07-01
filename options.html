@@ -10,8 +10,13 @@
 <div id="header"><h1>New Tab Page Options</h1></div>
 <div class="section-header first"><em>Provide custom url here</em></div>
 <p> <span class="desc-text">Url:<span> <input type="text" id="custom-url"> 
+<br >
+<input type="checkbox" id="hidetext" /> <small>Hide redirect text</small>
+<br>
+<input type="checkbox" id="old" /> <small>Old redirect (address bar doesn't focus)</small>
+<br>
   <button id="save-button" style="font-weight:bold" onclick="save_options()">Save</button>
-  <button onclick="restore_options()">Cancel</button> &nbsp; <input type="checkbox" id="hidetext" /> <small>Hide redirecting text</small>
+  <button onclick="restore_options()">Cancel</button> 
 </p>
 <em>Note: Saving blank text will cause your new tab to be a blank tab.</em><br/>
 <em>You can even link to files (e.g. file:\\C:\example.html)</em>

@@ -37,6 +37,7 @@ function save_options() {
 function save(good,url) {
 	if(good) {
 		chrome.extension.getBackgroundPage().setHideText($('#hidetext').is(':checked'));
+		chrome.extension.getBackgroundPage().setOld($('#old').is(':checked'));
 		chrome.extension.getBackgroundPage().setUrl(url);
 		$('#status').text("Options Saved.");
 	} else {

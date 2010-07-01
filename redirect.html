@@ -1,1 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> <html> <head><title> Redirecting... </title> <script type="text/javascript"> var wid, tid; function h() { /* hint for proper web interaction. added by request */ if(!chrome.extension.getBackgroundPage().hidetext) { document.getElementsByTagName('body')[0].innerHTML = 'Redirecting...<br><em>If your page doesn\'t load within 5 seconds,<a href=\'javascript:r()\'>click here</a></em>'; } } function r() { var url = localStorage["url"] || ""; if (url.toLowerCase().indexOf("http:") === 0 || url.toLowerCase().indexOf("https:") === 0) { document.location.href = url; return; } else { chrome.windows.getCurrent(function(w) { wid = w.id; chrome.tabs.getSelected(wid, function(t) { tid = t.id; }); }); chrome.extension.getBackgroundPage().r(tid); } } </script> </head> <body onload="h();setTimeout('r()',100);r();return false;"> </body> </html> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head><title> Redirecting...</title>
+    <script type="text/javascript">
+//<![CDATA[
+    var ce = chrome.extension;
+	var bp = ce.getBackgroundPage();
+	var old = bp.old;
+	var wid, tid; 
+	function h() { if(!bp.hidetext) { document.getElementsByTagName('body')[0].innerHTML = 'Redirecting...<br><em>If your page doesn\'t load within 5 seconds,<a href=\'javascript:r()\'>click here<\/a><\/em>'; } } 
+	function r() {  
+		if(old) {  var url = localStorage["url"] || ""; if (/^http/i.test(url)) {  document.location.href = url; return; } else { chrome.windows.getCurrent(function(w) { wid = w.id; chrome.tabs.getSelected(wid, function(t) { tid = t.id; }); }); bp.r(tid); } }
+		else { ce.sendRequest({redirect: true}, function(rsp) { }); 	} }
+    //]]>
+    </script></head><body onload="h();r();return false;"></body></html>
