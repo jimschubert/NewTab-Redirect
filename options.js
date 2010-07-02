@@ -1,3 +1,9 @@
+var doc = document;
+var elem = "getElementById";
+var clss = "getElementsByClassName";
+var _st = "style";
+var _val = "value";
+
 String.prototype.startsWith = function(str) {
 	return (this.indexOf(str)===0);
 }
@@ -22,7 +28,8 @@ var popularPages = {
 	
 // save options to localStorage.
 function save_options() {
-	var url = $('#custom-url').val();
+	var _url = doc[elem]('custom-url');
+	var url = _url[_val];
 	if(url == ""){
 		url = aboutPages[0];
 	}
@@ -35,19 +42,24 @@ function save_options() {
 }
 
 function save(good,url) {
+    var _sts = doc[elem]('status');
 	if(good) {
 		chrome.extension.getBackgroundPage().setHideText($('#hidetext').is(':checked'));
 		chrome.extension.getBackgroundPage().setOld($('#old').is(':checked'));
 		chrome.extension.getBackgroundPage().setUrl(url);
-		$('#status').text("Options Saved.");
+		_sts[_val] = "Options Saved.";
 	} else {
-		$('#status').text( url + " is invalid. Try again (http:// is required)");	
+		_sts[_val] = (url + " is invalid. Try again (http:// is required)");	
 	}
 	
-	$('#status').css("display", "block");
+	_sts[_st].display = "block";
+	_sts[_st].setProperty("-webkit-transition", "opacity 0s ease-in");
+	_sts[_st].opacity = 1;
 	setTimeout(function(){
-		$('#status').slideUp("fast").css("display", "none");
-	}, 1050);
+        _sts[_st].setProperty("-webkit-transition", "opacity 2s ease-in");
+        _sts[_st].opacity = 0
+		_sts[_st].display = "none";
+	}, 3050);
 }
 
 // Restores select box state to saved value from localStorage.
@@ -56,6 +68,8 @@ function restore_options() {
 	 $('#custom-url').val(url);
 	 var check = chrome.extension.getBackgroundPage().hidetext;
 	 $('#hidetext').attr('checked', check);
+	 var old = chrome.extension.getBackgroundPage().old;
+	 $('#old').attr('checked', old);
 }
 
 function isValidURL(url) {
