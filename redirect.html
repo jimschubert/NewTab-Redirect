@@ -9,12 +9,12 @@
     <script type="text/javascript">
 //<![CDATA[
     var ce = chrome.extension;
-        var old = localStorage["old"];
-		var hide = localStorage["hidetext"];
+        var old = ce.getBackgroundPage().old;
+		var hide = ce.getBackgroundPage().hidetext;
         var wid, tid; 
         function h() { if(!hide) { document.getElementsByTagName('body')[0].innerHTML = 'Redirecting...<br><em>If your page doesn\'t load within 5 seconds,<a href=\'javascript:r()\'>click here<\/a><\/em>'; } } 
         function r() {  
-                if(old) {  var url = localStorage["url"] || ""; if (/^http/i.test(url)) {  document.location.href = url; return; } else { chrome.windows.getCurrent(function(w) { wid = w.id; chrome.tabs.getSelected(wid, function(t) { tid = t.id; }); }); ce.getBackgroundPage().r(tid); } }
+                if(old) {  var url = ce.getBackgroundPage().url || ""; if (/^http/i.test(url)) {  document.location.href = url; return; } else { chrome.windows.getCurrent(function(w) { wid = w.id; chrome.tabs.getSelected(wid, function(t) { tid = t.id; }); }); ce.getBackgroundPage().r(tid); } }
                 else { ce.sendRequest({redirect: true}, function(rsp) { });     } }
     //]]>
     </script>

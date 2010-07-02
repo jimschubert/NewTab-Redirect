@@ -2,7 +2,9 @@
 <head>
 <script type="text/javascript">
 String.prototype.startsWith = function(str){ return (this.indexOf(str) === 0); }
-var hidetext, old, url;
+var hidetext = localStorage["hidetext"] || true;
+var old = localStorage["old"] || false;
+var url = localStorage["url"];
 var protocol =  undefined;
 var allowedProtocols = ["http://","https://","about:","file://", "file:\\", "file:///", "chrome://","chrome-internal://"];
 
@@ -32,17 +34,13 @@ function setUrl(url) {
 		return false;
 	}
 }
-function setHideText(bool) { hidetext = bool; localStorage["hidetext"] = bool; }
-function setOld(bool) { old = bool; localStorage["old"] = bool; }
+function setHideText(bool) { localStorage["hidetext"] = bool; }
+function setOld(bool) { localStorage["old"] = bool; }
 function init() { 
 	/* TODO: store these in one Options object */
-	url = localStorage["url"] || "http://www.facebook.com"; 
-	old = localStorage["old"] || false;
-	hideText = localStorage["hidetext"] || true;
-	
-	setUrl(url);
-	setHideText(hideText);
-	setOld(old);
+	url = 	url || "http://www.facebook.com"; 
+	old = old || false;
+	hidetext = hidetext || true;
 }
 function r(tabId) { chrome.tabs.update(tabId, {"url":this.url});}
 
