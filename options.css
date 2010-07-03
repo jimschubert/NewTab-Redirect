@@ -1,3 +1,23 @@
+@-webkit-keyframes slide-down-status { 
+  from { top: -32px; }
+  to { top: 0; }
+ 
+}
+@-webkit-keyframes slide-up-status { 
+  from { top: 0; }
+  to { top: -55px; } 
+}
+.slideUp {
+	-webkit-animation-name:slide-up-status;	
+  	-webkit-animation-duration: 2s;
+  	-webkit-animation-iteration-count: 1;
+}
+.slideDown {
+	-webkit-animation-name:slide-down-status;	
+  	-webkit-animation-duration: 1s;
+  	-webkit-animation-iteration-count: 1;
+}
+
 body {
   font-family:helvetica, arial, sans-serif;
   font-size:80%;
@@ -48,21 +68,25 @@ span.desc-text {
 }
 
 div#status {
-    position:fixed;
-    height:32px;
-    width:220px;
-    margin-left:-110px;
-    top:0;
-    left:50%;
-    padding:5px 10px 5px 10px;
-    z-index:1001;
-    font-size:12px;
-    color:#222;
-    background-color:#f99;
+	position:fixed;
+	height:32px;
+	width:220px;
+	margin-left:-110px;
+	top:0;
+	left:50%;
+	padding:4px;
+	z-index:1001;
+	font-size:15px;
+	color:#000;
+	background-color:#ebeff9;
 	display:none;
 	text-align:center;
+	text-shadow: 1px 2px 3px #b5c7de;
 	-webkit-border-bottom-left-radius:5px;
 	-webkit-border-bottom-right-radius:5px;
+	border-right:1px solid #b5c7de;
+	border-bottom:1px solid #b5c7de;
+	border-left:1px solid #b5c7de;
 }
 
 ul.links {
