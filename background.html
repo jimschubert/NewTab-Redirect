@@ -1,18 +1,7 @@
 <html>
 <head>
-<script type="text/javascript">String.prototype.startsWith=function(str){return(this.indexOf(str)===0);}
-var hidetext=null;var old=null;var url=null;var protocol=undefined;var allowedProtocols=["http://","https://","about:","file://","file:\\","file:///","chrome://","chrome-internal://"];function setUrl(url){if(protocolPasses(url)&&url.length>8){this.url=url;}else{protocol='http://';var right=url.split('://')
-if(right!=undefined&&right!=null&&right.length>1){this.url=protocol+right[1];}else{this.url=protocol+url;}}
-localStorage["url"]=this.url;function protocolPasses(url){if(typeof(url)=='undefined'||url==null){return false;}
-if(url.startsWith(allowedProtocols[3])&&!url.startsWith(allowedProtocols[5])){url.replace(allowedProtocols[3],allowedProtocols[5]);}else if(url.startsWith(allowedProtocols[4])){url.replace(allowedProtocols[4],allowedProtocols[5]);}
-for(var p in allowedProtocols){if(url.startsWith(allowedProtocols[p])){return true;}}
-return false;}}
-function setHideText(bool){hidetext=bool;localStorage["hidetext"]=bool;}
-function setOld(bool){old=bool;localStorage["old"]=bool;}
-function init(){url=localStorage["url"]||"http://www.facebook.com";old=localStorage["old"]||false;hidetext=localStorage["hidetext"]||true;}
-function r(tabId){chrome.tabs.update(tabId,{"url":this.url});}
-chrome.extension.onRequest.addListener(function(request,sender,sendResponse){console.log(sender.tab?"redirect called from:"+sender.tab.url:"redirect called anonymously?");if(request.redirect){chrome.tabs.getSelected(null,function(t){r(t.id);});}
-sendResponse({redirected:this.url});});</script>
+	<script type="text/javascript" src="background.js"></script>
 </head>
-<body onload="init()"></body>
+<body onload="init()">
+</body>
 </html>

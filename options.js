@@ -43,7 +43,7 @@ function save_options(){
         url = aboutPages[0];
     }
     
-	if(url.startsWith("about:") || url.startsWith("chrome:") || url.startsWith("chrome-internal:")){
+	if(url.startsWith("about:") || url.startsWith("chrome:") || url.startsWith("chrome-internal:") ||  url.startsWith("file:")){
 		save(true, url);
 	} else if (isValidURL(url)) {
         save(true, url);
@@ -57,11 +57,14 @@ function save(good, url){
 	var controller = ce[$bp]();
 	var _hide = doc[$elem]('hidetext');
 	var _old = doc[$elem]('old');
+	var _options = {};
 	
     if (good) {
-        controller[$setHide](_hide[_chk]);
-        controller[$setOld](_old[_chk]);
-        controller[$setUrl](url);
+	    _options.url = url;
+		_options.hidetext = _hide.checked;
+		_options.old = _old.checked;
+		window.localStorage.options = JSON.stringify(_options);
+		controller.setUrl(url);
         _sts[_txt] = "Options Saved.";
     }
     else {
@@ -77,15 +80,11 @@ function save(good, url){
     }, 3050);
 }
 
-// Restores select box state to saved value from localStorage.
 function restore_options(){	
-	var controller = ce[$bp]();
-    var url = controller.url || "http://www.facebook.com/";
-	doc[$elem]('custom-url')[_val] = url;
-    var check = controller.hidetext;
-	doc[$elem]('hidetext')[_chk] = check;
-    var old = controller.old;
-	doc[$elem]('old')[_chk] = old;
+   var _options = JSON.parse(window.localStorage.options);
+	doc[$elem]('custom-url')[_val] = _options.url;
+	doc[$elem]('hidetext').checked =  _options.hidetext;
+	doc[$elem]('old').checked = _options.old;
 }
 
 function isValidURL(url){
