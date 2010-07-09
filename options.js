@@ -42,30 +42,26 @@ function save_options(){
     if (url == "") {
         url = aboutPages[0];
     }
-    
-	if(url.startsWith("about:") || url.startsWith("chrome:") || url.startsWith("chrome-internal:") ||  url.startsWith("file:")){
-		save(true, url);
-	} else if (isValidURL(url)) {
-        save(true, url);
-    } else { save(false, url); }
+
+   save(true, url);
 }
 
 function save(good, url){
 	clearTimeout(__up);
 	clearTimeout(__down);
-    var _sts = doc[$elem]('status');
+  var _sts = doc[$elem]('status');
 	var controller = ce[$bp]();
 	var _hide = doc[$elem]('hidetext');
 	var _old = doc[$elem]('old');
 	var _options = {};
 	
     if (good) {
-	    _options.url = url;
-		_options.hidetext = _hide.checked;
-		_options.old = _old.checked;
-		window.localStorage.options = JSON.stringify(_options);
-		controller.setUrl(url);
-        _sts[_txt] = "Options Saved.";
+      _options.url = encodeURI(url);
+		  _options.hidetext = _hide.checked;
+		  _options.old = _old.checked;
+		  window.localStorage.options = JSON.stringify(_options);
+		  controller.setUrl(url);
+      _sts[_txt] = "Options Saved.";
     }
     else {
         _sts[_txt] = ("Invalid Url. Not saved.");
@@ -87,19 +83,9 @@ function restore_options(){
 	doc[$elem]('old').checked = _options.old;
 }
 
-function isValidURL(url){
-    var urlRegxp = /^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([\w]+)(.[\w]+){1,2}$/;
-    if (urlRegxp.test(url) != true) {
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
 function saveQuickLink(url){
     var uurl = unescape(url);
-	doc[$elem]('custom-url')[_val] = uurl;
+	  doc[$elem]('custom-url')[_val] = uurl;
     save(true, uurl);
     return false;
 }
