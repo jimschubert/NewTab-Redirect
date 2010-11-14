@@ -27,11 +27,11 @@ var chromePages = {
 var aboutPages = ["about:blank", "about:version", "about:plugins", "about:cache", "about:memory", "about:histograms", "about:dns", "about:terms", "about:credits", "about:net-internals"];
 var popularPages = {
     "Facebook": "www.facebook.com",
-    "MySpace": "www.myspace.com",
     "Twitter": "www.twitter.com",
     "Digg": "www.digg.com",
     "Delicious": "www.delicious.com",
-    "Slashdot": "www.slashdot.org"
+    "Slashdot": "www.slashdot.org",
+    "MySpace": "www.myspace.com"
 };
 
 

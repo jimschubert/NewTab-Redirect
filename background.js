@@ -5,7 +5,7 @@ var _options = {};
 
 var url = null;
 var protocol = undefined;
-var allowedProtocols = ["http://", "https://", "about:", "file://", "file:\\", "file:///", "chrome://", "chrome-internal://"];
+var allowedProtocols = ["http://", "https://", "about:", "file://", "file:\\", "file:///", "chrome://", "chrome-internal://", "chrome-extension://"];
 
 function setUrl(url) {
     if (protocolPasses(url) && url.length > 8) {
@@ -42,12 +42,22 @@ function setUrl(url) {
 }
 
 function init() {
-   var arr = window.localStorage.options;
-   if(arr) { _options = JSON.parse(arr); }
-   _options.url =_options.url || localStorage["url"] || "http://www.facebook.com";
-	_options.hidetext = _options.hidetext != null ? _options.hidetext :  (localStorage["hidetext"] || true);
-	_options.old =_options.old != null ? _options.old :  (localStorage["old"] || false );
-   window.localStorage.options = JSON.stringify(_options);
+    var arr = window.localStorage.options;
+    if (arr) {
+        _options = JSON.parse(arr);
+    }
+
+    // NOTE: set option to old storage value || default value
+    if (!_options.url) {
+        _options.url = chrome.extension.getURL("options.html");
+    }
+    if (!_options.hidetext) {
+        _options.hidetext = !!localStorage["hidetext"] || true;
+    }
+    if (!_options.old) {
+        _options.old = !!localStorage["old"] || false;
+    }
+    window.localStorage.options = JSON.stringify(_options);
 }
 
 function r(tabId) {
