@@ -61,20 +61,9 @@ function init() {
 }
 
 function r(tabId) {
-    chrome.tabs.update(tabId, {
-        "url": this._options.url
-    });
+	var u = _options.url;
+	chrome.tabs.update(tabId, {
+		"url": u,
+		"selected": true
+	});
 }
-chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
-    console.log(sender.tab ? "redirect called from:" + sender.tab.url : "redirect called anonymously?");
-    if (request.redirect) {
-            chrome.windows.getCurrent(function(w){
-                chrome.tabs.getSelected(w.id, function(t){
-					r(t.id);
-                });
-            });
-    }
-    sendResponse({
-        redirected: this.url
-    });
-});

@@ -13,6 +13,9 @@ function r(){
 	if ((/^http:/i.test(url)) || /^https:/i.test(url)) {
 		document.location.href = url;
 		return;
-	}
-	ce.sendRequest({  redirect: true  }, function(rsp){ });
+	} 
+	chrome.tabs.getCurrent(function(t) {		
+		var ctrl = ce[$bp]();
+		ctrl.r(t.id);
+	});
 }
