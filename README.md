@@ -1,5 +1,7 @@
 # NewTab Redirect!
 
+http://pledgie.com/campaigns/15715
+
 ## Google Chrome Extension
 _disclaimer: Google and Google Chrome are trademarks of Google, Inc. NewTab Redirect! is an extension for Google Chrome_
 
