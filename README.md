@@ -28,4 +28,6 @@ Google Chrome extensions do not currently have access to interact with the omnib
 _I am not affiliated with Google or Google Chrome.
 Google Chrome is a registered trademark of Google, Inc._
 
+## Legal
 
+The new tab icon was released by <em>tango!</em> into the public domain.  Details are available [here](http://en.wikipedia.org/wiki/File:Tab-new.svg)

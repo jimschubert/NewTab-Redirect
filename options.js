@@ -1,3 +1,4 @@
+// naming convention: object: name, function: $name, property: _name, event: __name
 var doc = document;
 var ce = chrome.extension;
 var $elem = "getElementById";
@@ -25,15 +26,18 @@ var chromePages = {
     Internals: "chrome://net-internals"
 }
 var aboutPages = ["about:blank", "about:version", "about:plugins", "about:cache", "about:memory", "about:histograms", "about:dns", "about:terms", "about:credits", "about:net-internals"];
+
 var popularPages = {
+    "Google+": "plus.google.com",
     "Facebook": "www.facebook.com",
     "Twitter": "www.twitter.com",
+    "Yahoo": "www.yahoo.com",
+    "Wikipedia" : "www.wikipedia.org",
     "Digg": "www.digg.com",
     "Delicious": "www.delicious.com",
     "Slashdot": "www.slashdot.org",
     "MySpace": "www.myspace.com"
 };
-
 
 // save options to localStorage.
 function save_options(){

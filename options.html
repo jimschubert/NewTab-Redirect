@@ -1,35 +1,45 @@
 <html>
 <head>
-<title>New Tab Page | Options</title>
+<title>New Tab Redirect! | Options</title>
 <script type="text/javascript" src="options.js"></script>
 <link rel="stylesheet" href="options.css" type="text/css"/>
 </head>
 <body onload="ready()">
 <div id="status">Options Saved.</div>
-<div id="header"><h1>New Tab Page Options</h1></div>
+
+<div id="header"><h1>New Tab Redirect! Options</h1></div>
 <div class="section-header first"><em>Provide a url or file location here</em></div>
-<p> <span class="desc-text">Location:<span> <input type="text" id="custom-url"> 
-<br >
-<input type="checkbox" id="hidetext" /> <small>Hide redirect text</small>
-<br>
-<span style="display:none;"><input type="checkbox" id="old" /> <small>Old redirect (address bar doesn't focus)</small></span>
-<br>
+
+<p><span class="desc-text">Location:<span> <input type="text" id="custom-url"></p>
+
+<p><span style="display:none;"><input type="checkbox" id="old" /> <small>Old redirect (address bar doesn't focus)</small></span></p>
+
+<p>
   <button id="save-button" style="font-weight:bold" onclick="save_options()">Save</button>
-  <button onclick="restore_options()">Cancel</button> 
+  <button onclick="restore_options()">Cancel</button>
+  <input type="checkbox" id="hidetext" /> <small>Hide hint text displayed while redirecting</small>
 </p>
+
 <em>Note:  Use file:// for local files (e.g. file://C:\example.html)</em>
+<h2>Quick Links <small>click a button below!</small></h2>
 <p>Original Chrome pages:</p>
 <ul id="chromes" class="horizontal-links"></ul>
-<div class="fix"></div>
-<p>Popular Pages:</p>
-<ul id="abouts" class="links">
-</ul>
-<ul id="popular" class="links">
-</ul>
-<div class="fix"></div>
-<div id="footer">
-<em>Created by <a href="http://www.ipreferjim.com">James Schubert, 2009</a>.  james.schubert@gmail.com</em><br />
-<em>Want to contribute? <a href="http://code.google.com/p/newtabredirect/">Join me at Google Code!</a></em>
+
+<p class="fix">About Pages:</p>
+<ul id="abouts" class="horizontal-links"></ul>
+
+<p class="fix">Popular Pages:</p>
+<ul id="popular" class="horizontal-links"></ul>
+
+<div id="footer" class="fix">
+  <div id="answers" class="fix">
+  <p class="q">
+  If you have questions such as <em>Why doesn't the address bar highlight text?</em> or <em>How do I uninstall this?</em>, be sure to check out the <a href="https://github.com/jimschubert/newtab-redirect/wiki" target="_blank">wiki</a> for answers and tips.
+  </p>
+  </div>
+
+<em>Created by <a href="http://www.ipreferjim.com">James Schubert, 2009-2011</a>.  james.schubert@gmail.com</em><br />
+<em>Want to contribute, donate, report an issue, etc? <a href="http://github.com/jimschubert/newtab-redirect" target="_blank">Find me on GitHub!</a></em>
 </div>
 </body>
 </html>

@@ -24,6 +24,8 @@ body {
   margin:10px;
 }
 
+a { color: #383838; }
+
 #header {
   padding-bottom:1.5em;
   padding-top:1.5em;
@@ -105,6 +107,7 @@ ul.horizontal-links {
 	margin:0; 
 	white-space:nowrap;
 	list-style-type:none;
+  height:30px;
 }
 
 ul.horizontal-links li {
@@ -113,9 +116,27 @@ ul.horizontal-links li {
 }
 
 ul.horizontal-links li a {
-	padding: 0.2em 1em;
+	padding: 0.4em 1em;
+  border: 1px solid #B5C7DE;
+  background-color: #EBEFF9;
+  margin: 0.4em;
+  border-radius: 4px;
+  text-shadow: 1px 2px 3px #B5C7DE;
+  text-decoration: none;
+  display:block;
+  background-image: -webkit-linear-gradient(bottom, #B5C7DE 40%, #EBEFF9 70%);
+}
+
+ul.horizontal-links li a:hover {
+  background: rgba(235,239,249,0.8);
 }
 
 .fix {
 	clear:both;
+}
+
+h2 {
+  color: rgba(0,0,0,0.8);
+  border-bottom: 1px solid #B5C7DE;
+  text-shadow: 1px 1px 2px #B5C7DE;
 }
