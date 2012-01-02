@@ -1,26 +1,26 @@
 <html>
 <head>
-<title>New Tab Redirect! | Options</title>
-<script type="text/javascript" src="options.js"></script>
-<link rel="stylesheet" href="options.css" type="text/css"/>
+    <title>New Tab Redirect! | Options</title>
+    <script type="text/javascript" src="options.js"></script>
+    <link rel="stylesheet" href="options.css" type="text/css"/>
 </head>
 <body onload="ready()">
 <div id="status">Options Saved.</div>
 
 <div id="header"><h1>New Tab Redirect! Options</h1></div>
-<div class="section-header first"><em>Provide a url or file location here</em></div>
+<div class="section-header first"><em>These settings will replace your 'new tab' page.</em></div>
 
-<p><span class="desc-text">Location:<span> <input type="text" id="custom-url"></p>
+<p><span class="desc-text">My new tab page should show this URL:</span> <input type="text" id="custom-url">
 
-<p><span style="display:none;"><input type="checkbox" id="old" /> <small>Old redirect (address bar doesn't focus)</small></span></p>
+<span style="display:none;"><input type="checkbox" id="old" /> <small>Old redirect (address bar doesn't focus)</small></span>
 
-<p>
   <button id="save-button" style="font-weight:bold" onclick="save_options()">Save</button>
   <button onclick="restore_options()">Cancel</button>
-  <input type="checkbox" id="hidetext" /> <small>Hide hint text displayed while redirecting</small>
+  <input type="checkbox" id="hidetext" /> <small>Hide "Redirecting..." hint</small>
 </p>
 
 <em>Note:  Use file:// for local files (e.g. file://C:\example.html)</em>
+
 <h2>Quick Save&hellip; <small>click a button below!</small></h2>
 <p>Original Chrome pages:</p>
 <ul id="chromes" class="horizontal-links"></ul>
@@ -31,15 +31,25 @@
 <p class="fix">Popular Pages:</p>
 <ul id="popular" class="horizontal-links"></ul>
 
+<h2 class="fix">Donate! <small>show support!</small></h2>
+<p class="fix">
+<a href="http://pledgie.com/campaigns/15715" target="_blank"><img src="http://pledgie.com/campaigns/15715.png" alt="pledgie banner" /></a>
+</p>
+<p class="fix">
+    <a href="http://flattr.com/thing/459170/New-Tab-Redirect" target="_blank">
+    <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+</p>
+
 <div id="footer" class="fix">
   <div id="answers" class="fix">
-  <p class="q">
-  If you have questions such as <em>Why doesn't the address bar highlight text?</em> or <em>How do I uninstall this?</em>, be sure to check out the <a href="https://github.com/jimschubert/newtab-redirect/wiki" target="_blank">wiki</a> for answers and tips.
-  </p>
+    <p class="q">
+    If you have questions such as <em>Why doesn't the address bar highlight text?</em> or <em>How do I uninstall this?</em>, be sure to check out the <a href="https://github.com/jimschubert/newtab-redirect/wiki" target="_blank">wiki</a> for answers and tips.
+    </p>
   </div>
 
 <em>Created by <a href="http://www.ipreferjim.com">James Schubert, 2009-2011</a>.  james.schubert@gmail.com</em><br />
 <em>Want to contribute, donate, report an issue, etc? <a href="http://github.com/jimschubert/newtab-redirect" target="_blank">Find me on GitHub!</a></em>
 </div>
+
 </body>
 </html>

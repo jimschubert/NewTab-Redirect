@@ -116,10 +116,10 @@ ul.horizontal-links li {
 }
 
 ul.horizontal-links li a {
-	padding: 0.4em 1em;
+	padding: 0.3em 0.7em;
   border: 1px solid #B5C7DE;
   background-color: #EBEFF9;
-  margin: 0.4em;
+  margin: 0.3em;
   border-radius: 4px;
   text-shadow: 1px 2px 3px #B5C7DE;
   text-decoration: none;
@@ -138,4 +138,5 @@ ul.horizontal-links li a:hover {
 h2 {
   color: rgba(0,0,0,0.8);
   border-bottom: 1px solid #B5C7DE;
+  margin-top:1.3em;
 }

@@ -35,8 +35,7 @@ var popularPages = {
     "Wikipedia" : "www.wikipedia.org",
     "Digg": "www.digg.com",
     "Delicious": "www.delicious.com",
-    "Slashdot": "www.slashdot.org",
-    "MySpace": "www.myspace.com"
+    "Slashdot": "www.slashdot.org"
 };
 
 // save options to localStorage.
