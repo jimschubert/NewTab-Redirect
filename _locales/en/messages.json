@@ -1,0 +1,93 @@
+{
+  "extName": {
+    "message": "New Tab Redirect!",
+    "description": "Extension Name"
+  },
+  "extDesc": {
+    "message": "Sets a user-specified URL to load in new tabs.",
+    "description": "Extension Description"
+  },
+  "options_title": {
+    "message": "$NAME$ | Options",
+    "description": "Options page title displayed within the tab, i.e. html title.",
+    "placeholders": {
+        "name": {
+            "content": "$1",
+            "example": "New Tab Redirect!"
+        }
+    }
+  },
+  "options_heading": {
+    "message": "$NAME$ Options",
+    "description": "Options page header displayed next to icon at the top of the page.",
+    "placeholders": {
+        "name": {
+            "content": "$1",
+            "example": "New Tab Redirect!"
+        }
+    }
+  },
+  "options_subheading": {
+    "message": "These settings will replace your 'new tab' page.",
+    "description": "Message displayed in the blue bar below the heading of the options page."
+  },
+  "options_url_label": {
+    "message": "My new tab page should show this URL:",
+    "description": "An instructional message displayed before the text box on the options page"
+  },
+  "options_hide_hint": {
+    "message": "Hide \"Redirecting...\" hint",
+    "description": "Hint following checkbox, indicating redirect.html text should be hidden"
+  },
+  "options_localFiles_hint": {
+    "message": "Note: Use file:// for local files (e.g. file://C:\\example.html)",
+    "description": "A note indicating that file:// should be used when accessing local file locations"
+  },
+  "options_quickSave_headingLarge": {
+    "message": "Quick Save...",
+    "description": "The main heading for the one-click links"
+  },
+  "options_quickSave_headingSmall": {
+    "message": "click a button below!",
+    "description": "The helper text in the Quick Save heading"
+  },
+  "options_chromePages": {
+    "message": "Original Chrome Pages:",
+    "description": "The text displayed above the original chrome pages links"
+  },
+  "options_aboutPages": {
+    "message": "About Pages:",
+    "description": "The text displayed above the about: or chrome:// pages links"
+  },
+  "options_popularPages": {
+    "message": "Popular Pages:",
+    "description": "The text displayed above the popular pages links"
+  },
+  "options_donate_headingLarge": {
+    "message": "Donate!",
+    "description": "The main heading for the donate section"
+  },
+  "options_donate_headingSmall": {
+    "message": "show support!",
+    "description": "The helper text for the donate section"
+  },
+  "options_anyQuestions": {
+    "message": "If you have any questions, be sure to check out the $WIKI$ for answers and tips",
+    "description": "Footer message linking to the wiki",
+    "placeholders": {
+        "wiki": { "content": "$1" }
+    }
+  },
+  "options_createdBy": {
+    "message": "Created by",
+    "description": "Message preceding the copyright link and email address in the footer"
+  },
+  "options_footerPlea": {
+    "message": "Want to contribute, donate, report an issue, etc?",
+    "description": "Message in footer asking if the user wants to engage in community activities for the extension"
+  },
+  "options_githubTitle": {
+    "message": "Find me on GitHub!",
+    "description" : "Title displayed on github link"
+  }
+}

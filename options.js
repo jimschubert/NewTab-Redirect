@@ -13,6 +13,7 @@ var _val = "value";
 var _txt = "innerText";
 var _chk = "checked";
 var __down, __up;
+var $i18n = chrome.i18n.getMessage;
 
 String.prototype.startsWith = function(str){
     return (this.indexOf(str) === 0);
@@ -36,6 +37,28 @@ var popularPages = {
     "Digg": "www.digg.com",
     "Delicious": "www.delicious.com",
     "Slashdot": "www.slashdot.org"
+};
+
+var empty = [];
+var langMap = {
+    "options_heading": [$i18n("extName")],
+    "options_subheading": empty,
+    "options_url_label": empty,
+    "options_hide_hint": empty,
+    "options_localFiles_hint": empty,
+    "options_quickSave_headingLarge": empty,
+    "options_quickSave_headingSmall": empty,
+    "options_chromePages": empty,
+    "options_aboutPages": empty,
+    "options_popularPages": empty,
+    "options_donate_headingLarge": empty,
+    "options_donate_headingSmall": empty,
+    "options_anyQuestions": [
+        '<a href="https://github.com/jimschubert/newtab-redirect/wiki" target="_blank">wiki</a>'
+    ],
+    "options_createdBy": empty,
+    "options_footerPlea": empty,
+    "options_githubTitle": empty
 };
 
 // save options to localStorage.
@@ -122,4 +145,16 @@ function ready(){
 		item.innerHTML = anchor;
 		_pops.appendChild(item);
 	};
+
+    for (var key in langMap) {
+        local(key, langMap[key]);
+    }
+}
+
+function local(elem, supp) {
+    console.log("#" + elem + " = " + JSON.stringify(supp));
+    var item = doc[$elem](elem);
+    if(item) {
+        item.innerText = $i18n(elem, supp);
+    }
 }
