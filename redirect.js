@@ -1,9 +1,18 @@
 var ce = chrome.extension;
 var $bp = "getBackgroundPage";
-function h(){	
+var $msg = chrome.i18n.getMessage;
+var text;
+var help, click;
+
+function h(){
+    text = $msg("redirectText") || "Redirecting...";
+    document.title = text;
 	var _opts =  JSON.parse(window.localStorage.options);	
     if (!_opts.hidetext) {
-        document.getElementsByTagName('body')[0].innerHTML = 'Redirecting...<br><em>If your page doesn\'t load within 5 seconds,<a href=\'javascript:r()\'>click here<\/a><\/em>';
+        help = $msg("redirectMsg") || "If your page does not redirect in 5 seconds:";
+        click = $msg("clickHere") || "click here";
+        document.getElementsByTagName('body')[0].innerHTML = 
+            (text + '<br><em>' + help + '<a href=\'javascript:r()\'>' + click + '<\/a><\/em>');
     }
 }
 

@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="options.css" type="text/css"/>
 </head>
 <body onload="ready()">
-<div id="status">Options Saved.</div>
+<div id="status">
+    <span id="options_status">Options saved.</span>
+</div>
 
 <div id="header">
     <h1 id="options_heading">New Tab Redirect! Options</h1>
@@ -19,10 +21,10 @@
 
     <span style="display:none;"><input type="checkbox" id="old" /> <small>Old redirect (address bar doesn't focus)</small></span>
 
-    <button id="save-button" style="font-weight:bold" onclick="save_options()">Save</button>
-    <button onclick="restore_options()">Cancel</button>
+    <button id="btnSave" style="font-weight:bold" onclick="save_options()">Save</button>
+    <button id="btnCancel" onclick="restore_options()">Cancel</button>
     <input type="checkbox" id="hidetext" /> 
-    <small id="options_hid_hint">Hide "Redirecting..." hint</small>
+    <small id="options_hide_hint">Hide "Redirecting..." hint</small>
 </p>
 
 <em id="options_localFiles_hint">Note:  Use file:// for local files (e.g. file://C:\example.html)</em>
@@ -59,7 +61,7 @@
     </p>
   </div>
 
-<em><span id="options_createdBy">Created by<span> <a href="http://www.ipreferjim.com">James Schubert, 2009-2011</a>.  james.schubert@gmail.com</em><br />
+<em><span id="options_createdBy">Created by</span> <a href="http://www.ipreferjim.com">James Schubert, 2009-2011</a>.  james.schubert@gmail.com</em><br />
 <em><span id="options_footerPlea">Want to contribute, donate, report an issue, etc?</span> <a href="http://github.com/jimschubert/newtab-redirect" target="_blank"><span id="options_githubTitle">Find me on GitHub!</span></a></em>
 </div>
 

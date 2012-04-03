@@ -7,6 +7,30 @@
     "message": "Sets a user-specified URL to load in new tabs.",
     "description": "Extension Description"
   },
+  "redirectText": {
+    "message": "Redirecting...",
+    "description": "Placeholder text in redirect.html which can optionally be hidden by the user"
+  },
+  "redirectMsg": {
+    "message": "If your page does not redirect in 5 seconds:",
+    "description": "Instructional text preceding the 'click here' link for failed or slow redirects"
+  },
+  "clickHere": {
+    "message": "click here",
+    "description": "Text displayed in redirect message's link text"
+  },
+  "btnSave": {
+    "message": "Save",
+    "description": "Text displayed on a save button"
+  },
+  "btnCancel": {
+    "message": "Cancel",
+    "description": "Text displayed on a cancel button"
+  },
+  "options_status": {
+    "message": "Options saved!!",
+    "description": "Options saved message"
+  },
   "options_title": {
     "message": "$NAME$ | Options",
     "description": "Options page title displayed within the tab, i.e. html title.",

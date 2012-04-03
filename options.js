@@ -39,10 +39,11 @@ var popularPages = {
     "Slashdot": "www.slashdot.org"
 };
 
-var empty = [];
+var empty = [[]];
 var langMap = {
     "options_heading": [$i18n("extName")],
     "options_subheading": empty,
+    "options_status": empty,
     "options_url_label": empty,
     "options_hide_hint": empty,
     "options_localFiles_hint": empty,
@@ -58,7 +59,9 @@ var langMap = {
     ],
     "options_createdBy": empty,
     "options_footerPlea": empty,
-    "options_githubTitle": empty
+    "options_githubTitle": empty,
+    "btnSave": empty,
+    "btnCancel": empty
 };
 
 // save options to localStorage.
@@ -87,7 +90,7 @@ function save(good, url){
 		  _options.old = _old.checked;
 		  window.localStorage.options = JSON.stringify(_options);
 		  controller.setUrl(url);
-      _sts[_txt] = "Options Saved.";
+      _sts[_txt] = $i18n("options_status",[[]]);
     }
     else {
         _sts[_txt] = ("Invalid Url. Not saved.");
@@ -122,13 +125,13 @@ function ready(){
 	var _abouts = doc[$elem]('abouts');
 	var _pops = doc[$elem]('popular');
 
-	for (var key in chromePages) {
+	Object.keys(chromePages).forEach(function(key,idx) {
 		var value = chromePages[key];
 		var anchor = "<a href=\"javascript:saveQuickLink('" + value + "');\">" + key + "</a>";
 		var item = doc[$make]('li');
 		item.innerHTML = anchor;
 		_chromes.appendChild(item);
-	};
+	});
 	
 	for (var i = aboutPages.length - 1; i >= 0; i--){
 		var $this = aboutPages[i];
@@ -138,23 +141,29 @@ function ready(){
 		_abouts.appendChild(item);
 	};
 	
-	for (var key in popularPages) {
+	Object.keys(popularPages).forEach(function(key,idx) {
 		var value = popularPages[key];
 		var anchor = "<a href=\"javascript:saveQuickLink('" + value + "');\">" + key + "</a>";
 		var item = doc[$make]('li');
 		item.innerHTML = anchor;
 		_pops.appendChild(item);
-	};
+	});
 
-    for (var key in langMap) {
-        local(key, langMap[key]);
-    }
+    Object.keys(langMap).forEach(function(key,idx) {
+        var item = key,
+            extras = langMap[key];
+        local(item, extras);
+    });
 }
 
 function local(elem, supp) {
     console.log("#" + elem + " = " + JSON.stringify(supp));
     var item = doc[$elem](elem);
     if(item) {
-        item.innerText = $i18n(elem, supp);
+        var txt = $i18n(elem, supp);
+        // write localized text, otherwise don't update existing text.
+        if(txt) {
+            item.innerHTML = $i18n(elem, supp);
+        } else { console.log(elem + " missing"); }
     }
 }
