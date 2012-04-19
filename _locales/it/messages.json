@@ -1,0 +1,122 @@
+{
+  "extName": {
+    "message": "Nuovo reindirizzamento scheda",
+    "description": "Extension Name"
+  },
+  "desc": {
+    "message": "Imposta un URL personalizzato per effettuare il caricamento in nuove schede.  Scegli tra pagine di informazioni su Chrome, *newtab, estensioni, download, cronologia*, alcuni URL più visitati oppure altro da te indicato.  La scheda personalizzata può essere anche un file locale che ti consente di creare la tua pagina Nuova scheda. Il salvataggio di testo vuoto renderà la Nuova scheda di tipo about:blank.\n\nI file possono iniziare con: file:\\\\, file:// e file:/// \n\nImportante. Questo metodo non è concepito per sostituire la home page, ma riguarda solo le nuove schede. Se il browser è impostato in modo da caricare la pagina Nuova scheda come home page, potrebbero verificarsi strane conseguenze.\n\nVisita il link al sito per sviluppatori riportato di seguito per il registro modifiche o per le informazioni di contatto.\n\n*********\n  Nota\n********* \nHo pensato di dover spiegare perché la barra Omnibar non viene evidenziata nella descrizione, mentre lo è nei commenti.  Le estensioni di Google Chrome attualmente non possono accedere né interagire con la Omnibar per evidenziarla dopo la creazione della nuova pagina.  Esiste un'API sperimentale per recuperare i valori e rilevare quello che l'utente inserisce nella Omnibar, ma non consente alle estensioni di evidenziare il testo.  Ho provato la versione 1.0.1 di Nuovo reindirizzamento scheda in diverse build e solo a volte il cursore si posiziona alla fine della Omnibar.  Tuttavia, questo aspetto viene gestito da Chrome e non può essere modificato tramite l'estensione.  Implementerò questa funzionalità non appena Chrome la renderà disponibile.  Fino ad allora, è possibile utilizzare CTRL+L per evidenziare rapidamente la Omnibar.\n\nAssicurati di controllare WIKI per altri problemi e suggerimenti: https://github.com/jimschubert/NewTab-Redirect/wiki\n\nSe questa estensione ti piace e desideri fare una donazione, visita l'indirizzo: http://pledgie.com/campaigns/15715\n\nAspetti legali:\n\nNon sono affiliato a Google o a Google Chrome. Google Chrome è un marchio registrato di Google, Inc.\n\nLe \"Pagine più visitate\" sono quelle indicate dal sito www.alexa.com/topsites.  Non sono in alcun modo affiliato a Google, Facebook, Twitter, Yahoo, Wikipedia, Digg, Delicio.us, Slashdot, MySpace o a qualsiasi altra pagina elencata in questo sito.  Tali pagine vengono indicate agli utenti di questa estensione esclusivamente a scopi pratici.  Se l'utente utilizza tali pagine o qualsiasi altra pagina per sostituire la Nuova scheda, è ancora vincolato dai contratti vigenti tra l'utente e tale sito o servizio."
+  },
+  "options_anyQuestions": {
+    "message": "Per ulteriori domande, assicurati di controllare $WIKI$ per risposte e suggerimenti",
+    "description": "Footer message linking to the wiki",
+    "placeholders": {
+      "wiki": {
+        "content": "$1"
+      }
+    }
+  },
+  "options_localFiles_hint": {
+    "message": "Nota. Utilizza file:// per i file locali (ad esempio, file://C:\\ example.html)",
+    "description": "A note indicating that file:// should be used when accessing local file locations"
+  },
+  "btnSave": {
+    "message": "Salva",
+    "description": "Text displayed on a save button"
+  },
+  "redirectText": {
+    "message": "Reindirizzamento in corso...",
+    "description": "Placeholder text in redirect.html which can optionally be hidden by the user"
+  },
+  "options_aboutPages": {
+    "message": "Informazioni sulle pagine:",
+    "description": "The text displayed above the about: or chrome:// pages links"
+  },
+  "options_quickSave_headingSmall": {
+    "message": "fai clic su uno dei seguenti pulsanti",
+    "description": "The helper text in the Quick Save heading"
+  },
+  "options_subheading": {
+    "message": "Queste impostazioni sostituiranno la pagina \"Nuova scheda\".",
+    "description": "Message displayed in the blue bar below the heading of the options page."
+  },
+  "options_url_label": {
+    "message": "La mia pagina Nuova scheda dovrebbe visualizzare il seguente URL:",
+    "description": "An instructional message displayed before the text box on the options page"
+  },
+  "options_quickSave_headingLarge": {
+    "message": "Salvataggio rapido in corso...",
+    "description": "The main heading for the one-click links"
+  },
+  "options_hide_hint": {
+    "message": "Nascondi il suggerimento \"Reindirizzamento in corso...\"",
+    "description": "Hint following checkbox, indicating redirect.html text should be hidden"
+  },
+  "options_title": {
+    "message": "$NAME$ | Opzioni",
+    "description": "Options page title displayed within the tab, i.e. html title.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "New Tab Redirect!"
+      }
+    }
+  },
+  "clickHere": {
+    "message": "fai clic qui",
+    "description": "Text displayed in redirect message's link text"
+  },
+  "options_popularPages": {
+    "message": "Pagine più visitate:",
+    "description": "The text displayed above the popular pages links"
+  },
+  "options_githubTitle": {
+    "message": "Trovami su GitHub",
+    "description": "Title displayed on github link"
+  },
+  "extDesc": {
+    "message": "Imposta un URL specificato dall'utente per effettuare il caricamento in nuove schede.",
+    "description": "Extension Description"
+  },
+  "btnCancel": {
+    "message": "Annulla",
+    "description": "Text displayed on a cancel button"
+  },
+  "redirectMsg": {
+    "message": "Se la pagina non effettua il reindirizzamento in cinque secondi:",
+    "description": "Instructional text preceding the 'click here' link for failed or slow redirects"
+  },
+  "options_footerPlea": {
+    "message": "Desideri contribuire, fare una donazione, segnalare un problema o altro?",
+    "description": "Message in footer asking if the user wants to engage in community activities for the extension"
+  },
+  "options_status": {
+    "message": "Opzioni salvate",
+    "description": "Options saved message"
+  },
+  "options_chromePages": {
+    "message": "Pagine di Chrome originali:",
+    "description": "The text displayed above the original chrome pages links"
+  },
+  "options_heading": {
+    "message": "Opzioni $NAME$",
+    "description": "Options page header displayed next to icon at the top of the page.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "New Tab Redirect!"
+      }
+    }
+  },
+  "options_createdBy": {
+    "message": "Creato da",
+    "description": "Message preceding the copyright link and email address in the footer"
+  },
+  "options_donate_headingLarge": {
+    "message": "Fai una donazione",
+    "description": "The main heading for the donate section"
+  },
+  "options_donate_headingSmall": {
+    "message": "visualizza assistenza",
+    "description": "The helper text for the donate section"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "extName": {
+    "message": "New Tab Redirect!",
+    "description": "Extension Name"
+  },
+  "desc": {
+    "message": "Legt eine benutzerdefinierte URL fest, die in neuen Tabs geladen wird.  Wählen Sie beliebte URLs aus den Chrome-Infoseiten, *Neuer Tab, Erweiterungen, Downloads oder Verlauf* aus oder geben Sie eine eigene URL an.  Sie können auch eine lokale Datei für Ihren benutzerdefinierten Tab verwenden und Ihre eigene \"Neuer Tab\"-Seite erstellen. Wenn Sie leeren Text speichern, ist Ihr neuer Tab \"about:blank\".\n\nDateien können mit file:\\\\, file:// oder file:/// beginnen.\n\nWichtig: Es sollen nur neue Tabs, nicht Ihre Startseite ersetzt werden.  Wenn Ihr Browser die \"Neuer Tab\"-Seite als Ihre Startseite lädt, kann das Probleme verursachen.\n\nBitte besuchen Sie die Website für Entwickler, um das Änderungsprotokoll oder Kontaktinformationen aufzurufen.\n\n*********\n Hinweis\n********* \nIch habe mich dazu entschieden, in der Beschreibung und nicht in den Kommentaren zu erklären, warum die Omnibar nicht hervorgehoben werden kann.  Google Chrome-Erweiterungen können zum Hervorheben momentan nicht mit der Omnibar interagieren, nachdem die neue Seite erstellt wurde.  Es gibt ein API in der Experimentierphase, das Werte abrufen und Nutzereingaben in der Omnibar erkennen soll. Es erlaubt Erweiterungen allerdings nicht, den Text hervorzuheben.  Ich habe die Version 1.0.1 von New Tab Redirect! in einer Reihe von Entwickler-Builds getestet und dabei festgestellt, dass der Mauszeiger nur selten am Ende der Omnibar platziert wird.  Diese Funktion wird allerdings von Chrome selbst gesteuert und kann nicht über die Erweiterung angepasst werden.  Sobald diese Funktion in Chrome verfügbar ist, werde ich sie implementieren.  Bis dahin kann die Omnibar über Strg+L schnell hervorgehoben werden.\n\nIn WIKI finden Sie weitere Problemlösungen und Tipps: https://github.com/jimschubert/NewTab-Redirect/wiki\n\nWenn Ihnen diese Erweiterung gefällt, können Sie hier spenden: http://pledgie.com/campaigns/15715\n\nRechtliche Hinweise:\n\nZwischen Google oder Google Chrome und meiner Person besteht keine Partnerschaft..\nGoogle Chrome ist eine eingetragene Marke von Google, Inc.\n\nDie \"Beliebten Seiten\" stammen von www.alexa.com/topsites.  Es besteht keine Partnerschaft zwischen Google, Facebook, Twitter, Yahoo, Wikipedia, Digg, Delicio.us, Slashdot, MySpace oder einer der anderen hier aufgeführten Seiten und meiner Person.  Sie sollen lediglich die Nutzererfahrung dieser Erweiterung verbessern.  Wenn Sie Ihren neuen Tab mit diesen oder anderen Seiten ersetzen, gilt immer noch die Vereinbarung zwischen Ihnen und der betreffenden Website bzw. dem entsprechenden Dienst."
+  },
+  "options_anyQuestions": {
+    "message": "Bei Fragen finden Sie in $WIKI$ Antworten und Tipps.",
+    "description": "Footer message linking to the wiki",
+    "placeholders": {
+      "wiki": {
+        "content": "$1"
+      }
+    }
+  },
+  "options_localFiles_hint": {
+    "message": "Hinweis: Verwenden Sie file:// für lokale Dateien, beispielsweise file://C:\\beispiel.html.",
+    "description": "A note indicating that file:// should be used when accessing local file locations"
+  },
+  "btnSave": {
+    "message": "Speichern",
+    "description": "Text displayed on a save button"
+  },
+  "redirectText": {
+    "message": "Weiterleitung ...",
+    "description": "Placeholder text in redirect.html which can optionally be hidden by the user"
+  },
+  "options_aboutPages": {
+    "message": "Infoseiten:",
+    "description": "The text displayed above the about: or chrome:// pages links"
+  },
+  "options_quickSave_headingSmall": {
+    "message": "Klicken Sie unten auf eine Schaltfläche!",
+    "description": "The helper text in the Quick Save heading"
+  },
+  "options_subheading": {
+    "message": "Diese Einstellungen ersetzen Ihre \"Neuer Tab\"-Seite.",
+    "description": "Message displayed in the blue bar below the heading of the options page."
+  },
+  "options_url_label": {
+    "message": "Die \"Neuer Tab\"-Seite soll diese URL anzeigen:",
+    "description": "An instructional message displayed before the text box on the options page"
+  },
+  "options_quickSave_headingLarge": {
+    "message": "Schnell speichern...",
+    "description": "The main heading for the one-click links"
+  },
+  "options_hide_hint": {
+    "message": "Hinweis \"Weiterleitung...\" ausblenden",
+    "description": "Hint following checkbox, indicating redirect.html text should be hidden"
+  },
+  "options_title": {
+    "message": "$NAME$ | Optionen",
+    "description": "Options page title displayed within the tab, i.e. html title.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "New Tab Redirect!"
+      }
+    }
+  },
+  "clickHere": {
+    "message": "Hier klicken",
+    "description": "Text displayed in redirect message's link text"
+  },
+  "options_popularPages": {
+    "message": "Beliebte Seiten:",
+    "description": "The text displayed above the popular pages links"
+  },
+  "options_githubTitle": {
+    "message": "Finde mich auf GitHub!",
+    "description": "Title displayed on github link"
+  },
+  "extDesc": {
+    "message": "Legt eine benutzerspezifische URL fest, die in neuen Tabs geladen wird.",
+    "description": "Extension Description"
+  },
+  "btnCancel": {
+    "message": "Abbrechen",
+    "description": "Text displayed on a cancel button"
+  },
+  "redirectMsg": {
+    "message": "Wenn in 5 Sekunden keine Weiterleitung von Ihrer Seite erfolgt:",
+    "description": "Instructional text preceding the 'click here' link for failed or slow redirects"
+  },
+  "options_footerPlea": {
+    "message": "Möchten Sie etwas beitragen, spenden, ein Problem melden oder Ähnliches?",
+    "description": "Message in footer asking if the user wants to engage in community activities for the extension"
+  },
+  "options_status": {
+    "message": "Optionen gespeichert!!",
+    "description": "Options saved message"
+  },
+  "options_chromePages": {
+    "message": "Ursprüngliche Chrome-Seiten:",
+    "description": "The text displayed above the original chrome pages links"
+  },
+  "options_heading": {
+    "message": "$NAME$ Optionen",
+    "description": "Options page header displayed next to icon at the top of the page.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "New Tab Redirect!"
+      }
+    }
+  },
+  "options_createdBy": {
+    "message": "Erstellt von",
+    "description": "Message preceding the copyright link and email address in the footer"
+  },
+  "options_donate_headingLarge": {
+    "message": "Spenden!",
+    "description": "The main heading for the donate section"
+  },
+  "options_donate_headingSmall": {
+    "message": "Unterstützen Sie mich!",
+    "description": "The helper text for the donate section"
+  }
+}

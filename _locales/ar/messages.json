@@ -1,0 +1,122 @@
+{
+  "extName": {
+    "message": "New Tab Redirect!‎",
+    "description": "Extension Name"
+  },
+  "desc": {
+    "message": "لتعيين عنوان URL مخصص للتحميل في علامات التبويب الجديدة. اختر من صفحات \"حول\" أو *علامة تبويب جديدة أو الإضافات أو التنزيلات أو السجل* أو بعض عناوين URL الشائعة في Chrome أو قدم ما لديك. ويمكن أن تكون علامة التبويب المخصصة أيضًا ملفًا محليًا، مما يتيح لك إنشاء صفحة علامة التبويب الجديدة الخاصة بك. وسيتسبب الحفظ بدون نصوص في أن تكون علامة التبويب الجديدة about:blank.\n\nيمكن أن تبدأ الملفات بـ: file:\\\\‎ وfile://‎ وfile:///‎\n\nمهم: لا يُقصد بهذا استبدال صفحتك الرئيسية، بل علامات التبويب الجديدة فحسب. إذا تم تعيين المتصفح على تحميل صفحة علامة تبويب جديدة كصفحتك الرئيسية، فقد تحدث عواقب غريبة.\n\nالرجاء الانتقال إلى رابط موقع مطوري البرامج على الويب أدناه للحصول على معلومات عن سجل التغييرات أو معلومات الاتصال.\n\n*********\n  ملاحظة\n********* \nلقد ظننت أني سأشرح ميزة التحديد الناقصة في الشريط المتعدد الاستخدامات في الوصف بدلاً من شرحها في التعليقات. ولا تستطيع إضافات Google Chrome حاليًا الدخول للتفاعل مع الشريط المتعدد الاستخدامات لإجراء التحديد بعد إنشاء الصفحة الجديدة. وهناك واجهة برمجة تطبيقات تجريبية لاسترداد القيم واكتشاف إدخال المستخدم في الشريط المتعدد الاستخدامات، ولكنها لا تسمح للإضافات بتحديد النص. لقد جربت الإصدار 1.0.1 من New Tab Redirect!‎ عبر إصدارات متعددة لمطوري البرامج، كما يختفي مؤشر الماوس فقط أحيانًا في نهاية الشريط المتعدد الاستخدامات. ولكن، يتعامل مع هذا متصفح Chrome نفسه ولا يمكن تعديله عبر الإضافة. وفور تقديم Chrome لهذه الوظيفة، سأنفذها. وإلى ذلك الحين، يمكن استخدام CTRL+L لتحديد الشريط المتعدد الاستخدامات بسرعة.\n\nاحرص على مراجعة موقع الويب WIKI للاطلاع على مشاكل ونصائح أخرى: https://github.com/jimschubert/NewTab-Redirect/wiki\n\nإذا كانت هذه الإضافة تعجبك وتريد التبرع، فيمكنك فعل ذلك من هنا: http://pledgie.com/campaigns/15715\n\nالشؤون القانونية:\n\nلا تربطني أية صلة بـ Google أو Google Chrome. Google Chrome هو علامة تجارية مسجلة لشركة Google, Inc.\n\nيتم الحصول على \"الصفحات الشائعة\" من www.alexa.com/topsites. لا تربطني أية صلة بأي شكل من الأشكال بأي من Google أو Facebook أو Twitter أو Yahoo أو Wikipedia أو Digg أو Delicio.us أو Slashdot أو MySpace أو أية صفحة أخرى مدرجة هنا. ويتم تقديم هذه الصفحات للتيسير على مستخدم هذه الإضافة. ويعني استخدام تلك الصفحات أو استخدام أية صفحات أخرى كبديل لعلامة التبويب الجديدة أنك ستظل ملزمًا بأية اتفاقية بينك وبين موقع الويب ذلك أو الخدمة."
+  },
+  "options_anyQuestions": {
+    "message": "إذا كان لديك أي أسئلة، فاحرص على مراجعة $WIKI$ للاطلاع على الإجابات والنصائح",
+    "description": "Footer message linking to the wiki",
+    "placeholders": {
+      "wiki": {
+        "content": "$1"
+      }
+    }
+  },
+  "options_localFiles_hint": {
+    "message": "ملاحظة: استخدم file://‎ للملفات المحلية (مثل file://C:\\example.html)",
+    "description": "A note indicating that file:// should be used when accessing local file locations"
+  },
+  "btnSave": {
+    "message": "حفظ",
+    "description": "Text displayed on a save button"
+  },
+  "redirectText": {
+    "message": "جارٍ إعادة التوجيه...",
+    "description": "Placeholder text in redirect.html which can optionally be hidden by the user"
+  },
+  "options_aboutPages": {
+    "message": "صفحات \"حول\":",
+    "description": "The text displayed above the about: or chrome:// pages links"
+  },
+  "options_quickSave_headingSmall": {
+    "message": "انقر على زر أدناه!",
+    "description": "The helper text in the Quick Save heading"
+  },
+  "options_subheading": {
+    "message": "ستستبدل هذه الإعدادات صفحة \"علامة تبويب جديدة\".",
+    "description": "Message displayed in the blue bar below the heading of the options page."
+  },
+  "options_url_label": {
+    "message": "يجب أن تظهر صفحة علامة تبويب جديدة عنوان URL هذا:",
+    "description": "An instructional message displayed before the text box on the options page"
+  },
+  "options_quickSave_headingLarge": {
+    "message": "حفظ سريع...",
+    "description": "The main heading for the one-click links"
+  },
+  "options_hide_hint": {
+    "message": "إخفاء تلميح \"جارٍ إعادة التوجيه...\"",
+    "description": "Hint following checkbox, indicating redirect.html text should be hidden"
+  },
+  "options_title": {
+    "message": "$NAME$ | الخيارات",
+    "description": "Options page title displayed within the tab, i.e. html title.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "New Tab Redirect!"
+      }
+    }
+  },
+  "clickHere": {
+    "message": "انقر هنا",
+    "description": "Text displayed in redirect message's link text"
+  },
+  "options_popularPages": {
+    "message": "الصفحات الشائعة:",
+    "description": "The text displayed above the popular pages links"
+  },
+  "options_githubTitle": {
+    "message": "البحث عني على GitHub!",
+    "description": "Title displayed on github link"
+  },
+  "extDesc": {
+    "message": "لتعيين عنوان URL يحدده المستخدم للتحميل في علامات تبويب جديدة.",
+    "description": "Extension Description"
+  },
+  "btnCancel": {
+    "message": "إلغاء",
+    "description": "Text displayed on a cancel button"
+  },
+  "redirectMsg": {
+    "message": "إذا لم تتم إعادة توجيه صفحتك خلال 5 ثوانٍ:",
+    "description": "Instructional text preceding the 'click here' link for failed or slow redirects"
+  },
+  "options_footerPlea": {
+    "message": "هل تريد المساهمة أو التبرع أو الإبلاغ عن مشكلة وما إلى ذلك؟",
+    "description": "Message in footer asking if the user wants to engage in community activities for the extension"
+  },
+  "options_status": {
+    "message": "تم حفظ الخيارات!",
+    "description": "Options saved message"
+  },
+  "options_chromePages": {
+    "message": "صفحات Chrome الأصلية:",
+    "description": "The text displayed above the original chrome pages links"
+  },
+  "options_heading": {
+    "message": "خيارات $NAME$",
+    "description": "Options page header displayed next to icon at the top of the page.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "New Tab Redirect!"
+      }
+    }
+  },
+  "options_createdBy": {
+    "message": "تم الإنشاء بواسطة",
+    "description": "Message preceding the copyright link and email address in the footer"
+  },
+  "options_donate_headingLarge": {
+    "message": "التبرع!",
+    "description": "The main heading for the donate section"
+  },
+  "options_donate_headingSmall": {
+    "message": "إظهار الدعم!",
+    "description": "The helper text for the donate section"
+  }
+}

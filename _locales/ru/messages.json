@@ -1,0 +1,122 @@
+{
+  "extName": {
+    "message": "New Tab Redirect!",
+    "description": "Extension Name"
+  },
+  "desc": {
+    "message": "Выберите сами, какой URL будет загружаться при открытии новой вкладки. Это может быть страница \"Расширения\", \"Загрузки\", \"Новая вкладка\" или \"История\", одна из популярных ссылок либо заданный вами адрес. Кроме того, вы можете указать путь к файлу на компьютере или адрес пустого HTML-документа (about:blank).\n\nПуть к файлу может начинаться с file:\\\\, file:// или file:///.\n\nВажно! Это расширение действует только при открытии новой вкладки и не предназначено для изменения главной страницы. Если в настройках браузера указано, что в качестве главной страницы должна открываться новая вкладка, могут возникнуть непредвиденные последствия.\n\nДанные журнала изменений и контактную информацию можно найти на сайте разработчика по указанному ниже адресу.\n\n*********\nПримечание\n********* \nВ настоящее время расширения Google Chrome не поддерживают возможность выделения адреса в омнибоксе после открытия новой вкладки, так как не могут взаимодействовать с омнибоксом. Существует экспериментальный API, который обрабатывает текст, вводимый в омнибокс, но не позволяет расширению выделять его. Тестирование версии 1.0.1 расширения New Tab Redirect! было проведено на многих предварительных сборках Chrome, и только в нескольких случаях курсор оказывался в конце омнибокса. Однако это обеспечивается самим браузером, а не расширением. Как только эта функция будет реализована в Chrome, она будет представлена и в данном расширении. А пока для выделения адреса можно использовать сочетание клавиш CTRL + L.\n\nСведения о других проблемах и советы по их решению можно найти на странице https://github.com/jimschubert/NewTab-Redirect/wiki.\n\nЕсли вам понравилось это расширение, можете поддержать проект материально, перейдя на страницу http://pledgie.com/campaigns/15715.\n\nЮридическая информация\n\nРазработчик расширения не является аффилированным лицом Google или Google Chrome.\nGoogle Chrome является зарегистрированным товарным знаком компании Google, Inc.\n\nДанные для раздела \"Популярные страницы\" получены с сайта www.alexa.com/topsites. Разработчик расширения не является аффилированным лицом Google, Facebook, Twitter, Yahoo, Wikipedia, Digg, Delicio.us, Slashdot, MySpace или какого-либо из перечисленных в данном разделе веб-сайтов. Они приводятся исключительно для того, чтобы сделать работу с расширением более удобной. Указывая в настройках расширения адрес какого-либо из этих сервисов или любой другой страницы, пользователь обязан выполнять условия соглашения соответствующего сайта."
+  },
+  "options_anyQuestions": {
+    "message": "Ответы на интересующие вас вопросы и советы по использованию расширения можно найти на странице $WIKI$.",
+    "description": "Footer message linking to the wiki",
+    "placeholders": {
+      "wiki": {
+        "content": "$1"
+      }
+    }
+  },
+  "options_localFiles_hint": {
+    "message": "Примечание. Путь к файлу на локальном компьютере должен начинаться с file:// (например, file://C:\\example.html).",
+    "description": "A note indicating that file:// should be used when accessing local file locations"
+  },
+  "btnSave": {
+    "message": "Сохранить",
+    "description": "Text displayed on a save button"
+  },
+  "redirectText": {
+    "message": "Переадресация…",
+    "description": "Placeholder text in redirect.html which can optionally be hidden by the user"
+  },
+  "options_aboutPages": {
+    "message": "Страницы about:",
+    "description": "The text displayed above the about: or chrome:// pages links"
+  },
+  "options_quickSave_headingSmall": {
+    "message": "нажмите одну из расположенных ниже кнопок.",
+    "description": "The helper text in the Quick Save heading"
+  },
+  "options_subheading": {
+    "message": "Здесь вы можете задать страницу, которая будет загружаться при открытии вкладки.",
+    "description": "Message displayed in the blue bar below the heading of the options page."
+  },
+  "options_url_label": {
+    "message": "При открытии новой вкладки загружать эту страницу:",
+    "description": "An instructional message displayed before the text box on the options page"
+  },
+  "options_quickSave_headingLarge": {
+    "message": "Для быстрой настройки",
+    "description": "The main heading for the one-click links"
+  },
+  "options_hide_hint": {
+    "message": "Не показывать сообщение \"Переадресация…\"",
+    "description": "Hint following checkbox, indicating redirect.html text should be hidden"
+  },
+  "options_title": {
+    "message": "$NAME$ | Настройки",
+    "description": "Options page title displayed within the tab, i.e. html title.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "New Tab Redirect!"
+      }
+    }
+  },
+  "clickHere": {
+    "message": "нажмите здесь.",
+    "description": "Text displayed in redirect message's link text"
+  },
+  "options_popularPages": {
+    "message": "Популярные страницы",
+    "description": "The text displayed above the popular pages links"
+  },
+  "options_githubTitle": {
+    "message": "свяжитесь со мной на GitHub.",
+    "description": "Title displayed on github link"
+  },
+  "extDesc": {
+    "message": "Загрузка заданной страницы на новой вкладке",
+    "description": "Extension Description"
+  },
+  "btnCancel": {
+    "message": "Отмена",
+    "description": "Text displayed on a cancel button"
+  },
+  "redirectMsg": {
+    "message": "Если переадресация не будет выполнена в течение 5 секунд,",
+    "description": "Instructional text preceding the 'click here' link for failed or slow redirects"
+  },
+  "options_footerPlea": {
+    "message": "Если вы хотите помочь в разработке, поддержать проект материально или сообщить о проблеме,",
+    "description": "Message in footer asking if the user wants to engage in community activities for the extension"
+  },
+  "options_status": {
+    "message": "Настройки сохранены.",
+    "description": "Options saved message"
+  },
+  "options_chromePages": {
+    "message": "Страницы Chrome",
+    "description": "The text displayed above the original chrome pages links"
+  },
+  "options_heading": {
+    "message": "Настройки $NAME$",
+    "description": "Options page header displayed next to icon at the top of the page.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "New Tab Redirect!"
+      }
+    }
+  },
+  "options_createdBy": {
+    "message": "Разработчик:",
+    "description": "Message preceding the copyright link and email address in the footer"
+  },
+  "options_donate_headingLarge": {
+    "message": "Поддержите",
+    "description": "The main heading for the donate section"
+  },
+  "options_donate_headingSmall": {
+    "message": "проект",
+    "description": "The helper text for the donate section"
+  }
+}

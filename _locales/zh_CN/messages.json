@@ -1,0 +1,122 @@
+{
+  "extName": {
+    "message": "新标签页重定向！",
+    "description": "Extension Name"
+  },
+  "desc": {
+    "message": "设置要在新标签页中加载的自定义网址。您可以选择 Chrome 浏览器的 about 页、*新标签页、“扩展程序”页、“下载内容”页、“历史记录”页或一些热门网址，也可以提供您自己的网页。您的自定义标签页也可以是本地文件，这样您就能创建自己的新标签页了。如果保存空白文本，您的新标签页就会是 about:blank。\n\n文件的开头可以是 file:\\\\、file:// 和 file:///\n\n重要提示：此扩展程序并不会替换您的主页，而只是替换新标签页。如果您将浏览器设置为加载新标签页作为主页，可能会导致异常结果。\n\n要获取变更日志或联系信息，请访问下面的开发人员网站链接。\n\n*********\n  备注\n********* \n我想，我应该在说明部分而不是评论中解释下，多功能栏为何缺少突出显示功能。目前，Google Chrome 浏览器扩展程序没有权限在创建新页面后，通过与多功能栏交互来实现突出显示。有一种实验性 API 可以检索值并检测用户在多功能栏中输入的内容，但不允许扩展程序突出显示文字。我已经在很多开发人员版本中测试了 1.0.1 版的“新标签页重定向！”，发现指针只是偶尔在多功能栏的末尾终止。但是，这是由 Chrome 浏览器自身处理的，无法通过扩展程序进行修改。一旦 Chrome 浏览器推出该功能，我就会立即实施。而在此之前，您可以使用 CTRL+L 快速突出显示多功能栏。\n\n请务必查看 WIKI，以了解其他问题和提示：https://github.com/jimschubert/NewTab-Redirect/wiki\n\n如果您喜欢这款扩展程序并想捐款，请访问以下网址：http://pledgie.com/campaigns/15715\n\n法律方面的说明：\n\n我与 Google 或 Google Chrome 浏览器没有任何关联。\nGoogle Chrome 浏览器是 Google, Inc. 的注册商标。\n\n“热门网页”来源于 www.alexa.com/topsites。我与 Google、Facebook、Twitter、Yahoo、Wikipedia、Digg、Delicio.us、Slashdot、MySpace 或此处列出的其他任何网页均无任何关联。提供这些网页是为了方便此扩展程序的用户。如果您使用这些或其他任何网页替换您的新标签页，那么您仍需遵守您与相应网站或服务之间的协议。"
+  },
+  "options_anyQuestions": {
+    "message": "如果您有任何问题，请务必查看 $WIKI$ 以获取解答和提示",
+    "description": "Footer message linking to the wiki",
+    "placeholders": {
+      "wiki": {
+        "content": "$1"
+      }
+    }
+  },
+  "options_localFiles_hint": {
+    "message": "请注意：本地文件应使用 file://（例如 file://C:\\example.html）",
+    "description": "A note indicating that file:// should be used when accessing local file locations"
+  },
+  "btnSave": {
+    "message": "保存",
+    "description": "Text displayed on a save button"
+  },
+  "redirectText": {
+    "message": "正在重定向...",
+    "description": "Placeholder text in redirect.html which can optionally be hidden by the user"
+  },
+  "options_aboutPages": {
+    "message": "about 页：",
+    "description": "The text displayed above the about: or chrome:// pages links"
+  },
+  "options_quickSave_headingSmall": {
+    "message": "点击下面的按钮！",
+    "description": "The helper text in the Quick Save heading"
+  },
+  "options_subheading": {
+    "message": "这些设置将会替换您的“新标签页”页面。",
+    "description": "Message displayed in the blue bar below the heading of the options page."
+  },
+  "options_url_label": {
+    "message": "我的新标签页应显示此网址：",
+    "description": "An instructional message displayed before the text box on the options page"
+  },
+  "options_quickSave_headingLarge": {
+    "message": "快速保存...",
+    "description": "The main heading for the one-click links"
+  },
+  "options_hide_hint": {
+    "message": "隐藏“正在重定向...”提示",
+    "description": "Hint following checkbox, indicating redirect.html text should be hidden"
+  },
+  "options_title": {
+    "message": "$NAME$ | 选项",
+    "description": "Options page title displayed within the tab, i.e. html title.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "New Tab Redirect!"
+      }
+    }
+  },
+  "clickHere": {
+    "message": "点击此处",
+    "description": "Text displayed in redirect message's link text"
+  },
+  "options_popularPages": {
+    "message": "热门网页：",
+    "description": "The text displayed above the popular pages links"
+  },
+  "options_githubTitle": {
+    "message": "在 GitHub 上与我联系！",
+    "description": "Title displayed on github link"
+  },
+  "extDesc": {
+    "message": "设置要在新标签页中加载的用户指定网址。",
+    "description": "Extension Description"
+  },
+  "btnCancel": {
+    "message": "取消",
+    "description": "Text displayed on a cancel button"
+  },
+  "redirectMsg": {
+    "message": "如果您的页面未在 5 秒内重定向：",
+    "description": "Instructional text preceding the 'click here' link for failed or slow redirects"
+  },
+  "options_footerPlea": {
+    "message": "想要提供帮助、捐款、报告问题或有其他要求吗？",
+    "description": "Message in footer asking if the user wants to engage in community activities for the extension"
+  },
+  "options_status": {
+    "message": "选项已保存！",
+    "description": "Options saved message"
+  },
+  "options_chromePages": {
+    "message": "原 Chrome 浏览器页面：",
+    "description": "The text displayed above the original chrome pages links"
+  },
+  "options_heading": {
+    "message": "$NAME$选项",
+    "description": "Options page header displayed next to icon at the top of the page.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "New Tab Redirect!"
+      }
+    }
+  },
+  "options_createdBy": {
+    "message": "创建者：",
+    "description": "Message preceding the copyright link and email address in the footer"
+  },
+  "options_donate_headingLarge": {
+    "message": "捐款！",
+    "description": "The main heading for the donate section"
+  },
+  "options_donate_headingSmall": {
+    "message": "表示支持！",
+    "description": "The helper text for the donate section"
+  }
+}
