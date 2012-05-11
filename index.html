@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Newtab-redirect by jimschubert</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Newtab-redirect</h1>
+        <p>NewTab Redirect! is an extension for Google Chrome which allows the user to replace the page displayed when creating a new tab.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/jimschubert/NewTab-Redirect" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/jimschubert/NewTab-Redirect/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/jimschubert/NewTab-Redirect/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>NewTab Redirect!</h1>
+
+<p><a href="http://pledgie.com/campaigns/15715"><img src="http://pledgie.com/campaigns/15715.png" alt="Donate"></a>  </p>
+
+<p><a href="https://flattr.com/submit/auto?user_id=jimschubert&amp;url=https://github.com/jimschubert/NewTab-Redirect&amp;title=New%20Tab%20Redirect!&amp;language=&amp;tags=github&amp;category=software"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this git repo"></a></p>
+
+<h2>Google Chrome Extension</h2>
+
+<p><em>disclaimer: Google and Google Chrome are trademarks of Google, Inc. NewTab Redirect! is an extension for Google Chrome</em></p>
+
+<p>Sets a custom URL to load in new tabs.  Choose from:</p>
+
+<ul>
+<li> Chrome's about pages</li>
+<li> NewTab</li>
+<li> Extensions</li>
+<li> Downloads</li>
+<li> History</li>
+<li> Popular URLs</li>
+<li> Your own URL</li>
+</ul><p>Your custom tab can also be a local file, allowing you to create your own new tab page. Saving blank text will cause your new tab to be about:blank.</p>
+
+<p>Files can begin with: <code>file:\\</code>, <code>file://</code>, and <code>file:///</code></p>
+
+<p><strong>Important:</strong> 
+This is not meant to replace your homepage, only new tabs.  If your browser is set to load the New Tab page as your homepage, there may be odd consequences.</p>
+
+<h2>Omnibar support</h2>
+
+<p>Google Chrome extensions do not currently have access to interact with the omnibar for highlighting after the new page is created.  There is an experimental API to retrieve values and detect user input in the omnibar, but it does not allow extensions to highlight the text.  I've tested version 1.0.1 of New Tab Redirect! across numerous developer builds, and the cursor only occasionally ends at the end of the omnibar.  However, this is handled by Chrome itself and can not be modified via the extension.  As soon as Chrome offers this functionality, I will implement it.  Until then, it is possible to use <code>CTRL+L</code> to quickly highlight the omnibar.</p>
+
+<p><em>I am not affiliated with Google or Google Chrome.
+Google Chrome is a registered trademark of Google, Inc.</em></p>
+
+<h2>Legal</h2>
+
+<p>The new tab icon was released by <em>tango!</em> into the public domain.  Details are available <a href="http://en.wikipedia.org/wiki/File:Tab-new.svg">here</a></p>
+
+<p>NewTab Redirect is released under the <a href="http://bit.ly/mit-license">MIT license</a>. NewTab Redirect was previously hosted on <a href="http://code.google.com/p/newtabredirect/">Google Projects</a> under <a href="http://www.gnu.org/licenses/gpl.html">GPLv3 license</a>.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/jimschubert">jimschubert</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
