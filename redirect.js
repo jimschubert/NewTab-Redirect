@@ -23,8 +23,9 @@ function r(){
 		document.location.href = url;
 		return;
 	} 
-	chrome.tabs.getCurrent(function(t) {		
-		var ctrl = ce[$bp]();
-		ctrl.r(t.id);
-	});
+	
+    var ctrl = ce[$bp]();
+    if(ctrl) {
+        chrome.tabs.getCurrent(function(t) { ctrl.r(t.id); });
+    } else { r(); }
 }
