@@ -25,6 +25,7 @@ body {
 }
 
 a { color: #383838; }
+a[data-target] { cursor: hand; }
 
 #header {
   padding-bottom:1.5em;

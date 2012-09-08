@@ -119,7 +119,7 @@ function saveQuickLink(url){
     return false;
 }
 
-function ready(){	
+function init(){	
     restore_options();
 	var _chromes = doc[$elem]('chromes');
 	var _abouts = doc[$elem]('abouts');
@@ -127,7 +127,7 @@ function ready(){
 
 	Object.keys(chromePages).forEach(function(key,idx) {
 		var value = chromePages[key];
-		var anchor = "<a href=\"javascript:saveQuickLink('" + value + "');\">" + key + "</a>";
+		var anchor = "<a data-target='" + value + "'>" + key + "</a>";
 		var item = doc[$make]('li');
 		item.innerHTML = anchor;
 		_chromes.appendChild(item);
@@ -135,7 +135,7 @@ function ready(){
 	
 	for (var i = aboutPages.length - 1; i >= 0; i--){
 		var $this = aboutPages[i];
-		var anchor = "<a href=\"javascript:saveQuickLink('" + $this + "');\">" + $this + "</a>";
+		var anchor = "<a data-target='" + $this + "'>" + $this + "</a>";
 		var item = doc[$make]('li');
 		item.innerHTML = anchor;
 		_abouts.appendChild(item);
@@ -143,8 +143,8 @@ function ready(){
 	
 	Object.keys(popularPages).forEach(function(key,idx) {
 		var value = popularPages[key];
-		var anchor = "<a href=\"javascript:saveQuickLink('" + value + "');\">" + key + "</a>";
-		var item = doc[$make]('li');
+		var anchor = "<a data-target='" + value + "'>" + key + "</a>";
+        var item = doc[$make]('li');
 		item.innerHTML = anchor;
 		_pops.appendChild(item);
 	});
@@ -154,10 +154,17 @@ function ready(){
             extras = langMap[key];
         local(item, extras);
     });
+
+    document.body.addEventListener("click", function(e) {
+        var target = e.target && e.target.getAttribute("data-target");
+        if(target) {
+            saveQuickLink(target);
+        }
+    }, true);
 }
 
 function local(elem, supp) {
-    console.log("#" + elem + " = " + JSON.stringify(supp));
+    // console.log("#" + elem + " = " + JSON.stringify(supp));
     var item = doc[$elem](elem);
     if(item) {
         var txt = $i18n(elem, supp);
@@ -167,3 +174,5 @@ function local(elem, supp) {
         } else { console.log(elem + " missing"); }
     }
 }
+
+window.addEventListener("DOMContentLoaded", init, true);

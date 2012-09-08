@@ -67,3 +67,5 @@ function r(tabId) {
 		"selected": true
 	});
 }
+
+document.onload=init();
