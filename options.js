@@ -120,10 +120,16 @@ function saveQuickLink(url){
 }
 
 function init(){
-    document.getElementById('original-newtab')
+    doc[$elem]('original-newtab')
         .addEventListener("click", function() {
             chrome.tabs.create({ "url": "chrome-internal://newtab/"});
     }, true);
+
+    doc[$elem]('btnSave')
+        .addEventListener("click", save_options, true);
+
+    doc[$elem]('btnCancel')
+        .addEventListener("click", restore_options, true);
 
     restore_options();
 	var _chromes = doc[$elem]('chromes');

@@ -21,8 +21,8 @@
 
     <span style="display:none;"><input type="checkbox" id="old" /> <small>Old redirect (address bar doesn't focus)</small></span>
 
-    <button id="btnSave" style="font-weight:bold" onclick="save_options()">Save</button>
-    <button id="btnCancel" onclick="restore_options()">Cancel</button>
+    <button id="btnSave" style="font-weight:bold">Save</button>
+    <button id="btnCancel">Cancel</button>
 </p>
 
 <em id="options_localFiles_hint">Note:  Use file:// for local files (e.g. file://C:\example.html)</em>
@@ -31,13 +31,13 @@
     <span id="options_quickSave_headingLarge">Quick Save&hellip;</span>
     <small id="options_quickSave_headingSmall">click a button below!</small>
 </h2>
-<p id="options_chromePages">Original Chrome Pages:</p>
+<p id="options_chromePages" class="quick-links">Original Chrome Pages:</p>
 <ul id="chromes" class="horizontal-links"></ul>
 
-<p id="options_aboutPages" class="fix">About Pages:</p>
+<p id="options_aboutPages" class="fix quick-links">About Pages:</p>
 <ul id="abouts" class="horizontal-links"></ul>
 
-<p id="options_popularPages" class="fix">Popular Pages:</p>
+<p id="options_popularPages" class="fix quick-links">Popular Pages:</p>
 <ul id="popular" class="horizontal-links"></ul>
 
 <h2 class="fix">

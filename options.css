@@ -32,9 +32,13 @@ a#original-newtab {
   position: fixed;
   bottom: 0;
   right: 0;
-  margin: 0 1em .5em 0;
-  padding: 0.3em;
-  font-size:1.3em;
+  margin: 0 1em;
+  padding: 38px 0 6px 0;
+  font-size:1.1em;
+  width: 48px;
+  background: #FFF url(images/apps.png) top center no-repeat; 
+  text-align:center;
+  opacity: 0.9;
 }
 
 #header {
@@ -146,8 +150,16 @@ ul.horizontal-links li a:hover {
 	clear:both;
 }
 
+/* Make top headings a little softer */
+h1, h2 { color: rgba(0,0,0,0.8); }
+#options_subheading { color: rgba(0,0,0,0.9); }
+
 h2 {
-  color: rgba(0,0,0,0.8);
   border-bottom: 1px solid #B5C7DE;
   margin-top:1.3em;
+}
+
+p.quick-links {
+  font-size: 0.9em;
+  font-style: italic;
 }
