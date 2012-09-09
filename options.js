@@ -1,10 +1,9 @@
 // naming convention: object: name, function: $name, property: _name, event: __name
 var doc = document;
-var ce = chrome.extension;
+var ce = chrome.runtime;
 var $elem = "getElementById";
 var $make = "createElement";
 var $bp = "getBackgroundPage";
-var $setHide = "setHideText";
 var $setUrl = "setUrl";
 var $setOld = "setOld";
 var _st = "style";
@@ -76,39 +75,40 @@ function save_options(){
 }
 
 function save(good, url){
-	clearTimeout(__up);
-	clearTimeout(__down);
-  var _sts = doc[$elem]('status');
-	var controller = ce[$bp]();
-	var _hide = doc[$elem]('hidetext');
-	var _old = doc[$elem]('old');
-	var _options = {};
-	
-    if (good) {
-      _options.url = encodeURI(url);
-		  _options.hidetext = _hide.checked;
-		  _options.old = _old.checked;
-		  window.localStorage.options = JSON.stringify(_options);
-		  controller.setUrl(url);
-      _sts[_txt] = $i18n("options_status",[[]]);
-    }
-    else {
-        _sts[_txt] = ("Invalid Url. Not saved.");
-    }
-    
-    _sts[_st].display = "block";
-	_sts[_cls] = "slideDown";
-    __up = setTimeout(function(){
+
+	var background = ce[$bp](function(controller) { 
+		clearTimeout(__up);
 		clearTimeout(__down);
-		_sts[_cls] = "slideUp";
-		__down = setTimeout(function(){_sts[_cls] = ""; _sts[_st].display = "none";}, 2000);
-    }, 3050);
+
+		var _sts = doc[$elem]('status');
+		var _old = doc[$elem]('old');
+		var _options = {};
+		if (good) {
+			_options.url = encodeURI(url);
+			_options.old = _old.checked;
+			window.localStorage.options = JSON.stringify(_options);
+			controller.setUrl(url);
+			_sts[_txt] = $i18n("options_status",[[]]);
+		} else {
+			_sts[_txt] = ("Invalid Url. Not saved.");
+		}
+	    
+	    	_sts[_st].display = "block";
+		_sts[_cls] = "slideDown";
+		__up = setTimeout(function(){
+			clearTimeout(__down);
+			_sts[_cls] = "slideUp";
+			__down = setTimeout(function(){
+				_sts[_cls] = "";
+				_sts[_st].display = "none";
+			}, 2000);
+		}, 3050);
+	});
 }
 
 function restore_options(){	
    var _options = JSON.parse(window.localStorage.options);
 	doc[$elem]('custom-url')[_val] = _options.url;
-	doc[$elem]('hidetext').checked =  _options.hidetext;
 	doc[$elem]('old').checked = _options.old;
 }
 
@@ -164,7 +164,6 @@ function init(){
 }
 
 function local(elem, supp) {
-    // console.log("#" + elem + " = " + JSON.stringify(supp));
     var item = doc[$elem](elem);
     if(item) {
         var txt = $i18n(elem, supp);

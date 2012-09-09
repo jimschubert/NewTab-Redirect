@@ -4,7 +4,10 @@
   "description": "__MSG_extDesc__",
   "default_locale": "en",
   "version": "2.0",
-  "background": { "page" : "background.html" },
+  "background": { 
+    "page" : "background.html",
+    "persistent": false
+  },
   "options_page":"options.html",
   "chrome_url_overrides": {
     "newtab": "redirect.html"
