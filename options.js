@@ -119,7 +119,12 @@ function saveQuickLink(url){
     return false;
 }
 
-function init(){	
+function init(){
+    document.getElementById('original-newtab')
+        .addEventListener("click", function() {
+            chrome.tabs.create({ "url": "chrome-internal://newtab/"});
+    }, true);
+
     restore_options();
 	var _chromes = doc[$elem]('chromes');
 	var _abouts = doc[$elem]('abouts');
@@ -175,3 +180,4 @@ function local(elem, supp) {
 }
 
 window.addEventListener("DOMContentLoaded", init, true);
+

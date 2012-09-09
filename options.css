@@ -25,7 +25,17 @@ body {
 }
 
 a { color: #383838; }
+a#original-newtab, 
 a[data-target] { cursor: hand; }
+
+a#original-newtab {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0 1em .5em 0;
+  padding: 0.3em;
+  font-size:1.3em;
+}
 
 #header {
   padding-bottom:1.5em;
