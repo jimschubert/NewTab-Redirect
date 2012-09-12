@@ -69,3 +69,8 @@ function r(tabId) {
 }
 
 document.onload=init();
+
+// When installed, show welcome page
+chrome.runtime.onInstalled.addListener(function() {
+    chrome.tabs.create({"url": "welcome.html" });
+});
