@@ -1,0 +1,3 @@
+v2.0
+ * Added welcome page to display on install/upgrade
+ * Changed background page to event page to use less memory
