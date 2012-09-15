@@ -5,14 +5,14 @@
   "default_locale": "en",
   "version": "2.0",
   "background": { 
-    "page" : "background.html",
+    "scripts" : ["background.js"],
     "persistent": false
   },
   "options_page":"options.html",
   "chrome_url_overrides": {
     "newtab": "redirect.html"
   },
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "storage"],
   "icons": {
     "200": "icon200.png",
     "128": "icon128.png",

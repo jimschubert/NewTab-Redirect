@@ -1,22 +1,11 @@
-// naming convention: object: name, function: $name, property: _name, event: __name
-var doc = document;
-var ce = chrome.runtime;
-var $elem = "getElementById";
-var $make = "createElement";
-var $bp = "getBackgroundPage";
-var $setUrl = "setUrl";
-var $setOld = "setOld";
-var _st = "style";
-var _cls = "className";
-var _val = "value";
-var _txt = "innerText";
-var _chk = "checked";
-var __down, __up;
-var $i18n = chrome.i18n.getMessage;
-
 String.prototype.startsWith = function(str){
     return (this.indexOf(str) === 0);
 }
+
+var __down, __up;
+
+var allowedProtocols = ["http://", "https://", "about:", "file://", "file:\\", "file:///", "chrome://", "chrome-internal://", "chrome-extension://"];
+
 var chromePages = {
     Extensions: "chrome://extensions/",
     History: "chrome://history/",
@@ -40,7 +29,7 @@ var popularPages = {
 
 var empty = [[]];
 var langMap = {
-    "options_heading": [$i18n("extName")],
+    "options_heading": [chrome.i18n.getMessage("extName")],
     "options_subheading": empty,
     "options_status": empty,
     "options_url_label": empty,
@@ -65,100 +54,139 @@ var langMap = {
 
 // save options to localStorage.
 function save_options(){
-    var _url = doc[$elem]('custom-url');
-    var url = _url[_val];
+    var _url = document.getElementById('custom-url');
+    var url = _url.value;
     if (url == "") {
         url = aboutPages[0];
     }
 
-   save(true, url);
+   save(url);
 }
 
-function save(good, url){
+function save(url){
+    clearTimeout(__up);
+    clearTimeout(__down);
 
-	var background = ce[$bp](function(controller) { 
-		clearTimeout(__up);
+    var _sts = document.getElementById('status');
+    var validatedUrl = getGoodUrl(url);
+    var saveOptions = {"url": validatedUrl };
+    saveOptions.showWelcome = document.getElementById('chkShowWelcome').checked;
+    saveOptions.syncOptions = document.getElementById('chkSync').checked;
+    chrome.storage.local.set(saveOptions, function() {
+	_sts.innerText = chrome.i18n.getMessage("options_status",[[]]);
+	_sts.style.display = "block";
+	_sts.className = "slideDown";
+	__up = setTimeout(function(){
 		clearTimeout(__down);
-
-		var _sts = doc[$elem]('status');
-		var _old = doc[$elem]('old');
-		var _options = {};
-		if (good) {
-			_options.url = encodeURI(url);
-			_options.old = _old.checked;
-			window.localStorage.options = JSON.stringify(_options);
-			controller.setUrl(url);
-			_sts[_txt] = $i18n("options_status",[[]]);
-		} else {
-			_sts[_txt] = ("Invalid Url. Not saved.");
-		}
-	    
-	    	_sts[_st].display = "block";
-		_sts[_cls] = "slideDown";
-		__up = setTimeout(function(){
-			clearTimeout(__down);
-			_sts[_cls] = "slideUp";
-			__down = setTimeout(function(){
-				_sts[_cls] = "";
-				_sts[_st].display = "none";
-			}, 2000);
-		}, 3050);
-	});
+		_sts.className = "slideUp";
+		__down = setTimeout(function(){
+			_sts.className = "";
+			_sts.style.display = "none";
+		}, 2000);
+	}, 3050);
+    });
+    
+    if(saveOptions.syncOptions) {
+	chrome.storage.sync.set(saveOptions);
+    }
 }
 
-function restore_options(){	
-   var _options = JSON.parse(window.localStorage.options);
-	doc[$elem]('custom-url')[_val] = _options.url;
-	doc[$elem]('old').checked = _options.old;
+function restore_options(){
+    var savedOptions = [ "syncOptions", "showWelcome", "url" ];
+    chrome.storage.local.get(savedOptions, function(items) {
+	document.getElementById('custom-url').value = items.url;
+	document.getElementById('chkShowWelcome').checked = 
+	    items.showWelcome != undefined ? items.showWelcome : true;
+	document.getElementById('chkSync').checked = 
+	    items.syncOptions != undefined ? items.syncOptions : false;
+    });
 }
 
 function saveQuickLink(url){
     var uurl = unescape(url);
-	  doc[$elem]('custom-url')[_val] = uurl;
-    save(true, uurl);
+    document.getElementById('custom-url').value = uurl;
+    save(uurl);
+    return false;
+}
+
+function getGoodUrl(url) {
+    var goodUrl;
+    
+    if (protocolPasses(url) && url.length > 8) {
+	console.log("getGoodUrl: Protocol accepted");
+        goodUrl = url;
+    } else {
+        var protocol = 'http://';
+        var parts = url.split('://')
+        if (parts != undefined && parts != null && parts.length > 1) {
+            goodUrl = protocol + parts[1];	    
+	    console.log("getGoodUrl: Protocol %s not recognized, using %s", parts[0], goodUrl);
+        } else {
+            goodUrl = protocol + url;
+	    console.log("getGoodUrl: Unexpected input. Was %s, using %s", url, goodUrl);
+        }
+    }
+    
+    return goodUrl;
+}
+
+function protocolPasses(url) {
+    if (typeof(url) == 'undefined' || url == null) {
+	return false;
+    }
+    if (url.startsWith(allowedProtocols[3]) && !url.startsWith(allowedProtocols[5])) {
+	url.replace(allowedProtocols[3], allowedProtocols[5]);
+    } else if (url.startsWith(allowedProtocols[4])) {
+	url.replace(allowedProtocols[4], allowedProtocols[5]);
+    }
+    for (var p in allowedProtocols) {
+	if (url.startsWith(allowedProtocols[p])) {
+	    return true;
+	}
+    }
     return false;
 }
 
 function init(){
-    doc[$elem]('original-newtab')
+    document.getElementById('original-newtab')
         .addEventListener("click", function() {
             chrome.tabs.create({ "url": "chrome-internal://newtab/"});
     }, true);
 
-    doc[$elem]('btnSave')
+    document.getElementById('btnSave')
         .addEventListener("click", save_options, true);
 
-    doc[$elem]('btnCancel')
+    document.getElementById('btnCancel')
         .addEventListener("click", restore_options, true);
 
     restore_options();
-	var _chromes = doc[$elem]('chromes');
-	var _abouts = doc[$elem]('abouts');
-	var _pops = doc[$elem]('popular');
+    var _chromes = document.getElementById('chromes');
+    var _abouts = document.getElementById('abouts');
+    var _pops = document.getElementById('popular');
 
-	Object.keys(chromePages).forEach(function(key,idx) {
-		var value = chromePages[key];
-		var anchor = "<a data-target='" + value + "'>" + key + "</a>";
-		var item = doc[$make]('li');
-		item.innerHTML = anchor;
-		_chromes.appendChild(item);
-	});
-	
-	for (var i = aboutPages.length - 1; i >= 0; i--){
-		var $this = aboutPages[i];
-		var anchor = "<a data-target='" + $this + "'>" + $this + "</a>";
-		var item = doc[$make]('li');
-		item.innerHTML = anchor;
-		_abouts.appendChild(item);
-	};
-	
-	Object.keys(popularPages).forEach(function(key,idx) {
-		var value = popularPages[key];
-		var anchor = "<a data-target='" + value + "'>" + key + "</a>";
-        var item = doc[$make]('li');
-		item.innerHTML = anchor;
-		_pops.appendChild(item);
-	});
+    Object.keys(chromePages).forEach(function(key,idx) {
+	var value = chromePages[key];
+	var anchor = "<a data-target='" + value + "'>" + key + "</a>";
+	var item = document.createElement('li');
+	item.innerHTML = anchor;
+	_chromes.appendChild(item);
+    });
+    
+    for (var i = aboutPages.length - 1; i >= 0; i--){
+	var $this = aboutPages[i];
+	var anchor = "<a data-target='" + $this + "'>" + $this + "</a>";
+	var item = document.createElement('li');
+	item.innerHTML = anchor;
+	_abouts.appendChild(item);
+    };
+    
+    Object.keys(popularPages).forEach(function(key,idx) {
+	var value = popularPages[key];
+	var anchor = "<a data-target='" + value + "'>" + key + "</a>";
+	var item = document.createElement('li');
+	item.innerHTML = anchor;
+	_pops.appendChild(item);
+    });
 
     Object.keys(langMap).forEach(function(key,idx) {
         var item = key,
@@ -175,12 +203,12 @@ function init(){
 }
 
 function local(elem, supp) {
-    var item = doc[$elem](elem);
+    var item = document.getElementById(elem);
     if(item) {
-        var txt = $i18n(elem, supp);
+        var txt = chrome.i18n.getMessage(elem, supp);
         // write localized text, otherwise don't update existing text.
         if(txt) {
-            item.innerHTML = $i18n(elem, supp);
+            item.innerHTML = chrome.i18n.getMessage(elem, supp);
         } else { console.log(elem + " missing"); }
     }
 }

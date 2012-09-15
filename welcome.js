@@ -118,7 +118,8 @@ function init() {
     document.getElementById("chkNeverShow")
     .addEventListener("change", function(evt) {
         var checked = evt.target.checked;
-        // TODO: save option
+        console.log("checked=%s", checked);
+        chrome.storage.local.set({"showWelcome": checked });
     });
 
     resize_elements(true);
