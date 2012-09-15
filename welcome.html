@@ -16,7 +16,7 @@
     <button id="btn_next" class="nav-btn nav next back in"></button>
 
     <div class="slick">
-      <div id="intro_page" class="slider">
+      <div id="welcome_page" class="slider">
         <h1><span class="welcome">Welcome!</span></h1>
         <p class="blah">
             You've just installed New Tab Redirect. Thanks!
@@ -35,8 +35,10 @@
         </p>
         <p class="blah">
             If you'd like an introduction, use the navigation
-            buttons to move forward and backward. This works just
-            like the original new tab page.
+            buttons or your keyboard left and right arrows to 
+            move forward and backward. This works just
+            like the original new tab page. A lot has changed in 2.0, so
+            I suggest everyone at least scans the next page.
         </p>
         <p class="blah">
             If you want to skip the intro and set your options,
@@ -50,7 +52,11 @@
         </p>
       </div><!-- end Intro -->
 
-      <div id="contact_page" class="slider" style="position:absolute;top:0;">
+      <div id="intro_page" class="slider" style="-webkit-transform: translate3d(2000, 0, 0);position:absolute;top:0;display:none;">
+        <h1><span class="welcome">Introduction</span></h1>
+      </div>
+      
+      <div id="contact_page" class="slider" style="-webkit-transform: translate3d(2000, 0, 0);position:absolute;top:0;display:none;">
         <h1><span class="welcome">Contact</span></h1>
 
         <h2><span class="github-icon">Bugs or Features</span></h2>
@@ -74,7 +80,7 @@
 
       </div><!-- end Contact -->
 
-      <div id="faq_page" class="slider" style="-webkit-transform: translate3d(2000, 0, 0);position:absolute;top:0;">
+      <div id="faq_page" class="slider" style="-webkit-transform: translate3d(2000, 0, 0);position:absolute;top:0;display:none;">
         <h1><span class="welcome">FAQ</span></h1>
 
         <blockquote>How do I access this extension?</blockquote>
@@ -107,8 +113,8 @@
 <div id="footer">
 
   <ul id="bottom_nav">
-    <li class="welcome-icon" style="height:36px">&nbsp;</li>
-    <li class="intro_page list-nav selected"><span>Intro</span></li>
+    <li class="welcome-icon welcome_page list-nav selected" style="height:36px">&nbsp;</li>
+    <li class="intro_page list-nav"><span>Intro</span></li>
     <li class="contact_page list-nav"><span>Contact</span></li>
     <li class="faq_page list-nav"><span>FAQ</span></li>
   </ul>

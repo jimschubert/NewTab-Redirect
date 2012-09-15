@@ -1,4 +1,5 @@
 var slice = Array.prototype.slice; var pages = [
+    { title: "Welcome", id: "welcome_page" },
     { title: "Intro", id: "intro_page" },
     { title: "Contact", id: "contact_page" },
     { title: "FAQ", id: "faq_page" }
@@ -20,6 +21,7 @@ function resize_elements(initializing) {
         page.style.webkitTransform =
           "translate3d("+ (onLeft ? "-" : "") + Math.max(dw,cw,1000) +"px, 0, 0)";
       }
+      page.style.display = "block";
     });
 
     var elements = document.getElementsByClassName('nav-btn');
@@ -118,8 +120,12 @@ function init() {
     document.getElementById("chkNeverShow")
     .addEventListener("change", function(evt) {
         var checked = evt.target.checked;
-        console.log("checked=%s", checked);
-        chrome.storage.local.set({"showWelcome": checked });
+        // NOTE: save !checked because checkbox reads as equivalent to
+        // "hide welcome" on the welcome page, but "show welcome" on 
+        // the options page.
+        chrome.storage.local.set({"showWelcome": !checked }, function() {
+            console.log('saved');
+        });
     });
 
     resize_elements(true);
