@@ -138,3 +138,65 @@ p.blah { }
   min-width:550px;
   max-width:600px;
 }
+
+#intro_screenshot {
+    padding-right:300px;
+    height:375px;
+    background-position: 0 0;
+    -webkit-transition: all 150ms ease-in-out;
+}
+
+#intro_screenshot.default {
+    background: url(images/screenshots/NewTabRedirect-options.png) top left no-repeat content-box;
+}
+
+#intro_screenshot.ss-url {
+    background: url(images/screenshots/NewTabRedirect-options.url.png) top left no-repeat content-box;
+}
+
+#intro_screenshot.ss-save {
+    background: url(images/screenshots/NewTabRedirect-options.save.png) top left no-repeat content-box;
+    background-position: -150px 0;
+}
+
+#intro_screenshot.ss-sync {
+    background: url(images/screenshots/NewTabRedirect-options.sync.png) top left no-repeat content-box;
+}
+
+#intro_screenshot.ss-welcome {
+    background: url(images/screenshots/NewTabRedirect-options.welcome.png) top left no-repeat content-box;
+}
+
+#intro_screenshot.ss-saved {
+    background: url(images/screenshots/NewTabRedirect-options.saved.png) top left no-repeat content-box;
+    background-position: -140px 0;
+}
+
+#intro_screenshot.ss-quick {
+    background: url(images/screenshots/NewTabRedirect-options.quick.png) top left no-repeat content-box;
+}
+
+ul#normal_ss:before {
+    content: 'Normal Usage';
+    font-weight:800;
+}
+
+ul#quicksave_ss:before {
+    content: 'Quick Save';
+    font-weight:800;
+}
+
+ul.screenshots_list {
+    padding-left:330px;
+    width:220px;
+    vertical-align:top;
+}
+
+span.intro_explain {
+    display:inline-block;
+    padding-left:330px;
+    width:260px;
+    vertical-align:top;
+    font-size:0.8em;
+    margin-top:0.3em;
+}

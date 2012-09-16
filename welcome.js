@@ -6,6 +6,16 @@ var slice = Array.prototype.slice; var pages = [
 ];
 var index = 0;
 
+var preloadImages = [
+"NewTabRedirect-options.quick.png",
+"NewTabRedirect-options.saved-nohighlight.png",
+"NewTabRedirect-options.saved.png",
+"NewTabRedirect-options.save.png",
+"NewTabRedirect-options.sync.png",
+"NewTabRedirect-options.url.png",
+"NewTabRedirect-options.welcome.png"
+]
+
 function resize_elements(initializing) {
 
     // Get container width, doc width (inside window), calc margin width
@@ -127,8 +137,29 @@ function init() {
             console.log('saved');
         });
     });
+    
+    var screenshots = document.getElementById("intro_screenshot");
+    slice.call(document.querySelectorAll('[data-role="screenshot"]'),0)
+        .forEach(function(el) {
+            var style = el.getAttribute("data-apply");
+            el.addEventListener("mouseover", function(e) {
+                screenshots.classList.add(style);
+                screenshots.classList.remove('default');
+            });
+            el.addEventListener("mouseout", function(e) {
+                screenshots.classList.add('default');
+                screenshots.classList.remove(style);
+            });
+        });
 
     resize_elements(true);
+    
+    // preload images
+    preloadImages.forEach(function(pic) {
+        console.log("Preloading image: %s", pic);
+        var img = document.createElement("img");
+        img.src = "images/screenshots/" + pic;
+    });
 }
 
 window.addEventListener("DOMContentLoaded", init, true);
