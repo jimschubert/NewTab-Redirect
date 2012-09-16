@@ -49,7 +49,9 @@ var langMap = {
     "options_footerPlea": empty,
     "options_githubTitle": empty,
     "btnSave": empty,
-    "btnCancel": empty
+    "btnCancel": empty,
+    "options_chkSync": empty,
+    "options_chkShowWelcome": empty
 };
 
 // save options to localStorage.
@@ -209,7 +211,7 @@ function local(elem, supp) {
         // write localized text, otherwise don't update existing text.
         if(txt) {
             item.innerHTML = chrome.i18n.getMessage(elem, supp);
-        } else { console.log(elem + " missing"); }
+        } else { console.log("chrome.i18n.getMessage: " + elem + " missing"); }
     }
 }
 
