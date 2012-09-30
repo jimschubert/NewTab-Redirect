@@ -16,7 +16,7 @@
     }
   },
   "options_localFiles_hint": {
-    "message": "Remarque : Utilisez fichier:// pour les fichiers locaux (par exemple, fichier://C:\\exemple.html).",
+    "message": "Remarque : Utilisez file:// pour les fichiers locaux (par exemple, file://C:\\exemple.html).",
     "description": "A note indicating that file:// should be used when accessing local file locations"
   },
   "btnSave": {
