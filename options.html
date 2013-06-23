@@ -1,10 +1,12 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>New Tab Redirect! | Options</title>
     <script type="text/javascript" src="options.js"></script>
+    <link rel="stylesheet" href="common.css" type="text/css"/>
     <link rel="stylesheet" href="options.css" type="text/css"/>
 </head>
-<body onload="ready()">
+<body>
 <div id="status">
     <span id="options_status">Options saved.</span>
 </div>
@@ -19,27 +21,28 @@
 <p>
     <span id="options_url_label" class="desc-text">My new tab page should show this URL:</span> <input type="text" id="custom-url">
 
-    <span style="display:none;"><input type="checkbox" id="old" /> <small>Old redirect (address bar doesn't focus)</small></span>
-
-    <button id="btnSave" style="font-weight:bold" onclick="save_options()">Save</button>
-    <button id="btnCancel" onclick="restore_options()">Cancel</button>
-    <input type="checkbox" id="hidetext" /> 
-    <small id="options_hide_hint">Hide "Redirecting..." hint</small>
+    <button id="btnSave" style="font-weight:bold">Save</button>
+    <button id="btnCancel">Cancel</button>
 </p>
 
 <em id="options_localFiles_hint">Note:  Use file:// for local files (e.g. file://C:\example.html)</em>
+
+<p>
+  <input type="checkbox" id="chkSync"/><label for="chkSync" id="options_chkSync">Sync Options</label>
+  <input type="checkbox" id="chkShowWelcome"/><label for="chkShowWelcome" id="options_chkShowWelcome">Show Welcome on upgrade</label>
+</p>
 
 <h2>
     <span id="options_quickSave_headingLarge">Quick Save&hellip;</span>
     <small id="options_quickSave_headingSmall">click a button below!</small>
 </h2>
-<p id="options_chromePages">Original Chrome Pages:</p>
+<p id="options_chromePages" class="quick-links">Original Chrome Pages:</p>
 <ul id="chromes" class="horizontal-links"></ul>
 
-<p id="options_aboutPages" class="fix">About Pages:</p>
+<p id="options_aboutPages" class="fix quick-links">About Pages:</p>
 <ul id="abouts" class="horizontal-links"></ul>
 
-<p id="options_popularPages" class="fix">Popular Pages:</p>
+<p id="options_popularPages" class="fix quick-links">Popular Pages:</p>
 <ul id="popular" class="horizontal-links"></ul>
 
 <h2 class="fix">
@@ -64,6 +67,6 @@
 <em><span id="options_createdBy">Created by</span> <a href="http://www.ipreferjim.com">James Schubert, 2009-2011</a>.  james.schubert@gmail.com</em><br />
 <em><span id="options_footerPlea">Want to contribute, donate, report an issue, etc?</span> <a href="http://github.com/jimschubert/newtab-redirect" target="_blank"><span id="options_githubTitle">Find me on GitHub!</span></a></em>
 </div>
-
+<a id="original-newtab">Apps</a>
 </body>
 </html>

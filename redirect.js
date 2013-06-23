@@ -1,31 +1,23 @@
-var ce = chrome.extension;
-var $bp = "getBackgroundPage";
-var $msg = chrome.i18n.getMessage;
-var text;
-var help, click;
-
-function h(){
-    text = $msg("redirectText") || "Redirecting...";
-    document.title = text;
-	var _opts =  JSON.parse(window.localStorage.options);	
-    if (!_opts.hidetext) {
-        help = $msg("redirectMsg") || "If your page does not redirect in 5 seconds:";
-        click = $msg("clickHere") || "click here";
-        document.getElementsByTagName('body')[0].innerHTML = 
-            (text + '<br><em>' + help + '<a href=\'javascript:r()\'>' + click + '<\/a><\/em>');
-    }
+function r(tabId, url) {
+    chrome.tabs.update(tabId, {
+	"url": url || chrome.extension.getURL("options.html"),
+	"selected": true
+    });
 }
 
-function r(){   
-	var _opts =  JSON.parse(window.localStorage.options);	
-	var url = _opts.url || "";
+function init(){    
+    chrome.storage.local.get("url", function(items) {
+	console.log("Items:");
+	console.log(items);
+	var url = items.url || "";
 	if ((/^http:/i.test(url)) || /^https:/i.test(url)) {
-		document.location.href = url;
-		return;
-	} 
-	
-    var ctrl = ce[$bp]();
-    if(ctrl) {
-        chrome.tabs.getCurrent(function(t) { ctrl.r(t.id); });
-    } else { r(); }
+	    document.location.href = url;
+	    return;
+	} else {
+	    chrome.tabs.getCurrent(function(t) {
+		r(t.id, url);
+	    });
+	}
+    });
 }
+window.addEventListener("DOMContentLoaded", init, true);

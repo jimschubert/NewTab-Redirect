@@ -113,5 +113,13 @@
   "options_githubTitle": {
     "message": "Find me on GitHub!",
     "description" : "Title displayed on github link"
+  },
+  "options_chkSync": {
+    "message": "Sync Options",
+    "description": "Labels the checkbox indicating options will be saved via Google Chrome Sync"
+  },
+  "options_chkShowWelcome": {
+    "message": "Show Welcome on upgrade",
+    "description": "Labels the checkbox indicating the Welcome Page will be displayed when the extension is upgraded"
   }
 }

@@ -1,18 +1,23 @@
 {
+  "manifest_version": 2,
   "name": "__MSG_extName__",
   "description": "__MSG_extDesc__",
   "default_locale": "en",
-  "version": "1.1.0",
-  "background_page": "background.html",
+  "version": "2.0",
+  "background": { 
+    "scripts" : ["background.js"],
+    "persistent": false
+  },
   "options_page":"options.html",
   "chrome_url_overrides": {
     "newtab": "redirect.html"
   },
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "storage"],
   "icons": {
     "200": "icon200.png",
     "128": "icon128.png",
 	"19":"icon19.png"
   },
-  "incognito": "split"
+  "incognito": "split",
+  "minimum_chrome_version" : "22"
 }
