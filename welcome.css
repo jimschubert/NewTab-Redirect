@@ -201,3 +201,12 @@ span.intro_explain {
     font-size:0.8em;
     margin-top:0.3em;
 }
+
+a.settings-link {
+    display:inline-block;
+    color:rgba(0,0,0,0);
+    height:29px;
+    width:28px;
+    background: url(images/screenshots/Chrome-Settings.png) no-repeat top center;
+    background-size: 75% auto;
+}

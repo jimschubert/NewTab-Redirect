@@ -1,4 +1,6 @@
-var slice = Array.prototype.slice; var pages = [
+var slice = Array.prototype.slice;
+var forEach = Array.prototype.forEach;
+var pages = [
     { title: "Welcome", id: "welcome_page" },
     { title: "Intro", id: "intro_page" },
     { title: "Contact", id: "contact_page" },
@@ -159,6 +161,22 @@ function init() {
         console.log("Preloading image: %s", pic);
         var img = document.createElement("img");
         img.src = "images/screenshots/" + pic;
+    });
+
+    forEach.call(document.querySelectorAll("[href='chrome://settings']"), function(elem) {
+        elem.addEventListener("click", function(e){
+            e.preventDefault();
+            chrome.tabs.create({url: "chrome://settings/extensions"});
+            return false;
+        }, false);
+    });
+
+    forEach.call(document.querySelectorAll("[href='chrome://settings/extensions']"), function(elem) {
+        elem.addEventListener("click", function(e){
+            e.preventDefault();
+            chrome.tabs.create({url: "chrome://settings/extensions"});
+            return false;
+        }, false);
     });
 }
 
