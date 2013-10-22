@@ -7,6 +7,7 @@ var __down, __up;
 var allowedProtocols = ["http://", "https://", "about:", "file://", "file:\\", "file:///", "chrome://", "chrome-internal://", "chrome-extension://"];
 
 var chromePages = {
+    Apps: "chrome://apps/",
     Extensions: "chrome://extensions/",
     History: "chrome://history/",
     Downloads: "chrome://downloads/",
