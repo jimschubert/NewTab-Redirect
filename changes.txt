@@ -1,3 +1,8 @@
+v2.1
+ * Fix antiquated mentioning of "Wrench" icon
+ * Add chrome://apps as an option
+ * Sync improvements for multiple-machine installations
+ * Don't display Welcome Page when Chrome updates
 v2.0
  * Added welcome page to display on install/upgrade
  * Added option to suppress welcome page on upgrades

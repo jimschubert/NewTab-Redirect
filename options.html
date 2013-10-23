@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>New Tab Redirect! | Options</title>
+    <link rel="stylesheet" href="css/font-awesome.css" type="text/css"/>
     <script type="text/javascript" src="options.js"></script>
     <link rel="stylesheet" href="common.css" type="text/css"/>
     <link rel="stylesheet" href="options.css" type="text/css"/>
@@ -21,8 +22,9 @@
 <p>
     <span id="options_url_label" class="desc-text">My new tab page should show this URL:</span> <input type="text" id="custom-url">
 
-    <button id="btnSave" style="font-weight:bold">Save</button>
-    <button id="btnCancel">Cancel</button>
+    <button id="btnSave" style="font-weight:bold" title="Save">Save</button>
+    <button id="btnCancel" title="Cancel">Cancel</button>
+    <button id="btnSync" class="icon-cloud-download icon-large" title="Get Sync URL"></button>
 </p>
 
 <em id="options_localFiles_hint">Note:  Use file:// for local files (e.g. file://C:\example.html)</em>
