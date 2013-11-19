@@ -51,12 +51,10 @@ function resize_elements(initializing) {
           el.classList.remove('ghost');
       });
     }
-
-    if(!initializing) {
-      var right = document.getElementById("right_indicator");
-      var left = document.getElementById("left_indicator");
-      set_indicators(left,right);
-    }
+    
+    var right = document.getElementById("right_indicator");
+    var left = document.getElementById("left_indicator");
+    set_indicators(left,right);
 }
 
 function keyed_navigation(e) {
@@ -69,13 +67,13 @@ function keyed_navigation(e) {
 
 function navigate(advance) {
     // `advance` means user clicked next, slider should slide to left (negative).
-    var dw = document.width;
+    var dw = document.width || window.screen.width;
     var right = document.getElementById("right_indicator");
     var left = document.getElementById("left_indicator");
     var original = document.getElementById(pages[index].id);
 
     if(advance) {
-        if( (index+1) <= (pages.length-1)) {
+        if( (index+1) <= (pages.length-1) ) {
             index++;
             left.classList.remove('ghost');
 
