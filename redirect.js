@@ -13,7 +13,9 @@ function init(){
 	    return;
 	} else {
 	    chrome.tabs.getCurrent(function(t) {
-		r(t.id, url);
+	        if (t.url == "chrome://newtab/") {
+	            r(t.id, url);
+	        }
 	    });
 	}
     });
