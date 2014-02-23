@@ -11,7 +11,6 @@ var chromePages = {
     Extensions: "chrome://extensions/",
     History   : "chrome://history/",
     Downloads : "chrome://downloads/",
-    NewTab    : "chrome-internal://newtab/",
     Bookmarks : "chrome://bookmarks/",
     Internals : "chrome://net-internals"
 }
@@ -167,7 +166,7 @@ function protocolPasses(url) {
 function init() {
     document.getElementById('original-newtab')
         .addEventListener("click", function () {
-            chrome.tabs.create({ "url": "chrome-internal://newtab/"});
+            chrome.tabs.create({ "url": "chrome://apps/"});
         }, true);
 
     document.getElementById('btnSync')

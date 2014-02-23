@@ -24,10 +24,12 @@
 
     <button id="btnSave" style="font-weight:bold" title="Save">Save</button>
     <button id="btnCancel" title="Cancel">Cancel</button>
-    <button id="btnSync" class="icon-cloud-download icon-large" title="Get Sync URL"></button>
+    <button id="btnSync" class="fa fa-cloud-download" title="Get Sync URL"></button>
 </p>
 
-<em id="options_localFiles_hint">Note:  Use file:// for local files (e.g. file://C:\example.html)</em>
+<p><i class="fa fa-warning"></i> As of Chrome 33, <code>chrome-internal://newtab/</code> no longer works. Please select another url.</p>
+
+<p><em id="options_localFiles_hint">Note:  Use file:// for local files (e.g. file://C:\example.html)</em></p>
 
 <p>
   <input type="checkbox" id="chkSync"/><label for="chkSync" id="options_chkSync">Sync Options</label>
