@@ -1,3 +1,7 @@
+v2.2
+ * Remove chrome-internal://newtab/ support
+ * Add explicit https:// on sites that support https under quick links
+ * Updated fontawesome to 4.0.3
 v2.1
  * Fix antiquated mentioning of "Wrench" icon
  * Add chrome://apps as an option
