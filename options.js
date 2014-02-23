@@ -17,14 +17,14 @@ var chromePages = {
 var aboutPages = ["about:blank", "about:version", "about:plugins", "about:cache", "about:memory", "about:histograms", "about:dns", "about:terms", "about:credits", "about:net-internals"];
 
 var popularPages = {
-    "Google+"  : "plus.google.com",
-    "Facebook" : "www.facebook.com",
-    "Twitter"  : "www.twitter.com",
-    "Yahoo"    : "www.yahoo.com",
-    "Wikipedia": "www.wikipedia.org",
-    "Digg"     : "www.digg.com",
-    "Delicious": "www.delicious.com",
-    "Slashdot" : "www.slashdot.org"
+    "Google+"  : "https://plus.google.com",
+    "Facebook" : "https://www.facebook.com",
+    "Twitter"  : "https://twitter.com",
+    "Yahoo"    : "https://www.yahoo.com",
+    "Wikipedia": "http://www.wikipedia.org",
+    "Digg"     : "http://digg.com",
+    "Delicious": "https://delicious.com",
+    "Slashdot" : "http://www.slashdot.org"
 };
 
 var empty = [
