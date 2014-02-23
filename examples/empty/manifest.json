@@ -1,0 +1,8 @@
+{
+  "name": "Empty new tab page",
+  "description": "Override the new tab page with an empty page, for users who don't like the original or custom new tab pages",
+  "version": "1.0",
+  "incognito": "split",
+  "chrome_url_overrides": { "newtab": "empty.html" },
+  "manifest_version": 2
+}
