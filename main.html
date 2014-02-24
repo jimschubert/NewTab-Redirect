@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" ng-app="newTab">
+<head>
+    <meta charset="utf-8">
+    <title>New Tab Redirect</title>
+    <script type="text/javascript" src="js/redirect.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/vendor/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/vendor/angular/angular-animate.min.js"></script>
+    <script type="text/javascript" src="js/vendor/angular/angular-touch.min.js"></script>
+
+    <link rel="stylesheet" href="css/common.css" type="text/css">
+
+    <script type="text/javascript" src="js/animations.js" defer></script>
+    <script type="text/javascript" src="js/controllers.js" defer></script>
+    <script type="text/javascript" src="js/directives.js" defer></script>
+    <script type="text/javascript" src="js/filters.js" defer></script>
+    <script type="text/javascript" src="js/services.js" defer></script>
+    <script type="text/javascript" src="js/app.js" defer></script>
+</head>
+<body>
+
+<div ng-cloak>
+    <div class="main-container" ng-controller="MainController">
+        <div>{{extension_name}}</div>
+        <chrome-app ng-repeat="app in apps" app="app"></chrome-app>
+    </div>
+</div>
+
+</body>
+</html>

@@ -108,3 +108,19 @@ a[rel=publisher] img {
   padding-left:33px;
   background: url(../images/google_32.png) no-repeat left center;
 }
+
+img.app-icon-128 {
+    height:128px;
+    width:128px;
+    padding:1px;
+}
+
+div.app-icon {
+    float:left;
+}
+
+div.main-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}

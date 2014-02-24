@@ -10,9 +10,9 @@
   },
   "options_page":"options.html",
   "chrome_url_overrides": {
-    "newtab": "redirect.html"
+    "newtab": "main.html"
   },
-  "permissions": ["tabs", "storage"],
+  "permissions": ["tabs", "storage", "topSites", "management"],
   "icons": {
     "200": "images/icon200.png",
     "128": "images/icon128.png",
