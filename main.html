@@ -9,6 +9,7 @@
     <script type="text/javascript" src="js/vendor/angular/angular-animate.min.js"></script>
     <script type="text/javascript" src="js/vendor/angular/angular-touch.min.js"></script>
 
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/common.css" type="text/css">
 
     <script type="text/javascript" src="js/animations.js" defer></script>
@@ -22,8 +23,13 @@
 
 <div ng-cloak>
     <div class="main-container" ng-controller="MainController">
-        <div>{{extension_name}}</div>
-        <chrome-app ng-repeat="app in apps" app="app"></chrome-app>
+        <div class="app-header">
+            <span class="app-logo"><i class="fa">&nbsp;</i> {{extension_name}}</span>
+            <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self"><i class="fa fa-shopping-cart"></i> Chrome Web Store</a></span>
+        </div>
+        <div class="app-container">
+            <chrome-app ng-repeat="app in apps" app="app"></chrome-app>
+        </div>
     </div>
 </div>
 

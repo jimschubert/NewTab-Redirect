@@ -109,18 +109,80 @@ a[rel=publisher] img {
   background: url(../images/google_32.png) no-repeat left center;
 }
 
-img.app-icon-128 {
+.app-icon-128 {
+    display:block;
+    height:150px;
+    width:150px;
+    padding:7px;
+}
+
+.app-icon-128 img {
     height:128px;
     width:128px;
-    padding:1px;
 }
 
 div.app-icon {
-    float:left;
+    float: left;
+    text-align: center;
+    line-height: 1.2em;
+    font-size: 0.6em;
+}
+
+div.app-icon a {
+    color: rgba(0,0,0,0.7);
+    text-decoration: none;
+}
+
+span.app-desc {
+    display: block;
+    white-space: pre-wrap;
+    text-decoration: none;
 }
 
 div.main-container {
+}
+
+div.app-container {
     margin-left: auto;
     margin-right: auto;
+    margin-top:35px;
     width: 95%;
 }
+
+div.app-header {
+    position: fixed;
+    top: 0;
+    height: 30px;
+    background-color: rgba(186,211,218,0.8);
+    width:100%;
+}
+
+div.app-header span {
+    display: inline-block;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1em;
+    padding-top:5px;
+}
+
+span.app-logo {
+    margin-left:20px;
+}
+
+span.app-logo i {
+    display:inline-block;
+    height:19px;
+    width:19px;
+    background: url(../images/icon19.png) no-repeat center;
+}
+
+span.webstore {
+
+    display:inline-block;
+    float:right;
+    margin-right:10px;
+}
+span.webstore a {
+    color: rgba(10,10,10,0.7);
+}
+span.webstore a:hover { text-decoration: none; }
