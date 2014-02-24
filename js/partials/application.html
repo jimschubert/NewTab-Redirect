@@ -1,5 +1,6 @@
 <div class="app-icon">
-    <a href="{{app.appLaunchUrl}}" chrome-launch="app.id">
-        <img src="{{app.icons|iconsize:128}}" class="app-icon-128" title="{{app.name}}"/>
+    <a href="{{app.appLaunchUrl}}" chrome-launch="app.id" class="app-icon-128">
+        <img src="{{app.icons|iconsize:128}}" title="{{app.name}}"/>
+        <span class="app-desc">{{app.name}}</span>
     </a>
 </div>

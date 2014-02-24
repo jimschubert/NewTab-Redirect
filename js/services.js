@@ -14,6 +14,14 @@ services.service('Apps', ['$rootScope', '$q', function ($rootScope, $q) {
             });
 
             return deferred.promise;
+        },
+
+        launch: function(id){
+            var deferred = $q.defer();
+            chrome.management.launchApp(id, function(){
+                deferred.resolve();
+            });
+            return deferred.promise;
         }
     };
 }]);

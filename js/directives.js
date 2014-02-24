@@ -20,7 +20,7 @@ directives.directive('chromeApp', function(){
     };
 });
 
-directives.directive('chromeLaunch', ['$log', function($log){
+directives.directive('chromeLaunch', ['$log', 'Apps', function($log, Apps){
     return {
         // attribute only
         restrict: 'A',
@@ -33,9 +33,10 @@ directives.directive('chromeLaunch', ['$log', function($log){
             if($scope.id){
                 $element.bind('click', function(e){
                     e.preventDefault();
-                    chrome.management.launchApp($scope.id, function(){
-                        $log.debug("launched app id %s", $scope.id);
-                    });
+                    Apps.launch($scope.id)
+                        .then(function(){
+                            $log.debug("launched app id %s", $scope.id);
+                        });
                 });
             }
         }
