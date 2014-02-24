@@ -5,7 +5,7 @@
   "default_locale": "en",
   "version": "2.2",
   "background": { 
-    "scripts" : ["background.js"],
+    "scripts" : ["js/background.js"],
     "persistent": false
   },
   "options_page":"options.html",
@@ -14,9 +14,9 @@
   },
   "permissions": ["tabs", "storage"],
   "icons": {
-    "200": "icon200.png",
-    "128": "icon128.png",
-	"19":"icon19.png"
+    "200": "images/icon200.png",
+    "128": "images/icon128.png",
+	"19":"images/icon19.png"
   },
   "incognito": "split",
   "minimum_chrome_version" : "22"

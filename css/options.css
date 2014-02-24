@@ -40,7 +40,7 @@ a#original-newtab {
   padding: 38px 0 6px 0;
   font-size:1.1em;
   width: 48px;
-  background: #FFF url(images/apps.png) top center no-repeat;
+  background: #FFF url(../images/apps.png) top center no-repeat;
   text-align:center;
   opacity: 0.8;
   -webkit-transition: -webkit-transform 150ms ease-in-out;
@@ -61,7 +61,7 @@ a#original-newtab:hover {
   padding-bottom:43px;
   padding-left:75px;
   padding-top:40px;
-  background:url(icon128.png) no-repeat;
+  background:url(../images/icon128.png) no-repeat;
   background-size:67px;
   background-position:1px 18px;
 }

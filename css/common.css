@@ -96,15 +96,15 @@ a[rel=publisher] img {
 
 .github-icon {
   padding-left:33px;
-  background: url(images/github_32.png) no-repeat left center;
+  background: url(../images/github_32.png) no-repeat left center;
 }
 
 .twitter-icon {
   padding-left:33px;
-  background: url(images/twitter_32.png) no-repeat left center;
+  background: url(../images/twitter_32.png) no-repeat left center;
 }
 
 .google-icon {
   padding-left:33px;
-  background: url(images/google_32.png) no-repeat left center;
+  background: url(../images/google_32.png) no-repeat left center;
 }

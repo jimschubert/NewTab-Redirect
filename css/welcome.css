@@ -35,7 +35,7 @@ p.answer {
 #left_indicator {
   top:35%;
   left:0;
-  background:url(images/left.png) center no-repeat;
+  background:url(../images/left.png) center no-repeat;
   height:72px;
   width:72px;
   opacity:0.7;
@@ -68,7 +68,7 @@ li.list-nav.selected span{
 #right_indicator {
   top:35%;
   right:0;
-  background:url(images/right.png) center no-repeat;
+  background:url(../images/right.png) center no-repeat;
   height:72px;
   width:72px;
   opacity:0.7;
@@ -116,11 +116,11 @@ h1 {
 h1 span.welcome {
   padding-left: 40px;
   display:inline;
-  background: url(icon36.png) no-repeat left center;
+  background: url(../images/icon36.png) no-repeat left center;
 }
 
 .welcome-icon {
-  background: url(icon36.png) no-repeat center center;
+  background: url(../images/icon36.png) no-repeat center center;
 }
 
 p.blah { }
@@ -147,33 +147,33 @@ p.blah { }
 }
 
 #intro_screenshot.default {
-    background: url(images/screenshots/NewTabRedirect-options.png) top left no-repeat content-box;
+    background: url(../images/screenshots/NewTabRedirect-options.png) top left no-repeat content-box;
 }
 
 #intro_screenshot.ss-url {
-    background: url(images/screenshots/NewTabRedirect-options.url.png) top left no-repeat content-box;
+    background: url(../images/screenshots/NewTabRedirect-options.url.png) top left no-repeat content-box;
 }
 
 #intro_screenshot.ss-save {
-    background: url(images/screenshots/NewTabRedirect-options.save.png) top left no-repeat content-box;
+    background: url(../images/screenshots/NewTabRedirect-options.save.png) top left no-repeat content-box;
     background-position: -150px 0;
 }
 
 #intro_screenshot.ss-sync {
-    background: url(images/screenshots/NewTabRedirect-options.sync.png) top left no-repeat content-box;
+    background: url(../images/screenshots/NewTabRedirect-options.sync.png) top left no-repeat content-box;
 }
 
 #intro_screenshot.ss-welcome {
-    background: url(images/screenshots/NewTabRedirect-options.welcome.png) top left no-repeat content-box;
+    background: url(../images/screenshots/NewTabRedirect-options.welcome.png) top left no-repeat content-box;
 }
 
 #intro_screenshot.ss-saved {
-    background: url(images/screenshots/NewTabRedirect-options.saved.png) top left no-repeat content-box;
+    background: url(../images/screenshots/NewTabRedirect-options.saved.png) top left no-repeat content-box;
     background-position: -140px 0;
 }
 
 #intro_screenshot.ss-quick {
-    background: url(images/screenshots/NewTabRedirect-options.quick.png) top left no-repeat content-box;
+    background: url(../images/screenshots/NewTabRedirect-options.quick.png) top left no-repeat content-box;
     background-position: -60px -100px;
 }
 
@@ -207,6 +207,6 @@ a.settings-link {
     color:rgba(0,0,0,0);
     height:29px;
     width:28px;
-    background: url(images/screenshots/Chrome-Settings.png) no-repeat top center;
+    background: url(../images/screenshots/Chrome-Settings.png) no-repeat top center;
     background-size: 75% auto;
 }
