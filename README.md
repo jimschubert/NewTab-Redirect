@@ -25,6 +25,9 @@ This is not meant to replace your homepage, only new tabs.  If your browser is s
 
 
 ## Omnibar support
+
+If you use the built-in New Tab Redirect Apps page, you will be able to type directly into the omnibar. If you use a custom url, the architecture of the extension can not allow for focusing or clearing of the omnibar.
+
 Google Chrome extensions do not currently have access to interact with the omnibar for highlighting after the new page is created.  There is an experimental API to retrieve values and detect user input in the omnibar, but it does not allow extensions to highlight the text.  I've tested version 1.0.1 of New Tab Redirect! across numerous developer builds, and the cursor only occasionally ends at the end of the omnibar.  However, this is handled by Chrome itself and can not be modified via the extension.  As soon as Chrome offers this functionality, I will implement it.  Until then, it is possible to use `CTRL+L` to quickly highlight the omnibar.
 
 ## "Can I purchase your extension?"
@@ -53,6 +56,10 @@ If I have some free time, I don't mind answering questions related to other issu
 ## Legal
 
 NewTab Redirect is released under the [MIT license](http://bit.ly/mit-license). NewTab Redirect was previously hosted on [Google Projects](http://code.google.com/p/newtabredirect/) under [GPLv3 license](http://www.gnu.org/licenses/gpl.html).
+
+* AngularJS: Code is MIT Licensed. Details are available [here](https://github.com/angular/angular.js/blob/master/LICENSE)
+
+* jQuery: Code is MIT Licensed. Details are available [here](https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt)
 
 * Font Awesome by Dave Gandy - http://fontawesome.io: Code is MIT licensed, Fonts are SIL OFL 1.1. Details are available [here](http://fontawesome.io/license/)
 
