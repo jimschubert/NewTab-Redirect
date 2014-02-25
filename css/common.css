@@ -255,3 +255,7 @@ a.top-site-link {
     clear:both;
     height:0;
 }
+
+[ng-cloak] {
+    display:none;
+}

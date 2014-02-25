@@ -155,7 +155,7 @@ ul.horizontal-links li a:hover {
   background: rgba(235,239,249,0.8);
 }
 
-.fix { clear:both; S}
+.fix { clear:both; }
 
 /* Make top headings a little softer */
 h1, h2 { color: rgba(0,0,0,0.8); }
@@ -169,4 +169,8 @@ h2 {
 p.quick-links {
   font-size: 0.9em;
   font-style: italic;
+}
+
+#custom-url {
+  min-width: 300px;
 }

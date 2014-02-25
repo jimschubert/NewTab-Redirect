@@ -1,4 +1,4 @@
-/*global chrome,document */
+/*global chrome,document,window */
 (function init() {
     "use strict";
     chrome.storage.local.get("url", function (items) {
@@ -17,6 +17,8 @@
                     }
                 });
             }
+        } else {
+            angular.resumeBootstrap();
         }
     });
 }());

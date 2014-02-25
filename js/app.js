@@ -1,4 +1,5 @@
 'use strict';
+window.name = 'NG_DEFER_BOOTSTRAP!';
 var app = angular.module('newTab', ['newTab.controllers', 'newTab.directives', 'newTab.filters']);
 
 app.config(['$compileProvider', function($compileProvider) {

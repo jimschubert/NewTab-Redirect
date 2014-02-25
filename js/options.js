@@ -101,7 +101,7 @@ function restore_options() {
     // always restore options from local.
     var savedOptions = [ "syncOptions", "showWelcome", "url" ];
     chrome.storage.local.get(savedOptions, function (items) {
-        if(items.url && items.url != "null"){
+        if(items.url){
             document.getElementById('custom-url').value = items.url;
         }
         document.getElementById('chkShowWelcome').checked =
@@ -227,8 +227,9 @@ function init() {
 
     document.body.addEventListener("click", function (e) {
         var target = e.target && e.target.getAttribute("data-target");
-
-        saveQuickLink(target);
+        if (target !== null && target !== undefined) {
+            saveQuickLink(target);
+        }
     }, true);
 }
 
