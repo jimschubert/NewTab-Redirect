@@ -27,6 +27,10 @@ var popularPages = {
     "Slashdot" : "http://www.slashdot.org"
 };
 
+var customPages = {
+    "New Tab Redirect 'Apps'" : ""
+};
+
 var empty = [
     []
 ];
@@ -60,10 +64,6 @@ var langMap = {
 function save_options() {
     var _url = document.getElementById('custom-url');
     var url = _url.value;
-    if (url == "") {
-        url = aboutPages[0];
-    }
-
     save(url);
 }
 
@@ -72,7 +72,7 @@ function save(url) {
     clearTimeout(__down);
 
     var _sts = document.getElementById('status');
-    var validatedUrl = getGoodUrl(url);
+    var validatedUrl = url ? getGoodUrl(url) : url;
     var saveOptions = {"url": validatedUrl };
     saveOptions.showWelcome = document.getElementById('chkShowWelcome').checked;
     saveOptions.syncOptions = document.getElementById('chkSync').checked;
@@ -101,7 +101,9 @@ function restore_options() {
     // always restore options from local.
     var savedOptions = [ "syncOptions", "showWelcome", "url" ];
     chrome.storage.local.get(savedOptions, function (items) {
-        document.getElementById('custom-url').value = items.url;
+        if(items.url && items.url != "null"){
+            document.getElementById('custom-url').value = items.url;
+        }
         document.getElementById('chkShowWelcome').checked =
             items.showWelcome != undefined ? items.showWelcome : true;
         document.getElementById('chkSync').checked =
@@ -119,7 +121,7 @@ function sync_options(){
 }
 
 function saveQuickLink(url) {
-    var uurl = unescape(url);
+    var uurl = url ? unescape(url) : "";
     document.getElementById('custom-url').value = uurl;
     save(uurl);
     return false;
@@ -133,7 +135,7 @@ function getGoodUrl(url) {
         goodUrl = url;
     } else {
         var protocol = 'http://';
-        var parts = url.split('://')
+        var parts = url.split('://');
         if (parts != undefined && parts != null && parts.length > 1) {
             goodUrl = protocol + parts[1];
             console.log("getGoodUrl: Protocol %s not recognized, using %s", parts[0], goodUrl);
@@ -179,9 +181,18 @@ function init() {
         .addEventListener("click", restore_options, true);
 
     restore_options();
+    var _customs = document.getElementById('customs');
     var _chromes = document.getElementById('chromes');
     var _abouts = document.getElementById('abouts');
     var _pops = document.getElementById('popular');
+
+    Object.keys(customPages).forEach(function (key, idx) {
+        var value = customPages[key];
+        var anchor = "<a data-target='" + value + "'>" + key + "</a>";
+        var item = document.createElement('li');
+        item.innerHTML = anchor;
+        _customs.appendChild(item);
+    });
 
     Object.keys(chromePages).forEach(function (key, idx) {
         var value = chromePages[key];
@@ -216,9 +227,8 @@ function init() {
 
     document.body.addEventListener("click", function (e) {
         var target = e.target && e.target.getAttribute("data-target");
-        if (target) {
-            saveQuickLink(target);
-        }
+
+        saveQuickLink(target);
     }, true);
 }
 
