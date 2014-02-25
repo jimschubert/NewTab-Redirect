@@ -64,6 +64,53 @@ services.service('Apps', ['$rootScope', '$q', function ($rootScope, $q) {
                 deferred.resolve(sites);
             });
             return deferred.promise;
+        },
+
+        saveLocal: function(obj){
+            var deferred = $q.defer();
+            if(angular.isObject(obj) === false || Object.keys(obj).length === 0) {
+                deferred.reject();
+            } else {
+                chrome.storage.local.set(obj, function() {
+                    deferred.resolve();
+                });
+            }
+            return deferred.promise;
+        },
+
+        getLocal: function(obj) {
+            var query = [];
+            var deferred = $q.defer();
+            if(angular.isArray(obj) === false && typeof obj === 'string' && obj !== "") {
+                query.push(obj);
+            } else if (angular.isArray(obj)){
+                if(obj.length === 0) { deferred.reject(); }
+                else { query = query.concat(obj); }
+            }
+
+            chrome.storage.local.get(query, function(settings) {
+                deferred.resolve(settings);
+            });
+            return deferred.promise;
+        },
+
+        getBookmarksBar: function(limit){
+            limit = limit || 10;
+            function linksOnly(item){
+                return item.url;
+            }
+
+            var deferred = $q.defer();
+            chrome.bookmarks.search('Bookmarks Bar', function(results){
+                if(results.length <= 0) {
+                    deferred.reject();
+                } else {
+                    chrome.bookmarks.getChildren(results[0].id, function(results) {
+                        deferred.resolve(results.filter(linksOnly).splice(0, limit));
+                    });
+                }
+            });
+            return deferred.promise;
         }
     };
 }]);

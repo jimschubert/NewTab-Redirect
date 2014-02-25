@@ -165,12 +165,46 @@ span.app-desc {
 div.main-container {
 }
 
-div.app-container {
+div.container {
     margin-left: auto;
     margin-right: auto;
+    width: 95%;
+}
+
+div.app-container {
     margin-top:35px;
     padding-bottom:10px;
-    width: 95%;
+}
+
+div.app-container.after-bookmarks {
+    margin-top: 10px;
+}
+
+div.bookmarks-container {
+    margin-top:35px;
+    padding:8px;
+    width:90%;
+    border-radius:4px;
+    background-color: rgba(178, 255, 131, 0.90);
+}
+
+div.bookmarks-container .bookmark {
+    display: inline-block;
+    padding:5px;
+    margin-bottom:3px;
+    margin-right:8px;
+    border-radius: 2px;
+    background-color: rgba(255,255,255,0.4);
+}
+
+div.bookmarks-container .bookmark a {
+    font-size:smaller;
+    display: block;
+    max-width: 170px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1px 3px;
 }
 
 div.app-header {
@@ -188,6 +222,13 @@ div.app-header span {
     font-weight: 700;
     line-height: 1em;
     padding-top:5px;
+}
+
+div.app-header .setting {
+    font-size: 14px;
+    font-weight: 500;
+    padding-left:15px;
+    text-align: center;
 }
 
 span.app-logo {
@@ -214,7 +255,7 @@ span.webstore a:hover { text-decoration: none; }
 
 #top-sites {
     position: fixed;
-    background: rgba(186,211,218,0.8);
+    background: rgba(186,211,218,0.95);
     -webkit-transition-duration: 0.3s;
     border-radius: 0 5px 5px 0;
     width:215px;
@@ -258,4 +299,18 @@ a.top-site-link {
 
 [ng-cloak] {
     display:none;
+}
+
+@media only screen and (min-width : 686px) and (max-width : 768px ) {
+    .app-logo, .app-header, .webstore, .setting { font-size: 15px !important; }
+}
+
+@media only screen and (max-width : 685px ) {
+    div.app-header .app-logo { display: block !important; }
+    div.app-header { height: 60px !important; }
+    .webstore, .setting { font-size: 12px !important; }
+    .webstore { margin: 5px; }
+    #top-sites { top: 70px; }
+    .top-sites-header { top: 40px !important; }
+    div.bookmarks-container { margin-top: 65px; margin-left:35px !important;}
 }
