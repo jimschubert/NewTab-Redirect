@@ -210,3 +210,40 @@ span.webstore a {
     color: rgba(10,10,10,0.7);
 }
 span.webstore a:hover { text-decoration: none; }
+
+#top-sites {
+    position: fixed;
+    background: rgba(186,211,218,0.8);
+    -webkit-transition-duration: 0.3s;
+    border-radius: 0 5px 5px 0;
+    width:215px;
+    left:-190px;
+}
+
+#top-sites .top-sites-wrapper {
+    position:relative;
+    height:auto;
+    min-height:180px;
+}
+
+.top-sites-header {
+    position:absolute;
+    top:10px;
+    left:125px;
+    display:block;
+    -webkit-transform: rotate(-90deg);
+    -webkit-transform-origin: 100% 0%
+}
+
+#top-sites:hover {
+    left:0;
+}
+
+a.top-site-link {
+    padding:3px;
+    font-size:0.8em;
+    display:block;
+    width:180px;
+    overflow-x: hidden;
+    text-overflow:ellipsis;
+}

@@ -55,6 +55,15 @@ services.service('Apps', ['$rootScope', '$q', function ($rootScope, $q) {
                 deferred.resolve(tab);
             });
             return deferred.promise;
+        },
+
+        topSites: function(){
+            var deferred = $q.defer();
+            chrome.topSites.get(function(sites){
+                // sites is [{url:"",title:""}]
+                deferred.resolve(sites);
+            });
+            return deferred.promise;
         }
     };
 }]);

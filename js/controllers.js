@@ -2,7 +2,6 @@
 var controllers = angular.module('newTab.controllers', ['newTab.services']);
 
 controllers.controller('MainController', ['$scope', 'Apps', function ($scope, Apps){
-    // TODO: Localize this
     $scope.extension_name = "New Tab Redirect!";
     function load() {
         Apps.getAll()
@@ -14,6 +13,10 @@ controllers.controller('MainController', ['$scope', 'Apps', function ($scope, Ap
     }
 
     load();
+
+    Apps.topSites().then(function(sites){
+        $scope.top = sites.slice(0,10);
+    });
 
     $scope.$on('UninstalledApp', load);
 }]);
