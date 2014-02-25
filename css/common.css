@@ -169,6 +169,7 @@ div.app-container {
     margin-left: auto;
     margin-right: auto;
     margin-top:35px;
+    padding-bottom:10px;
     width: 95%;
 }
 
@@ -218,6 +219,7 @@ span.webstore a:hover { text-decoration: none; }
     border-radius: 0 5px 5px 0;
     width:215px;
     left:-190px;
+    top:40px;
 }
 
 #top-sites .top-sites-wrapper {
@@ -246,4 +248,10 @@ a.top-site-link {
     width:180px;
     overflow-x: hidden;
     text-overflow:ellipsis;
+}
+
+.main-container span.clear {
+    display:block;
+    clear:both;
+    height:0;
 }

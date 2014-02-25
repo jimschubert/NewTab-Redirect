@@ -27,8 +27,9 @@
             <span class="app-logo"><i class="fa">&nbsp;</i> {{extension_name}}</span>
             <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self"><i class="fa fa-shopping-cart"></i> Chrome Web Store</a></span>
         </div>
-        <div class="app-container">
+        <div class="app-container clear">
             <chrome-app ng-repeat="app in apps" app="app"></chrome-app>
+            <span class="clear"></span>
         </div>
 
         <div id="top-sites">
@@ -36,7 +37,7 @@
                 <span class="top-sites-header">Top Sites</span>
                 <div class="inner">
                     <div ng-repeat="site in top">
-                        <a href="{{site.url}}" title="{{site.title}}" target="_blank" class="top-site-link">{{site.title}}</a>
+                        <a href="{{site.url}}" title="{{site.title}}" target="_blank" class="top-site-link"><i class="fa fa-external-link-square"></i> {{site.title}}</a>
                     </div>
                 </div>
             </div>
