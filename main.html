@@ -42,8 +42,11 @@
             <div class="top-sites-wrapper">
                 <span class="top-sites-header">Top Sites</span>
                 <div class="inner">
-                    <div ng-repeat="site in top">
+                    <div ng-repeat="site in top" ng-if="top.length > 0">
                         <a href="{{site.url}}" title="{{site.title}}" target="_blank" class="top-site-link"><i class="fa fa-external-link-square"></i> {{site.title}}</a>
+                    </div>
+                    <div ng-if="!top || top.length == 0" class="no-top">
+                        No Top Sites!
                     </div>
                 </div>
             </div>
