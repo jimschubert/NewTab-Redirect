@@ -13,13 +13,13 @@ controllers.controller('MainController', ['$scope', 'Apps', function ($scope, Ap
     $scope.save_top = function(){
         var obj = {};
         obj[enable_top_key] = $scope.enable_top;
-        Apps.saveLocal(obj);
+        Apps.saveSetting(obj);
     };
 
     $scope.save_bookmarks = function(){
         var obj = {};
         obj[enable_bookmarks_key] = $scope.enable_bookmarks;
-        Apps.saveLocal(obj);
+        Apps.saveSetting(obj);
     };
 
     function load() {
@@ -37,7 +37,7 @@ controllers.controller('MainController', ['$scope', 'Apps', function ($scope, Ap
         $scope.top = sites.slice(0,10);
     });
 
-    Apps.getLocal([enable_top_key, enable_bookmarks_key])
+    Apps.getSetting([enable_top_key, enable_bookmarks_key])
         .then(function(settings){
             if(settings.hasOwnProperty(enable_bookmarks_key)) {
                 $scope.enable_bookmarks = settings[enable_bookmarks_key]

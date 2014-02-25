@@ -66,19 +66,19 @@ services.service('Apps', ['$rootScope', '$q', function ($rootScope, $q) {
             return deferred.promise;
         },
 
-        saveLocal: function(obj){
+        saveSetting: function(obj){
             var deferred = $q.defer();
             if(angular.isObject(obj) === false || Object.keys(obj).length === 0) {
                 deferred.reject();
             } else {
-                chrome.storage.local.set(obj, function() {
+                chrome.storage.sync.set(obj, function() {
                     deferred.resolve();
                 });
             }
             return deferred.promise;
         },
 
-        getLocal: function(obj) {
+        getSetting: function(obj) {
             var query = [];
             var deferred = $q.defer();
             if(angular.isArray(obj) === false && typeof obj === 'string' && obj !== "") {
@@ -88,7 +88,7 @@ services.service('Apps', ['$rootScope', '$q', function ($rootScope, $q) {
                 else { query = query.concat(obj); }
             }
 
-            chrome.storage.local.get(query, function(settings) {
+            chrome.storage.sync.get(query, function(settings) {
                 deferred.resolve(settings);
             });
             return deferred.promise;
