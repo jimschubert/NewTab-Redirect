@@ -22,6 +22,39 @@ services.service('Apps', ['$rootScope', '$q', function ($rootScope, $q) {
                 deferred.resolve();
             });
             return deferred.promise;
+        },
+
+        pinned: function(url){
+            var deferred = $q.defer();
+            chrome.tabs.create({pinned:true, url: url}, function(tab){
+                deferred.resolve(tab);
+            });
+            return deferred.promise;
+        },
+
+        newWindow: function(url){
+            var deferred = $q.defer();
+            chrome.windows.create({focused:true, url: url}, function(window){
+                deferred.resolve(window);
+            });
+            return deferred.promise;
+        },
+
+        uninstall: function(id){
+            var deferred = $q.defer();
+            chrome.management.uninstall(id, {showConfirmDialog: true}, function(){
+                $rootScope.$broadcast('UninstalledApp');
+                deferred.resolve();
+            });
+            return deferred.promise;
+        },
+
+        tab: function(url){
+            var deferred = $q.defer();
+            chrome.tabs.create({active:true, url: url}, function(tab){
+                deferred.resolve(tab);
+            });
+            return deferred.promise;
         }
     };
 }]);

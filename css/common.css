@@ -133,6 +133,29 @@ div.app-icon a {
     text-decoration: none;
 }
 
+div.app-actions {
+    display:none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color:rgba(186,211,218,0.8);
+    position:absolute;
+    bottom:0;
+    margin-left:5px;
+    margin-right:5px;
+    padding-top:4px;
+    padding-bottom:3px;
+    width:100%;
+}
+
+div.app-actions a {
+    padding:3px;
+}
+
+div[app] { position:relative; }
+div[app]:hover div.app-actions {
+    display:inherit;
+}
+
 span.app-desc {
     display: block;
     white-space: pre-wrap;
@@ -155,6 +178,7 @@ div.app-header {
     height: 30px;
     background-color: rgba(186,211,218,0.8);
     width:100%;
+    z-index: 10000;
 }
 
 div.app-header span {
