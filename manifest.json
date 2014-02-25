@@ -1,9 +1,10 @@
 {
   "manifest_version": 2,
-  "name": "__MSG_extName__",
-  "description": "__MSG_extDesc__",
+  "name": "New Tab Redirect",
+  "short_name": "NTR!",
+  "description": "Allows a user to provide the URL of the page that loads in a new tab. Now with default NTR Apps page providing Top Sites, Bookmarks, and Apps management.",
   "default_locale": "en",
-  "version": "2.2",
+  "version": "3.0",
   "background": { 
     "scripts" : ["js/background.js"],
     "persistent": false
