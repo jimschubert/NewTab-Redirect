@@ -30,7 +30,7 @@
         <div class="container bookmarks-container" ng-if="enable_bookmarks">
             <div ng-if="bookmarks.length == 0">You have no bookmarks in your bookmarks bar.</div>
             <div ng-if="bookmarks.length > 0">
-                <span class="bookmark" ng-repeat="b in bookmarks"><a href="{{b.url}}" title="{{b.title}}" target="_blank">{{b.title}}</a></span>
+                <span class="bookmark" ng-repeat="b in bookmarks"><a href="{{b.url}}" title="{{b.title}}" target="_self">{{b.title}}</a></span>
             </div>
         </div>
         <div class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks }">
@@ -43,7 +43,7 @@
                 <span class="top-sites-header">Top Sites</span>
                 <div class="inner">
                     <div ng-repeat="site in top" ng-if="top.length > 0">
-                        <a href="{{site.url}}" title="{{site.title}}" target="_blank" class="top-site-link"><i class="fa fa-external-link-square"></i> {{site.title}}</a>
+                        <a href="{{site.url}}" title="{{site.title}}" target="_self" class="top-site-link"> {{site.title}}</a>
                     </div>
                     <div ng-if="!top || top.length == 0" class="no-top">
                         No Top Sites!

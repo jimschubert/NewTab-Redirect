@@ -288,6 +288,10 @@ span.webstore a:hover { text-decoration: none; }
     display:inline-block;
 }
 
+#top-sites .inner div{
+    margin:3px;
+}
+
 a.top-site-link {
     padding:3px;
     font-size:0.8em;
