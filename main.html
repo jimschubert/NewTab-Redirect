@@ -11,21 +11,38 @@
 
 <div ng-cloak>
     <div class="main-container" ng-controller="MainController">
+
+        <span id="app-prefs"><a href="#" class="plain" ng-click="show_prefs=true"><i class="fa fa-gears"></i></a></span>
+
+        <div class="dialog" ng-show="show_prefs">
+            <div class="content">
+                <h2>Display Preferences</h2>
+                <div class="setting">
+                    <h3><i class="fa fa-bookmark-o"></i> Bookmarks Bar</h3>
+                    <label>
+                        <input type="checkbox" ng-model="enable_bookmarks"> Enable
+                    </label>
+                    <div>
+                        Show <input type="number" min="5" max="40" ng-model="bookmark_count" title="Too many bookmarks will cause the box to become very large"> bookmarks
+                    </div>
+                </div>
+                <div class="setting">
+                    <h3><i class="fa fa-star-o"></i> Top Sites Panel</h3>
+                    <label>
+                        <input type="checkbox" ng-model="enable_top"> Enable
+                    </label>
+                    <div>
+                        Show <input type="number" min="5" max="20" ng-model="top_count" title="Too many top sites will cause the box to become very large"> top sites
+                    </div>
+                </div>
+
+                <button ng-click="save_preferences()" class="pull-right">Close</button>
+            </div>
+        </div>
+
         <div class="app-header">
             <span class="app-logo"><a href="options.html" target="_self"><i class="fa">&nbsp;</i> {{extension_name}}</a></span>
-            <span class="setting">
-                <label>
-                    <input type="checkbox" ng-model="enable_bookmarks" ng-change="save_bookmarks()">
-                    <i class="fa fa-bookmark-o"></i> Show Bookmarks
-                </label>
-            </span>
-            <span class="setting">
-                <label>
-                    <input type="checkbox" ng-model="enable_top" ng-change="save_top()">
-                    <i class="fa fa-star-o"></i> Show Top Sites
-                </label>
-            </span>
-            <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self"><i class="fa fa-shopping-cart"></i> Chrome Web Store</a></span>
+            <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self" class="plain"><i class="fa fa-shopping-cart"></i> Chrome Web Store</a></span>
         </div>
         <div class="container bookmarks-container" ng-if="enable_bookmarks">
             <div ng-if="bookmarks.length == 0">You have no bookmarks in your bookmarks bar.</div>
@@ -34,7 +51,8 @@
             </div>
         </div>
         <div class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks }">
-            <chrome-app ng-repeat="app in apps" app="app"></chrome-app>
+            <div><input type="search" ng-model="q.name" placeholder="Filter apps"></div>
+            <chrome-app ng-repeat="app in apps | filter:q" app="app"></chrome-app>
             <span class="clear"></span>
         </div>
 

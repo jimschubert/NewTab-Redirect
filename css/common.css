@@ -52,6 +52,12 @@ a:hover {
   text-decoration: underline;
 }
 
+a.plain {
+color: rgba(10,10,10,0.7);
+text-decoration: none;
+}
+
+a.plain:hover { text-decoration: underline; }
 
 a[rel=publisher] {
   padding-top:3px;
@@ -174,11 +180,15 @@ div.container {
 
 div.app-container {
     margin-top:35px;
-    padding-bottom:10px;
+    padding-bottom:40px;
 }
 
 div.app-container.after-bookmarks {
     margin-top: 10px;
+}
+
+div.app-container input[type='search'] {
+    margin-left:25px;
 }
 
 div.bookmarks-container {
@@ -225,13 +235,6 @@ div.app-header span {
     padding-top:5px;
 }
 
-div.app-header .setting {
-    font-size: 14px;
-    font-weight: 500;
-    padding-left:15px;
-    text-align: center;
-}
-
 span.app-logo {
     margin-left:20px;
 }
@@ -244,15 +247,10 @@ span.app-logo i {
 }
 
 span.webstore {
-
     display:inline-block;
     float:right;
     margin-right:10px;
 }
-span.webstore a {
-    color: rgba(10,10,10,0.7);
-}
-span.webstore a:hover { text-decoration: none; }
 
 #top-sites {
     position: fixed;
@@ -308,20 +306,68 @@ a.top-site-link {
     height:0;
 }
 
+span#app-prefs {
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding:0;
+    border-radius: 2px;
+    margin:3px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.66);
+    z-index: 99999;
+}
+
+span#app-prefs i {
+    padding: 3px;
+}
+
 [ng-cloak] {
     display:none;
 }
 
+/*https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events*/
+.dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.6);
+    pointer-events: auto;
+    -webkit-transition: all 500ms ease-out;
+    -webtkit-transition-property: right, opacity;
+    z-index: 9000000;
+    opacity:1;
+}
+.dialog.ng-hide {
+    opacity: 0;
+    right: -800px;
+    pointer-events: none;
+}
+
+.dialog .content {
+    position: relative;
+    width:200px;
+    height:230px;
+    margin-top:15px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:20px;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.95);
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.66);
+}
+
+.dialog .content h2 { margin: 2px; }
+.dialog .content h3 { font-size:0.8em; }
+.dialog .content div.setting { padding-bottom:8px; }
+
 @media only screen and (min-width : 686px) and (max-width : 768px ) {
-    .app-logo, .app-header, .webstore, .setting { font-size: 15px !important; }
+    .app-logo, .app-header, .webstore { font-size: 15px !important; }
 }
 
 @media only screen and (max-width : 685px ) {
-    div.app-header .app-logo { display: block !important; }
-    div.app-header { height: 60px !important; }
-    .webstore, .setting { font-size: 12px !important; }
-    .webstore { margin: 5px; }
-    #top-sites { top: 70px; }
-    .top-sites-header { top: 40px !important; }
-    div.bookmarks-container { margin-top: 65px; margin-left:35px !important;}
+    .webstore, { font-size: 12px !important; margin: 5px; }
+    div.bookmarks-container {margin-left:35px !important;}
 }
