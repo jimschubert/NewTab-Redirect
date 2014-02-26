@@ -128,6 +128,7 @@ div.app-icon {
     font-size: 0.6em;
 }
 
+.app-logo a,
 div.app-icon a {
     color: rgba(0,0,0,0.7);
     text-decoration: none;
@@ -291,9 +292,10 @@ a.top-site-link {
     padding:3px;
     font-size:0.8em;
     display:block;
-    width:180px;
-    overflow-x: hidden;
-    text-overflow:ellipsis;
+    width:190px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .main-container span.clear {

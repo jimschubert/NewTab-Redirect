@@ -57,6 +57,14 @@ services.service('Apps', ['$rootScope', '$q', function ($rootScope, $q) {
             return deferred.promise;
         },
 
+        navigate: function(url){
+            var deferred = $q.defer();
+            chrome.tabs.update({active:true, url: url}, function(tab){
+                deferred.resolve(tab);
+            });
+            return deferred.promise;
+        },
+
         topSites: function(){
             var deferred = $q.defer();
             chrome.topSites.get(function(sites){

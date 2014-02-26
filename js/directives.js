@@ -26,17 +26,26 @@ directives.directive('chromeLaunch', ['$log', 'Apps', function($log, Apps){
         restrict: 'A',
 
         scope: {
-            id: '=chromeLaunch'
+            id: '=chromeLaunch',
+            type: '=chromeType',
+            url: '=href'
         },
 
         link: function($scope, $element, $attrs) {
             if($scope.id){
                 $element.bind('click', function(e){
                     e.preventDefault();
-                    Apps.launch($scope.id)
-                        .then(function(){
-                            $log.debug("launched app id %s", $scope.id);
-                        });
+                    if($scope.type === 'packaged_app') {
+                        Apps.launch($scope.id)
+                            .then(function(){
+                                $log.debug("launched app id %s", $scope.id);
+                            });
+                    } else {
+                        Apps.navigate($scope.url)
+                            .then(function(){
+                                $log.debug("launched app id %s", $scope.id);
+                            });
+                    }
                 });
             }
         }
@@ -60,6 +69,30 @@ directives.directive('chromePinned', ['$log', 'Apps', function($log, Apps){
                     Apps.pinned($scope.url)
                         .then(function(tab){
                             $log.debug("Opened app id %s in pinned tab #%d", $scope.id, tab.id);
+                        });
+                });
+            }
+        }
+    };
+}]);
+
+directives.directive('chromeNewTab', ['$log', 'Apps', function($log, Apps){
+    return {
+        // attribute only
+        restrict: 'A',
+
+        scope: {
+            id: '=chromeNewTab',
+            url: '=href'
+        },
+
+        link: function($scope, $element, $attrs) {
+            if($scope.id){
+                $element.bind('click', function(e){
+                    e.preventDefault();
+                    Apps.tab($scope.url)
+                        .then(function(tab){
+                            $log.debug("Opened app id %s in tab #%d", $scope.id, tab.id);
                         });
                 });
             }

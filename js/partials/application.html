@@ -1,12 +1,18 @@
 <div class="app-icon">
-    <a href="{{app.appLaunchUrl}}" chrome-launch="app.id" class="app-icon-128">
+    <a href="app.appLaunchUrl" chrome-launch="app.id" chrome-type="app.type" class="app-icon-128">
         <img src="{{app.icons|iconsize:128}}" title="{{app.name}}"/>
         <span class="app-desc">{{app.name}}</span>
     </a>
+
     <div class="app-actions">
-        <a href="app.appLaunchUrl" ng-if="app.type != 'packaged_app'" chrome-pinned="app.id" title="Open {{app.name}} in a pinned tab"><i class="fa fa-2x fa-thumb-tack"></i></a>
-        <a href="app.appLaunchUrl" ng-if="app.type != 'packaged_app'" chrome-new-window="app.id" title="Open {{app.name}} in a new window"><i class="fa fa-2x fa-external-link-square"></i></a>
-        <a href="app.optionsUrl" chrome-options="app.id" ng-if="app.optionsUrl" title="Open options for {{app.name}}"><i class="fa fa-2x fa-wrench"></i></a>
+        <a href="app.appLaunchUrl" ng-if="app.type != 'packaged_app'" chrome-pinned="app.id"
+           title="Open {{app.name}} in a pinned tab"><i class="fa fa-2x fa-thumb-tack"></i></a>
+        <a href="app.appLaunchUrl" ng-if="app.type != 'packaged_app'" chrome-new-tab="app.id"
+           title="Open {{app.name}} in a new tab"><i class="fa fa-2x fa-level-up"></i></a>
+        <a href="app.appLaunchUrl" ng-if="app.type != 'packaged_app'" chrome-new-window="app.id"
+           title="Open {{app.name}} in a new window"><i class="fa fa-2x fa-external-link"></i></a>
+        <a href="app.optionsUrl" chrome-options="app.id" ng-if="app.optionsUrl" title="Open options for {{app.name}}"><i
+                class="fa fa-2x fa-wrench"></i></a>
         <a href="#" chrome-uninstall="app.id" title="Uninstall {{app.name}}"><i class="fa fa-2x fa-trash-o"></i></a>
     </div>
 </div>
