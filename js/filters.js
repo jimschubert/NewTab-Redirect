@@ -2,7 +2,7 @@
 var filters = angular.module('newTab.filters', []);
 
 filters.filter('iconsize', function(){
-    return function(input, size){
+    return function(input, size, app){
         size = 0+size || 200;
         if(angular.isArray(input)){
             var found,
@@ -16,7 +16,18 @@ filters.filter('iconsize', function(){
                     found = current;
                 }
             }
-            return (found||{}).url;
+
+            if(found){
+                var append = '';
+                if(app.enabled === false) {
+                    append = '?grayscale=true';
+                } else if(navigator.onLine === false && app.offlineEnabled === false){
+                    append = '?grayscale=true';
+                }
+
+                return found.url+append;
+            }
+            return void 0;
         } else {
             return input;
         }
