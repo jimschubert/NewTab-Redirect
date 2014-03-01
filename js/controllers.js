@@ -23,18 +23,11 @@ controllers.controller('MainController', ['$scope', 'Apps', function ($scope, Ap
         obj[bookmarks_count_key] = $scope.bookmark_count;
         obj[top_count_key] = $scope.top_count;
         Apps.saveSetting(obj);
+
+        // reload bookmarks and topSites
+        loadBookmarks();
+        loadTopSites();
     };
-
-    function load() {
-        Apps.getAll()
-            .then(function(results){
-                $scope.apps = results.filter(function(result){
-                    return (/^(extension|theme)$/).test(result.type) === false;
-                });
-            });
-    }
-
-    load();
 
     var querySettings = [enable_top_key, enable_bookmarks_key, bookmarks_count_key, top_count_key];
     Apps.getSetting(querySettings)
@@ -47,18 +40,37 @@ controllers.controller('MainController', ['$scope', 'Apps', function ($scope, Ap
             });
         });
 
-    $scope.$watch('bookmark_count', function(newValue){
-        Apps.getBookmarksBar(newValue)
-            .then(function(results){
-                $scope.bookmarks = results;
+    function loadBookmarks() {
+        if ($scope.enable_bookmarks) {
+            Apps.getBookmarksBar($scope.bookmark_count)
+                .then(function (results) {
+                    $scope.bookmarks = results;
+                });
+        }
+    }
+
+    function loadTopSites() {
+        if ($scope.enable_top) {
+            Apps.topSites().then(function (sites) {
+                $scope.top = sites.slice(0, $scope.top_count);
             });
-    });
+        }
+    }
 
-    $scope.$watch('top_count', function(newValue){
-        Apps.topSites().then(function(sites){
-            $scope.top = sites.slice(0,newValue);
-        });
-    });
+    function loadApps() {
+        Apps.getAll()
+            .then(function(results){
+                $scope.apps = results.filter(function(result){
+                    return (/^(extension|theme)$/).test(result.type) === false;
+                });
+            });
+    }
 
-    $scope.$on('UninstalledApp', load);
+    $scope.$watch('bookmark_count', loadBookmarks);
+    $scope.$watch('top_count', loadTopSites);
+
+    $scope.$on('UninstalledApp', loadApps);
+
+    // initial page setup
+    loadApps();
 }]);

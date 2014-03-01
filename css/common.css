@@ -240,6 +240,11 @@ span.webstore {
     float:right;
     margin-right:10px;
 }
+span.webstore a i {
+    display:inline-block;
+    height:16px;
+    width:16px;
+}
 
 #top-sites {
     position: fixed;
@@ -366,11 +371,6 @@ span#app-prefs i {
 .dialog .content h3 { font-size:0.8em; }
 .dialog .content div.setting { padding-bottom:8px; }
 
-@media only screen and (min-width : 686px) and (max-width : 768px ) {
-    .app-logo, .app-header, .webstore { font-size: 15px !important; }
-}
-
 @media only screen and (max-width : 685px ) {
-    .webstore, { font-size: 12px !important; margin: 5px; }
     div.bookmarks-container {margin-left:35px !important;}
 }
