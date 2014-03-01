@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "New Tab Redirect",
   "short_name": "NTR!",
-  "description": "Allows a user to provide the URL of the page that loads in a new tab. Now with default NTR Apps page providing Top Sites, Bookmarks, and Apps management.",
+  "description": "Allows a user to provide the URL of the page that loads in a new tab.",
   "default_locale": "en",
   "version": "3.0",
   "background": { 
