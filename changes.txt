@@ -1,11 +1,13 @@
 v3.0
  * Added a no-redirect option for the new tab page, which provides an
-   experience similar to Chrome's original page.
+   experience similar to Chrome's original page (including search bar focus)
+   NOTE: clear, searchable address bar only works on the New Tab Redirect Apps page
  * Added permissions:
     - "topSites": required to display top 10 visited sites
     - "management": required to allow user to display, launch, and
        uninstall Chrome apps within built-in new tab page
     - "bookmarks": required to display first 10 bookmarks bar links
+    - "chrome://favicon/": required to display bookmark icons
 v2.2
  * Remove chrome-internal://newtab/ support
  * Add explicit https:// on sites that support https under quick links
