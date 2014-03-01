@@ -47,7 +47,10 @@
         <div class="container bookmarks-container" ng-if="enable_bookmarks">
             <div ng-if="bookmarks.length == 0">You have no bookmarks in your bookmarks bar.</div>
             <div ng-if="bookmarks.length > 0">
-                <span class="bookmark" ng-repeat="b in bookmarks"><a href="{{b.url}}" title="{{b.title}}" target="_self">{{b.title}}</a></span>
+                <a class="bookmark" ng-repeat="b in bookmarks" href="{{b.url}}" title="{{b.title}}" target="_self">
+                    <i class="fa" style="background:url('chrome://favicon/{{b.url}}') no-repeat"></i>
+                    <span>{{b.title}}</span>
+                </a>
             </div>
         </div>
         <div class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks }">
@@ -60,9 +63,12 @@
             <div class="top-sites-wrapper">
                 <span class="top-sites-header">Top Sites</span>
                 <div class="inner">
-                    <div ng-repeat="site in top" ng-if="top.length > 0">
-                        <a href="{{site.url}}" title="{{site.title}}" target="_self" class="top-site-link"> {{site.title}}</a>
-                    </div>
+                    <a ng-repeat="site in top" ng-if="top.length > 0" href="{{site.url}}" title="{{site.title}}"
+                       target="_self" class="bookmark">
+                        <i class="fa" style="background:url('chrome://favicon/{{site.url}}') no-repeat"></i>
+                        <span>{{site.title}}</span>
+                    </a>
+
                     <div ng-if="!top || top.length == 0" class="no-top">
                         No Top Sites!
                     </div>

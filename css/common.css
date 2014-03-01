@@ -201,21 +201,10 @@ div.bookmarks-container {
 
 div.bookmarks-container .bookmark {
     display: inline-block;
-    padding:5px;
-    margin-bottom:3px;
-    margin-right:8px;
     border-radius: 2px;
     background-color: rgba(255,255,255,0.4);
-}
-
-div.bookmarks-container .bookmark a {
-    font-size:smaller;
-    display: block;
-    max-width: 170px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 1px 3px;
+    padding: 4px 3px 2px 3px;
+    -webkit-box-shadow: 1px 1px 2px 0 rgba(50, 50, 50, 0.66);
 }
 
 div.app-header {
@@ -266,6 +255,7 @@ span.webstore {
     position:relative;
     height:auto;
     min-height:180px;
+    padding-left: 2px;
 }
 
 .top-sites-header {
@@ -286,18 +276,31 @@ span.webstore {
     display:inline-block;
 }
 
-#top-sites .inner div{
+#top-sites .inner div {
     margin:3px;
+    padding-top:1px;
 }
 
-a.top-site-link {
-    padding:3px;
+a.bookmark {
+    margin:3px;
     font-size:0.8em;
     display:block;
     width:190px;
+    height:20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+a.bookmark i {
+    height: 16px; width: 16px;
+}
+a.bookmark i,
+a.bookmark a {
+    vertical-align: middle;
+    height: 16px;
+    padding-top:2px;
+    padding-bottom:2px;
 }
 
 .main-container span.clear {
@@ -314,7 +317,7 @@ span#app-prefs {
     padding:0;
     border-radius: 2px;
     margin:3px;
-    -webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.66);
+    -webkit-box-shadow: 3px 3px 5px 0 rgba(50, 50, 50, 0.66);
     z-index: 99999;
 }
 
@@ -356,7 +359,7 @@ span#app-prefs i {
     padding:20px;
     border-radius: 7px;
     background: rgba(255,255,255,0.95);
-    -webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.66);
+    -webkit-box-shadow: 3px 3px 5px 0 rgba(50, 50, 50, 0.66);
 }
 
 .dialog .content h2 { margin: 2px; }
