@@ -8,8 +8,8 @@ controllers.controller('MainController', ['$scope', 'Apps', function ($scope, Ap
         top_count_key = 'ntr.top_count';
 
     $scope.extension_name = "New Tab Redirect!";
-    $scope.enable_bookmarks = true;
-    $scope.enable_top = true;
+    $scope.enable_bookmarks = false;
+    $scope.enable_top = false;
     $scope.bookmarks = [];
     $scope.show_prefs = false;
     $scope.bookmark_count = 10;
@@ -34,10 +34,20 @@ controllers.controller('MainController', ['$scope', 'Apps', function ($scope, Ap
         .then(function(settings){
             angular.forEach(querySettings, function(val){
                 if(settings.hasOwnProperty(val)) {
+                    // because we expect the keys to be in format ntr.[property_name]
                     var scopeKey = val.replace('ntr.','');
                     $scope[scopeKey] = settings[val];
                 }
             });
+
+            // define defaults for properties without settings (initial load) here. This helps prevent UI flickering.
+            if(angular.isUndefined(settings[enable_bookmarks_key])) {
+                $scope.enable_bookmarks = true;
+            }
+
+            if(angular.isUndefined(settings[enable_top_key])) {
+                $scope.enable_top = true;
+            }
         });
 
     function loadBookmarks() {

@@ -7,11 +7,11 @@
             if (/^http[s]?:/i.test(url)) {
                 document.location.href = url;
             } else {
-                if (/chrome-internal:\/\/newtab[\/]?/.test(url)) { url = ""; }
+                if (/chrome-internal:\/\/newtab[\/]?/.test(url)) { url = "chrome://apps/"; }
                 chrome.tabs.getCurrent(function (t) {
                     if (t.url === "chrome://newtab/") {
                         chrome.tabs.update(t.id, {
-                            "url": url || chrome.extension.getURL("options.html"),
+                            "url": url,
                             "selected": true
                         });
                     }

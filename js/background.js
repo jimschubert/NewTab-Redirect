@@ -8,6 +8,7 @@ function saveInitial() {
     var options = {};
     var arr = window.localStorage.options;
     if (arr) {
+        console.log('Found options on localStorage')
         options = JSON.parse(arr);
     }
 
@@ -17,7 +18,9 @@ function saveInitial() {
     options["showWelcome"] = true;
 
     if (!options.url) {
-        options.url = chrome.extension.getURL("options.html");
+        console.log("Using default New Tab Redirect page");
+        // this defaults to the New Tab Redirect Apps page
+        options.url = "";
     }
 
     options["lastInstall"] = +new Date();
@@ -30,18 +33,38 @@ function saveInitial() {
 chrome.runtime.onInstalled.addListener(function (details) {
 
     var current = +new Date();
-    var sixMonths = 15552000;
+    var sixMonths = 15894000000; // milliseconds = 6.04 months.
 
     if (details.reason === "chrome_update") {
-        return;
+        return void 0;
     } else if (details.reason === "install" || details.reason === "update") {
         return retrieve(allOptions, "local", function (localQuery) {
-            retrieve(allOptions, "sync", function (query) {
+            return retrieve(allOptions, "sync", function (query) {
+                var canShowWelcome = true;
                 console.log("Pulled sync options:", query);
 
-                // canShowWelcome is always the latest sync date.
-                var canShowWelcome = (query.lastInstall > 1) && ((current - query.lastInstall) > sixMonths);
+                if((0+query.lastInstall) > 1){
+                    var installed = parseInt(query.lastInstall, 10);
+
+                    // 500s buffer between install and running listener should be safe
+                    var listener5sBuffer = Math.abs(installed - current);
+                    var listener5sBufferCheck = (listener5sBuffer > 500000);
+
+                    // we must wait at least 6 months to show welcome page again
+                    var installDiff = (current - installed);
+                    var sixMonthCheck = (installDiff > sixMonths);
+
+                    canShowWelcome =  listener5sBufferCheck && sixMonthCheck;
+
+                    console.log(
+                        'Can we show welcome by checks?(%s), ' +
+                        'Installed: %d, %d ms between last install and listener, ' +
+                        '%d ms since last install',
+                        canShowWelcome, installed, listener5sBuffer, installDiff);
+                }
+
                 if (localQuery.showWelcome == false || query.showWelcome == false) {
+                    console.log("User doesn't ever want to see the welcome page. canShowWelcome=false");
                     canShowWelcome = false;
                 }
 
@@ -66,7 +89,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
                 save({ "lastInstall": +new Date() }, "sync");
 
                 // on initial install, or every 6 months, show Welcome Page
-                if (details.reason === "install" || canShowWelcome) {
+                if (canShowWelcome && details.reason === "install") {
                     console.log("background.js: showing welcome page");
                     return chrome.tabs.create({"url": "welcome.html" });
                 }
@@ -115,7 +138,7 @@ function retrieve(items, area, cb) {
     if ("function" !== typeof cb) {
         cb = function (items) {
             console.log("items:", items);
-        }
+        };
     }
 
     chrome.storage[area].get(items, cb);
