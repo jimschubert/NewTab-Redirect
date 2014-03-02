@@ -177,6 +177,13 @@ function init() {
     document.getElementById('btnSave')
         .addEventListener("click", save_options, true);
 
+    // also fire the save event on checkbox changes
+    document.getElementById('chkShowWelcome')
+        .addEventListener("change", save_options, true);
+
+    document.getElementById('chkSync')
+        .addEventListener("change", save_options, true);
+
     document.getElementById('btnCancel')
         .addEventListener("click", restore_options, true);
 
