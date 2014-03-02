@@ -44,34 +44,28 @@
             <span class="app-logo"><a href="options.html" target="_self"><i class="fa">&nbsp;</i> {{extension_name}}</a></span>
             <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self" class="plain"><i class="fa" style="background:url('chrome://favicon/https://chrome.google.com/webstore/category/apps') no-repeat;"></i> Chrome Web Store</a></span>
         </div>
-        <div class="container bookmarks-container" ng-if="enable_bookmarks">
-            <div ng-if="bookmarks.length == 0">You have no bookmarks in your bookmarks bar.</div>
-            <div ng-if="bookmarks.length > 0">
-                <a class="bookmark" ng-repeat="b in bookmarks" href="{{b.url}}" title="{{b.title}}" target="_self">
-                    <i class="fa" style="background:url('chrome://favicon/{{b.url}}') no-repeat"></i>
-                    <span>{{b.title}}</span>
-                </a>
-            </div>
+        <div class="container bookmarks-container" ng-if="enable_bookmarks && bookmarks.length > 0">
+            <a class="bookmark" ng-repeat="b in bookmarks" href="{{b.url}}" title="{{b.title}}" target="_self">
+                <i class="fa" style="background:url('chrome://favicon/{{b.url}}') no-repeat"></i>
+                <span>{{b.title}}</span>
+            </a>
         </div>
         <div class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks }">
-            <div><input type="search" ng-model="q.name" placeholder="Filter apps"></div>
-            <chrome-app ng-repeat="app in apps | filter:q" app="app"></chrome-app>
+            <div><input type="search" ng-model="q.name" ng-show="apps.length > 5" placeholder="Filter apps"></div>
+            <chrome-app ng-repeat="app in (apps | filter:q)" app="app"></chrome-app>
+            <div ng-show="(apps | filter:q).length == 0" style="margin:1.5em">No matches found.</div>
             <span class="clear"></span>
         </div>
 
-        <div id="top-sites" ng-if="enable_top">
+        <div id="top-sites" ng-if="enable_top && top.length > 0">
             <div class="top-sites-wrapper">
                 <span class="top-sites-header">Top Sites</span>
                 <div class="inner">
-                    <a ng-repeat="site in top" ng-if="top.length > 0" href="{{site.url}}" title="{{site.title}}"
+                    <a ng-repeat="site in top" href="{{site.url}}" title="{{site.title}}"
                        target="_self" class="bookmark">
                         <i class="fa" style="background:url('chrome://favicon/{{site.url}}') no-repeat"></i>
                         <span>{{site.title}}</span>
                     </a>
-
-                    <div ng-if="!top || top.length == 0" class="no-top">
-                        No Top Sites!
-                    </div>
                 </div>
             </div>
         </div>
