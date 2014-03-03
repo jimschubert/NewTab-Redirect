@@ -78,9 +78,13 @@ controllers.controller('MainController', ['$scope', 'Apps', function ($scope, Ap
                 $scope.enable_top = true;
             }
         })
-        .then(loadTopSites)
-        .then(loadBookmarks)
-        .then(loadApps)
+        .then(function(){
+            loadApps()
+                .then(function(){
+                    loadBookmarks();
+                    loadTopSites();
+                });
+        })
         .then(function setupWatches(){
             $scope.$watch('bookmark_count', loadBookmarks);
             $scope.$watch('top_count', loadTopSites);

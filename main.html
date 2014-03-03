@@ -44,13 +44,15 @@
             <span class="app-logo"><a href="options.html" target="_self"><i class="fa">&nbsp;</i> {{extension_name}}</a></span>
             <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self" class="plain"><i class="fa" style="background:url('chrome://favicon/https://chrome.google.com/webstore/category/apps') no-repeat;"></i> Chrome Web Store</a></span>
         </div>
-        <div class="container bookmarks-container" ng-if="enable_bookmarks && bookmarks.length > 0">
-            <a class="bookmark" ng-repeat="b in bookmarks" href="{{b.url}}" title="{{b.title}}" target="_self">
+
+        <div class="container bookmarks-container" ng-show="enable_bookmarks && bookmarks.length > 0" ng-class="{'populated':bookmarks.length > 0}">
+            <a class="bookmark" ng-if="enable_bookmarks" ng-repeat="b in bookmarks" href="{{b.url}}" title="{{b.title}}" target="_self">
                 <i class="fa" style="background:url('chrome://favicon/{{b.url}}') no-repeat"></i>
                 <span>{{b.title}}</span>
             </a>
         </div>
-        <div class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks }">
+
+        <div class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks && bookmarks.length > 0,'populated':apps.length > 0}">
             <div><input type="search" ng-model="q.name" ng-show="apps.length > 5" placeholder="Filter apps"></div>
             <chrome-app ng-repeat="app in (apps | filter:q)" app="app"></chrome-app>
             <div ng-show="(apps | filter:q).length == 0" style="margin:1.5em">No matches found.</div>

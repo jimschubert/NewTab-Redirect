@@ -181,6 +181,15 @@ div.container {
 div.app-container {
     margin-top:35px;
     padding-bottom:40px;
+    opacity:0;
+    max-height:0;
+}
+
+div.app-container.populated {
+    opacity: 1;
+    max-height:3000px;
+    transition: all 300ms ease-in-out;
+    transition-delay: 100ms;
 }
 
 div.app-container.after-bookmarks {
@@ -197,6 +206,12 @@ div.bookmarks-container {
     width:90%;
     border-radius:4px;
     background-color: rgba(178, 255, 131, 0.90);
+    opacity:0;
+}
+
+div.bookmarks-container.populated {
+    opacity: 1;
+    transition: all 320ms ease-in-out;
 }
 
 div.bookmarks-container .bookmark {
