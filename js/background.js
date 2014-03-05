@@ -88,6 +88,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
                 // be sure to save when we last installed (or updated)
                 save({ "lastInstall": +new Date() }, "sync");
 
+                console.log("Try to show welcome on %s: (%s)", details.reason, canShowWelcome);
                 // on initial install, or every 6 months, show Welcome Page
                 if (canShowWelcome && details.reason === "install") {
                     console.log("background.js: showing welcome page");
