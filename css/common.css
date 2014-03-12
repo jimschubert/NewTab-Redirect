@@ -128,8 +128,8 @@ a[rel=publisher] img {
 }
 
 .app-icon-128.webpage {
-    background: url(../images/document-new.svg) no-repeat center;
-    background-size: 120px 120px;
+    background: url(../images/document-new.svg) no-repeat top;
+    background-size: 135px auto;
 }
 
 .app-icon-128.webpage img {
