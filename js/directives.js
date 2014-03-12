@@ -1,6 +1,6 @@
 'use strict';
 /*global chrome*/
-var directives = angular.module('newTab.directives', []);
+var directives = angular.module('newTab.directives', ['newTab.services']);
 
 directives.directive('chromeApp', function(){
     return {
@@ -167,6 +167,37 @@ directives.directive('chromeUninstall', ['$log', 'Apps', function($log, Apps){
                         });
                 });
             }
+        }
+    };
+}]);
+
+directives.directive('togglePermission', ['Permissions', function(Permissions){
+    return {
+        // element only
+        restrict: 'E',
+
+        scope: {
+            permission: '@',
+            enabled: '=granted'
+        },
+        replace: true,
+
+        template: "<button ng-click=\"toggle()\">{{enabled?'Deny':'Grant'}} '{{permission}}' Permission</button>",
+
+        link: function($scope, $element, $attrs) {
+            $scope.toggle = function(){
+                if($scope.enabled){
+                    Permissions.revoke($scope.permission);
+                } else {
+                    chrome.permissions.request({
+                        permissions: [$scope.permission]
+                    }, function(result){
+                        $scope.$apply(function(){
+                            console.log(result);
+                        });
+                    });
+                }
+            };
         }
     };
 }]);

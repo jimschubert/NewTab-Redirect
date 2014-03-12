@@ -22,6 +22,7 @@
                     <label>
                         <input type="checkbox" ng-model="enable_bookmarks"> Enable
                     </label>
+                    <toggle-permission permission="bookmarks" granted="permissions.bookmarks"></toggle-permission>
                     <div>
                         Show <input type="number" min="5" max="40" ng-model="bookmark_count" title="Too many bookmarks will cause the box to become very large"> bookmarks
                     </div>
@@ -31,9 +32,15 @@
                     <label>
                         <input type="checkbox" ng-model="enable_top"> Enable
                     </label>
+                    <toggle-permission permission="topSites" granted="permissions.topSites"></toggle-permission>
                     <div>
                         Show <input type="number" min="5" max="20" ng-model="top_count" title="Too many top sites will cause the box to become very large"> top sites
                     </div>
+                </div>
+
+                <div class="setting">
+                    <h3><i class="fa fa-external-link"></i> Open in New Window</h3>
+                    <toggle-permission permission="tabs" granted="permissions.tabs"></toggle-permission>
                 </div>
 
                 <button ng-click="save_preferences()" class="pull-right">Close</button>
@@ -45,7 +52,7 @@
             <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self" class="plain"><i class="fa" style="background:url('chrome://favicon/https://chrome.google.com/webstore/category/apps') no-repeat;"></i> Chrome Web Store</a></span>
         </div>
 
-        <div class="container bookmarks-container" ng-show="enable_bookmarks && bookmarks.length > 0" ng-class="{'populated':bookmarks.length > 0}">
+        <div class="container bookmarks-container" ng-show="permissions.bookmarks && enable_bookmarks && bookmarks.length > 0" ng-class="{'populated':bookmarks.length > 0}">
             <a class="bookmark" ng-if="enable_bookmarks" ng-repeat="b in bookmarks" href="{{b.url}}" title="{{b.title}}" target="_self">
                 <i class="fa" style="background:url('chrome://favicon/{{b.url}}') no-repeat"></i>
                 <span>{{b.title}}</span>
@@ -59,7 +66,7 @@
             <span class="clear"></span>
         </div>
 
-        <div id="top-sites" ng-if="enable_top && top.length > 0">
+        <div id="top-sites" ng-if="permissions.topSites && enable_top && top.length > 0">
             <div class="top-sites-wrapper">
                 <span class="top-sites-header">Top Sites</span>
                 <div class="inner">
