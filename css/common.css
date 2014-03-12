@@ -384,11 +384,12 @@ span#app-prefs i {
 .dialog .content {
     position: relative;
     width:200px;
-    height:230px;
+    height:auto;
     margin-top:15px;
+    margin-bottom:20px;
     margin-left:auto;
     margin-right:auto;
-    padding:20px;
+    padding:15px 20px 30px 20px;
     border-radius: 7px;
     background: rgba(255,255,255,0.95);
     -webkit-box-shadow: 3px 3px 5px 0 rgba(50, 50, 50, 0.66);
