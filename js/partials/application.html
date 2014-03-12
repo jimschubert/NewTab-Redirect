@@ -1,6 +1,7 @@
 <div class="app-icon">
-    <a href="app.appLaunchUrl" chrome-launch="app.id" chrome-type="app.type" class="app-icon-128">
-        <img src="{{app.icons|iconsize:128:app}}" title="{{app.name}}"/>
+    <a href="app.appLaunchUrl" chrome-launch="app.id" chrome-type="app.type" class="app-icon-128"
+        ng-class="{webpage: app.icons[0].size == 16 && app.icons[1] == undefined }">
+        <img src="{{app.icons|iconsize:128:app}}" title="{{app.name}}" />
         <span class="app-desc">{{app.name}}</span>
     </a>
 

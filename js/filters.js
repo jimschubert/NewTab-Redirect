@@ -10,13 +10,14 @@ filters.filter('iconsize', function(){
                 len = input.length,
                 i = 0;
 
-            for(i;!found || i<len;i++){
+            for(i;!found && i<len;i++){
                 current = input[i];
                 if(current.size >= size){
                     found = current;
                 }
             }
 
+            found = found || current;
             if(found){
                 var append = '';
                 if(app.enabled === false) {

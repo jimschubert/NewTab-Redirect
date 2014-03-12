@@ -127,6 +127,17 @@ a[rel=publisher] img {
     width:128px;
 }
 
+.app-icon-128.webpage {
+    background: url(../images/document-new.svg) no-repeat center;
+    background-size: 120px 120px;
+}
+
+.app-icon-128.webpage img {
+    height: 16px;
+    width: 16px;
+    margin-top: 112px;
+}
+
 div.app-icon {
     float: left;
     text-align: center;
