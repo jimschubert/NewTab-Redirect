@@ -1,14 +1,29 @@
-var allOptions = ["usingStorageApi", "url", "syncOptions", "lastInstall", "showWelcome"];
+/*global chrome*/
+'use strict';
+var slice = Array.prototype.slice;
+var manifest = chrome.runtime.getManifest();
+var allOptions = ["usingStorageApi", "url", "syncOptions", "lastInstall", "showWelcome", "upgrade_3.1"];
+
+function log(){
+    var args = slice.call(arguments);
+    var msg = args.shift();
+    msg = "(%s) " + msg;
+    args.unshift(manifest.version);
+    args.unshift(msg);
+
+    console.log.apply(console, args);
+}
+
 function init() {
-    console.log("background.js: init()");
+    log("background.js: init()");
 }
 
 function saveInitial() {
-    console.log("background.js: Initial setup.");
+    log("background.js: Initial setup.");
     var options = {};
     var arr = window.localStorage.options;
     if (arr) {
-        console.log('Found options on localStorage')
+        log('Found options on localStorage');
         options = JSON.parse(arr);
     }
 
@@ -18,14 +33,14 @@ function saveInitial() {
     options["showWelcome"] = true;
 
     if (!options.url) {
-        console.log("Using default New Tab Redirect page");
+        log("Using default New Tab Redirect page");
         // this defaults to the New Tab Redirect Apps page
         options.url = "";
     }
 
     options["lastInstall"] = +new Date();
 
-    console.log("trying to save these options", options);
+    log("trying to save these options", options);
     save(options, "local");
 }
 
@@ -41,7 +56,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
         return retrieve(allOptions, "local", function (localQuery) {
             return retrieve(allOptions, "sync", function (query) {
                 var canShowWelcome = true;
-                console.log("Pulled sync options:", query);
+                log("Pulled sync options:", query);
 
                 if((0+query.lastInstall) > 1){
                     var installed = parseInt(query.lastInstall, 10);
@@ -56,7 +71,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
                     canShowWelcome =  listener5sBufferCheck && sixMonthCheck;
 
-                    console.log(
+                    log(
                         'Can we show welcome by checks?(%s), ' +
                         'Installed: %d, %d ms between last install and listener, ' +
                         '%d ms since last install',
@@ -64,7 +79,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
                 }
 
                 if (localQuery.showWelcome == false || query.showWelcome == false) {
-                    console.log("User doesn't ever want to see the welcome page. canShowWelcome=false");
+                    log("User doesn't ever want to see the welcome page. canShowWelcome=false");
                     canShowWelcome = false;
                 }
 
@@ -72,7 +87,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
                 // user previously installed on another machine, either sync or do initial setup
                 if (query["syncOptions"]) {
-                    console.log("saving sync option setup");
+                    log("saving sync option setup");
                     allOptions.forEach(function (elem) {
                         options[elem] = query[elem];
                     });
@@ -81,17 +96,24 @@ chrome.runtime.onInstalled.addListener(function (details) {
                     save(options, "local");
                 } else if(details.reason === "install") {
                     // User hasn't previously installed, save defaults
-                    console.log("saving initial setup (not syncing)");
+                    log("saving initial setup (not syncing)");
                     saveInitial();
                 }
 
                 // be sure to save when we last installed (or updated)
                 save({ "lastInstall": +new Date() }, "sync");
 
-                console.log("Try to show welcome on %s: (%s)", details.reason, canShowWelcome);
+                // only display the upgrade message once, and only for true upgrades
+                if(manifest.version === "3.1" && details.reason === "update" && !localQuery["upgrade_3.1"]) {
+                    log("background.js: showing v3.1 important upgrade message");
+                    save({ "upgrade_3.1": true }, "local");
+                    return chrome.tabs.create({"url": "upgraded/3.1.html" });
+                }
+
+                log("Try to show welcome on %s: %s (should only show on install)", details.reason, canShowWelcome);
                 // on initial install, or every 6 months, show Welcome Page
                 if (canShowWelcome && details.reason === "install") {
-                    console.log("background.js: showing welcome page");
+                    log("background.js: showing welcome page");
                     return chrome.tabs.create({"url": "welcome.html" });
                 }
             });
@@ -107,7 +129,7 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
         for (var key in changes) {
             if (changes.hasOwnProperty(key)) {
                 var change = changes[key];
-                console.log('background.js: "%s|%s" changed. "%s" -> "%s"',
+                log('background.js: "%s|%s" changed. "%s" -> "%s"',
                     namespace,
                     key,
                     change.oldValue,
@@ -117,7 +139,7 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
             }
         }
         if(Object.keys(saveObj).length > 0) {
-            console.log("Saving sync values locally");
+            log("Saving sync values locally");
             save(saveObj, "local");
         }
     });
@@ -130,7 +152,7 @@ function save(items, area) {
             area = "local";
         }
 
-        console.log("Saving the following items to " + area + ":", items);
+        log("Saving the following items to " + area + ":", items);
         chrome.storage[area].set(items);
     });
 }
@@ -138,7 +160,7 @@ function save(items, area) {
 function retrieve(items, area, cb) {
     if ("function" !== typeof cb) {
         cb = function (items) {
-            console.log("items:", items);
+            log("items:", items);
         };
     }
 
