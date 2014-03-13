@@ -32,26 +32,6 @@ controllers.controller('MainController', ['$scope', 'Apps', 'Permissions', '$log
         loadTopSites();
     };
 
-//    $scope.request = function(items) {
-//        var requesting = items.split(',');
-//        chrome.permissions.request({
-//            permissions: requesting
-//        }, function(allowed){
-//            console.log(allowed);
-//        });
-//    };
-
-//    $scope.toggle_permission = function(permission){
-//        Permissions.toggle(permission);
-//    };
-
-//    function requestPermissions(rejection){
-//        if(/permission$/.test(rejection)){
-//            $scope.request_permissions = true;
-//        }
-//        console.log(rejection);
-//    }
-
     function loadBookmarks() {
         return Apps.getBookmarksBar($scope.bookmark_count)
             .then(function (results) {
@@ -98,17 +78,6 @@ controllers.controller('MainController', ['$scope', 'Apps', 'Permissions', '$log
     Permissions.getAll()
         .then(function (permissions) {
             $scope.permissions = permissions;
-
-            $scope.$on('PermissionRemoved', function(evt, changed){
-                changed.forEach(function(permission){
-                    $scope.permissions[permission] = false;
-                });
-            });
-            $scope.$on('PermissionAdded', function(evt, changed){
-                changed.forEach(function(permission){
-                    $scope.permissions[permission] = true;
-                });
-            });
         })
         .then(function () {
             var querySettings = [enable_top_key, enable_bookmarks_key, bookmarks_count_key, top_count_key];
@@ -135,12 +104,33 @@ controllers.controller('MainController', ['$scope', 'Apps', 'Permissions', '$log
                     $scope.$watch('bookmark_count', loadBookmarks);
                     $scope.$watch('top_count', loadTopSites);
                 })
-                .then(function () {
-                    loadApps()
-                        .then(function () {
-                            loadBookmarks();
-                            loadTopSites();
+                .then(bootstrap)
+                .then(function watchForPermissionsChanges(){
+                    // This responds to any permissions change events and loads everything to reflect changed permissions.
+                    // permissions can only be changed by a physical user action (click link, check box)
+                    // so responding to events and calling bootstrap here won't hurt.
+                    $scope.$on('PermissionRemoved', function(evt, changed){
+                        changed.forEach(function(permission){
+                            $scope.permissions[permission] = false;
                         });
+
+                        bootstrap();
+                    });
+                    $scope.$on('PermissionAdded', function(evt, changed){
+                        changed.forEach(function(permission){
+                            $scope.permissions[permission] = true;
+                        });
+
+                        bootstrap();
+                    });
                 });
         });
+
+    function bootstrap() {
+        loadApps()
+            .then(function () {
+                loadBookmarks();
+                loadTopSites();
+            });
+    }
 }]);

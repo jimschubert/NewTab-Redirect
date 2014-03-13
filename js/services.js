@@ -24,56 +24,64 @@ services.service('Permissions', ['$rootScope', '$q', function($rootScope, $q){
         return permissions;
     };
 
-    var service = {
-        getAll: function(){
+    return {
+        getAll: function () {
             var deferred = $q.defer();
-            chrome.permissions.getAll(function(results){
-                if(chrome.runtime.lastError){
-                    return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+            chrome.permissions.getAll(function (results) {
+                if (chrome.runtime.lastError) {
+                    return $rootScope.$apply(function () {
+                        deferred.reject(chrome.runtime.lastError.message);
+                    });
                 }
 
-                return $rootScope.$apply(function(){
+                return $rootScope.$apply(function () {
                     deferred.resolve(convert(results));
                 });
             });
             return deferred.promise;
         },
-        check: function(permission){
+        check : function (permission) {
             var deferred = $q.defer();
 
             chrome.permissions.contains({
                 permissions: [permission]
-            }, function(permissionStatus){
-                if(chrome.runtime.lastError){
-                    return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+            }, function (permissionStatus) {
+                if (chrome.runtime.lastError) {
+                    return $rootScope.$apply(function () {
+                        deferred.reject(chrome.runtime.lastError.message);
+                    });
                 }
 
-                return $rootScope.$apply(function(){ deferred.resolve(permissionStatus); });
+                return $rootScope.$apply(function () {
+                    deferred.resolve(permissionStatus);
+                });
             });
 
             return deferred.promise;
         },
-        revoke: function(permission){
+        revoke: function (permission) {
             var deferred = $q.defer();
 
             chrome.permissions.remove({
                 permissions: [permission]
-            }, function(removed){
-                if(chrome.runtime.lastError){
-                    return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+            }, function (removed) {
+                if (chrome.runtime.lastError) {
+                    return $rootScope.$apply(function () {
+                        deferred.reject(chrome.runtime.lastError.message);
+                    });
                 }
 
-                return $rootScope.$apply(function(){ deferred.resolve(removed); });
+                return $rootScope.$apply(function () {
+                    deferred.resolve(removed);
+                });
             });
 
             return deferred.promise;
         }
     };
-
-    return service;
 }]);
 
-services.service('Apps', ['$rootScope', '$q', '$timeout', function ($rootScope, $q, $timeout) {
+services.service('Apps', ['$rootScope', '$q', 'Permissions', function ($rootScope, $q, Permissions) {
     var verify = function(permission, cb){
         chrome.permissions.contains({
             permissions: [permission]
@@ -81,13 +89,6 @@ services.service('Apps', ['$rootScope', '$q', '$timeout', function ($rootScope, 
     };
 
     return {
-        emptyPromise: function(){
-            var deferred = $q.defer();
-            $timeout(function(){
-                deferred.resolve();
-            });
-            return deferred.promise;
-        },
         getAll: function () {
             var deferred = $q.defer();
             verify('management', function(allowed){
@@ -203,20 +204,24 @@ services.service('Apps', ['$rootScope', '$q', '$timeout', function ($rootScope, 
         topSites: function(){
             var deferred = $q.defer();
 
-            verify('topSites', function(allowed){
-                if(!allowed){
-                    return $rootScope.$apply(function(){ deferred.reject('topSites permission'); });
-                }
+            Permissions.check('topSites')
+                .then(function success(allowed){
+                    if(!allowed){
+                        deferred.reject('topSites permission');
+                    } else {
+                        chrome.topSites.get(function(sites){
+                            if(chrome.runtime.lastError){
+                                return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+                            }
 
-                return chrome.topSites.get(function(sites){
-                    if(chrome.runtime.lastError){
-                        return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+                            // sites is [{url:"",title:""}]
+                            return $rootScope.$apply(function(){ deferred.resolve(sites); });
+                        });
                     }
-
-                    // sites is [{url:"",title:""}]
-                    return $rootScope.$apply(function(){ deferred.resolve(sites); });
+                }, function failure(){
+                    deferred.reject();
                 });
-            });
+
             return deferred.promise;
         },
 
@@ -263,15 +268,24 @@ services.service('Apps', ['$rootScope', '$q', '$timeout', function ($rootScope, 
             }
 
             var deferred = $q.defer();
-            chrome.bookmarks.search('Bookmarks Bar', function(results){
-                if(results.length <= 0) {
-                    $rootScope.$apply(function(){ deferred.reject(); });
-                } else {
-                    chrome.bookmarks.getChildren(results[0].id, function(results) {
-                        $rootScope.$apply(function(){ deferred.resolve(results.filter(linksOnly).splice(0, limit)); });
-                    });
-                }
-            });
+            Permissions.check('bookmarks')
+                .then(function success(allowed){
+                    if(!allowed){
+                        deferred.reject();
+                    } else {
+                        chrome.bookmarks.search('Bookmarks Bar', function(results){
+                            if(results.length <= 0) {
+                                $rootScope.$apply(function(){ deferred.reject(); });
+                            } else {
+                                chrome.bookmarks.getChildren(results[0].id, function(results) {
+                                    $rootScope.$apply(function(){ deferred.resolve(results.filter(linksOnly).splice(0, limit)); });
+                                });
+                            }
+                        });
+                    }
+                }, function failure(){
+                    deferred.reject();
+                });
             return deferred.promise;
         }
     };

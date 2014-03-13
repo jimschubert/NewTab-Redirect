@@ -196,11 +196,21 @@ div.app-container {
     max-height:0;
 }
 
+/*undo the app-container stuff*/
+div.no-app-permissions {
+    opacity:1;
+    padding:20px;
+    max-height: 1000px;
+    width:90%;
+    display:none;
+}
+
 div.app-container.populated {
     opacity: 1;
     max-height:3000px;
     transition: all 300ms ease-in-out;
     transition-delay: 100ms;
+    display:block;
 }
 
 div.app-container.after-bookmarks {
@@ -396,7 +406,10 @@ span#app-prefs i {
 }
 
 .dialog .content h2 { margin: 2px; }
-.dialog .content h3 { font-size:0.8em; }
+.dialog .content h3 {
+    font-size:0.8em;
+    margin-bottom:5px;
+}
 .dialog .content div.setting { padding-bottom:8px; }
 
 @media only screen and (max-width : 685px ) {

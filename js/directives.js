@@ -9,7 +9,8 @@ directives.directive('chromeApp', function(){
 
         // app: http://developer.chrome.com/extensions/management#type-ExtensionInfo
         scope: {
-            app: '='
+            app: '=',
+            permissions: '='
         },
 
         // replace the directive html with template html
@@ -182,7 +183,7 @@ directives.directive('togglePermission', ['Permissions', function(Permissions){
         },
         replace: true,
 
-        template: "<button ng-click=\"toggle()\">{{enabled?'Deny':'Grant'}} '{{permission}}' Permission</button>",
+        template: "<div><button ng-click=\"toggle()\">{{enabled?'Deny':'Grant'}} '{{permission}}' Permission</button></div>",
 
         link: function($scope, $element, $attrs) {
             $scope.toggle = function(){

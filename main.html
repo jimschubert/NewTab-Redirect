@@ -19,27 +19,27 @@
                 <h2>Display Preferences</h2>
                 <div class="setting">
                     <h3><i class="fa fa-bookmark-o"></i> Bookmarks Bar</h3>
-                    <label>
-                        <input type="checkbox" ng-model="enable_bookmarks"> Enable
-                    </label>
                     <toggle-permission permission="bookmarks" granted="permissions.bookmarks"></toggle-permission>
+                    <label>
+                        <input type="checkbox" ng-model="enable_bookmarks" ng-disabled="!permissions.bookmarks"> Enable
+                    </label>
                     <div>
-                        Show <input type="number" min="5" max="40" ng-model="bookmark_count" title="Too many bookmarks will cause the box to become very large"> bookmarks
+                        Show <input type="number" min="5" max="40" ng-model="bookmark_count" ng-disabled="!permissions.bookmarks" title="Too many bookmarks will cause the box to become very large"> bookmarks
                     </div>
                 </div>
                 <div class="setting">
                     <h3><i class="fa fa-star-o"></i> Top Sites Panel</h3>
-                    <label>
-                        <input type="checkbox" ng-model="enable_top"> Enable
-                    </label>
                     <toggle-permission permission="topSites" granted="permissions.topSites"></toggle-permission>
+                    <label>
+                        <input type="checkbox" ng-model="enable_top" ng-disabled="!permissions.topSites"> Enable
+                    </label>
                     <div>
-                        Show <input type="number" min="5" max="20" ng-model="top_count" title="Too many top sites will cause the box to become very large"> top sites
+                        Show <input type="number" min="5" max="20" ng-model="top_count" ng-disabled="!permissions.topSites" title="Too many top sites will cause the box to become very large"> top sites
                     </div>
                 </div>
 
                 <div class="setting">
-                    <h3><i class="fa fa-external-link"></i> Open in New Window</h3>
+                    <h3><i class="fa fa-external-link"></i> Open apps in New Window</h3>
                     <toggle-permission permission="tabs" granted="permissions.tabs"></toggle-permission>
                 </div>
 
@@ -59,10 +59,35 @@
             </a>
         </div>
 
-        <div class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks && bookmarks.length > 0,'populated':apps.length > 0}">
+        <div ng-show="permissions.management" class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks && bookmarks.length > 0,'populated':apps.length > 0}">
             <div><input type="search" ng-model="q.name" ng-show="apps.length > 5" placeholder="Filter apps"></div>
-            <chrome-app ng-repeat="app in (apps | filter:q)" app="app"></chrome-app>
+            <chrome-app ng-repeat="app in (apps | filter:q)" app="app" permissions="permissions"></chrome-app>
             <div ng-show="(apps | filter:q).length == 0" style="margin:1.5em">No matches found.</div>
+            <span class="clear"></span>
+        </div>
+
+        <div ng-if="!permissions.management" class="container app-container no-app-permissions"
+             ng-class="{'after-bookmarks': enable_bookmarks && bookmarks.length > 0, 'populated': permissions.management == false}">
+            <h3>Hello.</h3>
+            <p>
+                This extension doesn't yet have the permissions to read and manage your Apps!
+                It requires the 'management' permission to do this. You can read more about <a href="https://support.google.com/chrome_webstore/answer/186213?hl=en" target="_blank">permissions</a> and
+                their <a href="http://developer.chrome.com/extensions/permission_warnings" target="_blank">warnings</a> before proceeding.
+            </p>
+            <p>
+                <toggle-permission permission="management" granted="permissions.management"></toggle-permission>
+            </p>
+            <p>
+                Permissions and display options can be configured by clicking the gear icon in the bottom right corner.
+                That's where you'll find extra, opt-in functionality like the top sites panel and quick bookmarks 'bar'.
+            </p>
+            <p>
+                You'll only see that annoying popup to request permissions once. After that, you can grant or deny any individual
+                permissions at any time without the extra popup (except the management permission, because what good's an Apps page without that?).
+            </p>
+            <p>
+                Enable what you want, disable what you don't. You can always check the permissions of any installed extension or app at chrome://extensions (also accessible under <code>Menu -> Tools -> Extensions</code>. Safe browsing!
+            </p>
             <span class="clear"></span>
         </div>
 

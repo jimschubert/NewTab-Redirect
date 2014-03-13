@@ -10,7 +10,7 @@
            title="Open {{app.name}} in a pinned tab"><i class="fa fa-2x fa-thumb-tack"></i></a>
         <a href="app.appLaunchUrl" ng-if="app.type != 'packaged_app'" chrome-new-tab="app.id"
            title="Open {{app.name}} in a new tab"><i class="fa fa-2x fa-level-up"></i></a>
-        <a href="app.appLaunchUrl" ng-if="app.type != 'packaged_app'" chrome-new-window="app.id"
+        <a href="app.appLaunchUrl" ng-if="app.type != 'packaged_app' && permissions.tabs == true" chrome-new-window="app.id"
            title="Open {{app.name}} in a new window"><i class="fa fa-2x fa-external-link"></i></a>
         <a href="app.optionsUrl" chrome-options="app.id" ng-if="app.optionsUrl" title="Open options for {{app.name}}"><i
                 class="fa fa-2x fa-wrench"></i></a>
