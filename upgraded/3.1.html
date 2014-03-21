@@ -1,9 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="newTab">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>New Tab Redirect 3.1</title>
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/common.css" type="text/css">
+    <style>
+        body { font-size: 0.9em; }
+        .show { display: inline-block; }
+        .hide { display: none; }
+    </style>
 </head>
 <body>
-    TODO: 3.1 Upgrade message about how to remove unused permissions
+    <div>
+        <div class="main-container">
+
+            <div class="app-header">
+                <span class="app-logo"><a href="../options.html" target="_self"><i class="fa">&nbsp;</i> New Tab Redirect</a></span>
+                <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self" class="plain"><i class="fa" style="background:url('chrome://favicon/https://chrome.google.com/webstore/category/apps') no-repeat;"></i> Chrome Web Store</a></span>
+            </div>
+
+            <div class="container app-container no-app-permissions populated">
+                <h3>New Tab Redirect just updated to v3.1.</h3>
+                <p><strong><small>This is the only time you'll see this message.</small></strong></p>
+                <p>
+                    In version 3.0, I introduced a new feature; a custom 'Apps' page. Many users  already used <code>chrome://apps</code> but
+                    wanted bookmarks and top sites functionality like the old built-in New Tab Page.
+                    I'm one of those users that wanted the functionality, so I jumped on the opportunity to create a custom page. To provide
+                    similar functionality, I added the necessary permissions to the extension. I figured users who've loved the extension
+                    for the past 4.5 years would also love the new feature.
+                </p>
+                <p><em>A lot of people hated the new permissions.</em></p>
+                <p>
+                    I added 4 new <em>required</em> permissions. Many people expressed a lot of distrust and accusations about why I added the new permissions.
+                    The reason I added 4 required permissions is simple: I wanted to add a feature and I didn't know permissions could be optional. I'm only human.
+                </p>
+                <p><strong>If the required permissions upset you, I apologize.</strong> <button id="btnremove">Click here to remove the optional permissions</button><span id="permissionsdone" class="hide">The permissions were removed.</span></p>
+                <p>
+                    You can always check the current permissions granted to an extension on the <code>chrome://extensions</code> page.
+                </p>
+                <p>
+                    I am a huge believer that honesty and openness are contagious. As one user to another, you should read up on Chrome's <a href="https://support.google.com/chrome_webstore/answer/186213?hl=en" target="_blank">permissions</a> and
+                    their <a href="http://developer.chrome.com/extensions/permission_warnings" target="_blank">warnings</a>.
+                </p>
+                <p>
+                    Safe browsing!
+                </p>
+                <p>- Jim</p>
+                <p><small>P.S. I'm in no way affiliated with Google, Chrome, or the Chromium project.</small></p>
+                <span class="clear"></span>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
