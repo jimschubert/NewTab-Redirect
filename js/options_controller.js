@@ -1,8 +1,8 @@
 'use strict';
 var controllers = angular.module('newTab.controllers');
 
-controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions', '$log', 'popularPages', 'internalPages',
-    function ($scope, Storage, Permissions, $log, popularPages, internalPages){
+controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions', '$log', 'popularPages', 'internalPages', '$timeout',
+    function ($scope, Storage, Permissions, $log, popularPages, internalPages, $timeout){
         $scope.selected = 'url';
         $scope.popular = popularPages;
         $scope.internal = internalPages;
@@ -29,11 +29,13 @@ controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions',
         }
 
         $scope.save = function(){
-            if($scope.sync){
-                Storage.saveSync({'url':$scope.url});
-            } else {
-                Storage.saveLocal({'url':$scope.url});
-            }
+            var promise =  Storage[$scope.sync?'saveSync':'saveLocal']({'url':$scope.url}) ;
+            promise.then(function(){
+                $scope.show_saved = true;
+                $timeout(function(){
+                    $scope.show_saved = false;
+                }, 3500);
+            });
         };
 
         $scope.quickSave = function(url, e){

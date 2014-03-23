@@ -77,3 +77,26 @@ ul.options-tabs li a {
 
 h3 { margin: 8px 0; }
 h4 { margin: 4px 0; }
+
+.saved {
+    position: absolute;
+    top: 40px;
+    right: 15px;
+    width: 180px;
+    transition: all 0.3s ease-in-out;
+    transition-delay:100ms;
+    opacity:0;
+}
+
+.saved-container {
+    padding: 14px;
+    font-size: 1.3em;
+    border: 2px solid #7c82bf;
+    background-color: rgba(180, 255, 165, 0.8);
+    border-radius: 7px;
+    font-weight: 800;
+}
+
+.saved.show-saved{
+    opacity:1;
+}
