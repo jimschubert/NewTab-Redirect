@@ -6,6 +6,8 @@ controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions',
         $scope.selected = 'url';
         $scope.popular = popularPages;
         $scope.internal = internalPages;
+        $scope.optional_permissions = Permissions.OPTIONAL;
+        $scope.required_permissions = Permissions.REQUIRED;
 
         function getUrl(){
             return Storage.getLocal(['syncOptions'])
@@ -16,6 +18,13 @@ controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions',
                 })
                 .then(function(result){
                     $scope.url = result.url;
+                });
+        }
+
+        function getPermissions(){
+            return Permissions.getAll()
+                .then(function(permissions){
+                    $scope.permissions = permissions;
                 });
         }
 
@@ -57,6 +66,36 @@ controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions',
                 });
         };
 
+        $scope.grant = function(permission){
+            chrome.permissions.request({
+                permissions: [permission]
+            }, function(result){
+                $scope.$apply(function(){
+                    console.log(result);
+                });
+            });
+        };
+
+        $scope.deny = function(permission){
+            Permissions.revoke(permission);
+        };
+
+        $scope.$on('PermissionRemoved', function(evt, changed){
+            if(!angular.isObject($scope.permissions)) { return; }
+            changed.forEach(function(permission){
+                $scope.permissions[permission] = false;
+            });
+            getPermissions();
+        });
+        $scope.$on('PermissionAdded', function(evt, changed){
+            if(!angular.isObject($scope.permissions)) { return; }
+            changed.forEach(function(permission){
+                $scope.permissions[permission] = true;
+            });
+            getPermissions();
+        });
+
         getUrl();
+        getPermissions();
     }
 ]);

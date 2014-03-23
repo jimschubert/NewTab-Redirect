@@ -4,6 +4,7 @@ var services = angular.module('newTab.services', []);
 
 services.service('Permissions', ['$rootScope', '$q', function($rootScope, $q){
     var definedOptionalPermissions = chrome.runtime.getManifest().optional_permissions;
+    var definedRequiredPermissions = chrome.runtime.getManifest().permissions;
 
     chrome.permissions.onAdded.addListener(function(permission){
         $rootScope.$broadcast("PermissionAdded", permission.permissions);
@@ -25,6 +26,8 @@ services.service('Permissions', ['$rootScope', '$q', function($rootScope, $q){
     };
 
     return {
+        REQUIRED: definedRequiredPermissions,
+        OPTIONAL: definedOptionalPermissions,
         getAll: function () {
             var deferred = $q.defer();
             chrome.permissions.getAll(function (results) {

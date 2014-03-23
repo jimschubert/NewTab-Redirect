@@ -27,6 +27,7 @@ div.options-container .target {
     display:inline-block;
     min-width: 400px;
     margin-left:12px;
+    max-width: 550px;
 }
 
 ul.options-tabs {
