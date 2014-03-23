@@ -55,7 +55,7 @@ If I have some free time, I don't mind answering questions related to other issu
 
 ## Legal
 
-NewTab Redirect is released under the [MIT license](http://bit.ly/mit-license). NewTab Redirect was previously hosted on [Google Projects](http://code.google.com/p/newtabredirect/) under [GPLv3 license](http://www.gnu.org/licenses/gpl.html).
+NewTab Redirect is released under the [MIT license](http://bit.ly/mit-license). NewTab Redirect was previously hosted on [Google Projects](http://code.google.com/p/newtabredirect/) under [GPLv3 license](http://www.gnu.org/licenses/gpl.html). You *may not* redistribute this software without proper attribution.
 
 * AngularJS: Code is MIT Licensed. Details are available [here](https://github.com/angular/angular.js/blob/master/LICENSE)
 
