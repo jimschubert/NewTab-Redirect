@@ -81,7 +81,7 @@ services.service('Permissions', ['$rootScope', '$q', function($rootScope, $q){
     };
 }]);
 
-services.service('Apps', ['$rootScope', '$q', 'Permissions', function ($rootScope, $q, Permissions) {
+services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function ($rootScope, $q, Permissions, Storage) {
     var verify = function(permission, cb){
         chrome.permissions.contains({
             permissions: [permission]
@@ -225,41 +225,9 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', function ($rootScop
             return deferred.promise;
         },
 
-        saveSetting: function(obj){
-            var deferred = $q.defer();
-            if(angular.isObject(obj) === false || Object.keys(obj).length === 0) {
-                deferred.reject();
-            } else {
-                chrome.storage.sync.set(obj, function() {
-                    if(chrome.runtime.lastError){
-                        return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
-                    }
+        saveSetting: Storage.saveSync,
 
-                    return $rootScope.$apply(function(){ deferred.resolve(); });
-                });
-            }
-            return deferred.promise;
-        },
-
-        getSetting: function(obj) {
-            var query = [];
-            var deferred = $q.defer();
-            if(angular.isArray(obj) === false && typeof obj === 'string' && obj !== "") {
-                query.push(obj);
-            } else if (angular.isArray(obj)){
-                if(obj.length === 0) { deferred.reject(); }
-                else { query = query.concat(obj); }
-            }
-
-            chrome.storage.sync.get(query, function(settings) {
-                if(chrome.runtime.lastError){
-                    return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
-                }
-
-                return $rootScope.$apply(function(){ deferred.resolve(settings); });
-            });
-            return deferred.promise;
-        },
+        getSetting: Storage.getSync,
 
         getBookmarksBar: function(limit){
             limit = limit || 10;
@@ -286,6 +254,83 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', function ($rootScop
                 }, function failure(){
                     deferred.reject();
                 });
+            return deferred.promise;
+        }
+    };
+}]);
+
+services.service('Storage', ['$q', '$rootScope', function($q, $rootScope){
+    return {
+
+        saveSync: function(obj){
+            var deferred = $q.defer();
+            if(angular.isObject(obj) === false || Object.keys(obj).length === 0) {
+                deferred.reject();
+            } else {
+                chrome.storage.sync.set(obj, function() {
+                    if(chrome.runtime.lastError){
+                        return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+                    }
+
+                    return $rootScope.$apply(function(){ deferred.resolve(); });
+                });
+            }
+            return deferred.promise;
+        },
+
+        getSync: function(obj) {
+            var query = [];
+            var deferred = $q.defer();
+            if(angular.isArray(obj) === false && typeof obj === 'string' && obj !== "") {
+                query.push(obj);
+            } else if (angular.isArray(obj)){
+                if(obj.length === 0) { deferred.reject(); }
+                else { query = query.concat(obj); }
+            }
+
+            chrome.storage.sync.get(query, function(settings) {
+                if(chrome.runtime.lastError){
+                    return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+                }
+
+                return $rootScope.$apply(function(){ deferred.resolve(settings); });
+            });
+            return deferred.promise;
+        },
+
+        saveLocal: function(obj){
+            var deferred = $q.defer();
+            if(angular.isObject(obj) === false || Object.keys(obj).length === 0) {
+                deferred.reject();
+            } else {
+                chrome.storage.local.set(obj, function() {
+                    if(chrome.runtime.lastError){
+                        return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+                    }
+
+                    return $rootScope.$apply(function(){ deferred.resolve(); });
+                });
+            }
+            return deferred.promise;
+        },
+
+        getLocal: function(obj) {
+            var query = [];
+            var deferred = $q.defer();
+            if(angular.isArray(obj) === false && typeof obj === 'string' && obj !== "") {
+                query.push(obj);
+            } else if (angular.isArray(obj)){
+                if(obj.length === 0) { deferred.reject(); }
+                else { query = query.concat(obj); }
+            }
+
+            chrome.storage.local.get(query, function(settings) {
+                if(chrome.runtime.lastError){
+                    return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+                }
+
+                return $rootScope.$apply(function(){ deferred.resolve(settings); });
+            });
             return deferred.promise;
         }
     };
