@@ -1,81 +1,168 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="newTab">
 <head>
-    <title>New Tab Redirect! | Options</title>
-    <link rel="stylesheet" href="css/font-awesome.css" type="text/css"/>
-    <script type="text/javascript" src="js/options.js"></script>
-    <link rel="stylesheet" href="css/common.css" type="text/css"/>
-    <link rel="stylesheet" href="css/options.css" type="text/css"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>New Tab Redirect</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/common.css" type="text/css">
+    <link rel="stylesheet" href="css/options.css" type="text/css">
+    <style>
+        body { font-size: 0.9em; }
+    </style>
 </head>
-<body>
-<div id="status">
-    <span id="options_status">Options saved.</span>
+<body class="options-page">
+<div ng-cloak>
+    <div class="main-container" ng-controller="OptionsController">
+
+        <div class="app-header">
+            <span class="app-logo"><a href="options.html" target="_self"><i class="fa">&nbsp;</i> New Tab Redirect Options</a></span>
+            <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self" class="plain"><i class="fa" style="background:url('chrome://favicon/https://chrome.google.com/webstore/category/apps') no-repeat;"></i> Chrome Web Store</a></span>
+        </div>
+
+        <div class="container options-container">
+            <ul class="options-tabs">
+                <li ng-class="{'selected': selected === 'url'}"><a ng-click="selected='url'">URL</a></li>
+                <li ng-class="{'selected': selected === 'permissions'}"><a ng-click="selected='permissions'">Permissions</a></li>
+                <li ng-class="{'selected': selected === 'donate'}"><a ng-click="selected='donate'">Donate</a></li>
+            </ul>
+            <div class="target">
+                <div ng-show="selected=='url'">
+                    <h2>Redirect URL</h2>
+                    <input name="url" type="search" ng-model="url" placeholder="Default: New Tab Redirect 'Apps' Page" style="min-width:250px;" />
+                    <button style="font-weight:bold" title="Save" ng-click="save()">Save</button>
+                    <button title="Cancel" ng-click="cancel()">Cancel</button>
+                    <button title="One-time get Synced URL" ng-click="getSyncedUrl()" class="fa fa-cloud-download"></button>
+                    <p>
+                        <label>
+                            <input type="checkbox" ng-model="sync" ng-change="changeSync(sync)"> Sync this URL across browsers?
+                        </label>
+                    </p>
+                    <h3>One click save...</h3>
+                    <div class="column2">
+                        <h4>Popular Pages</h4>
+                        <div ng-repeat="page in popular">
+                            <a href="{{page.location}}" class="bookmark" style="font-size:1.1em" ng-click="quickSave(page.location, $event)">
+                                <i class="fa" style="background:url('chrome://favicon/{{page.location}}') no-repeat"></i>
+                                <span ng-bind="page.name"></span>
+                            </a>
+                        </div>
+                        <h4>Chrome Pages</h4>
+                        <div ng-repeat="page in internal">
+                            <a href="{{page.location}}" class="bookmark" style="font-size:1.1em" ng-click="quickSave(page.location, $event)">
+                                <i class="fa" style="background:url('chrome://favicon/{{page.location}}') no-repeat"></i>
+                                <span ng-bind="page.name"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="selected=='permissions'">
+                    <h2>Permissions</h2>
+                    <p>
+                        For information regarding what these permissions mean, please research:
+                    </p>
+                    <ul>
+                        <li>
+                            <a href="http://developer.chrome.com/extensions/permission_warnings" target="_blank">Chrome extensions: permission warnings</a>
+                        </li>
+                        <li>
+                            <a href="https://support.google.com/chrome_webstore/answer/186213?hl=en" target="_blank">
+                                Chrome Web Store Help: Permissions requested by apps and extensions
+                            </a>
+                        </li>
+                    </ul>
+                    <p>
+                        If you have any doubts or questions, email me at james.schubert@gmail.com.
+                    </p>
+                    <p>
+                        Never enable permissions you don't trust or don't understand, it can be dangerous.
+                    </p>
+                    <h3>Required Permissions</h3>
+                    <ul>
+                        <li ng-repeat="req in required_permissions"><span ng-bind="req"></span></li>
+                    </ul>
+                    <h3>Optional Permissions</h3>
+                    <ul>
+                        <li ng-repeat="perm in optional_permissions">
+                            <span ng-bind="perm" style="width:90px;display:inline-block;"></span> <button ng-click="grant(perm)" ng-disabled="permissions[perm]">Approve</button> <button ng-click="deny(perm)" ng-disabled="!permissions[perm]">Deny</button>
+                        </li>
+                    </ul>
+                    <h3>Where these are used</h3>
+                    <p>
+                        The <em>required permissions</em> are used mostly by the options page.
+                    </p>
+                    <p>
+                        They allow the extension to display icons and save data either locally or to your Google Account (if you've enabled syncing in your browser and enabled extension syncing).
+                    </p>
+                    <p>
+                        The <em>optional permissions</em> are used by the custom new tab 'Apps' page.
+                    </p>
+                    <p>
+                        All of the optional permissions provide more functionality than the 'Apps' page needs, but extensions have to select permissions in their entirety for even a small subset of abilities. Here's how the 'Apps' page uses them.
+                    </p>
+                    <dl>
+                        <dt>
+                            <em>tabs</em>: <strong>"Access your tabs and browsing activity"</strong>
+                        </dt>
+                        <dd>
+                            The 'tabs' permission is used to open apps in a new window (available in the rollover links). It's a nice-to-have feature, but is not necessary. If you don't trust this permission, leave it disabled. Only power users would be opening apps in new windows. See the <a href="http://developer.chrome.com/extensions/tabs" title="tabs summary" target="_blank">development documents</a> for more.
+                        </dd>
+                         <dt>
+                             <em>topSites</em>: <strong>"Read and modify your browsing history"</strong>
+                         </dt>
+                         <dd>
+                             This permission is bundled in the same warning as the history permission (which isn't used by this extension). The 'topSites' permission simply allows getting the top 20 most visited sites. The warning you get when enabling this permission is silly because it can't read any more of your history than the recent sites, and has no way to modify your history. See the <a href="http://developer.chrome.com/extensions/topSites" title="topSites summary" target="_blank">development documents</a> for more.
+                         </dd>
+                         <dt>
+                             <em>management</em>: <strong>"Manage your apps, extensions, and themes"</strong>
+                         </dt>
+                        <dd>
+                            The custom 'Apps' page only needs the 'apps' part of this permission. In fact, I have to filter out extensions and themes because everything is returned in the query. By 'manage', this means the extension can allow you to view, create, edit, or delete apps. Currently, the custom 'Apps' page retrieves apps and allows you to uninstall apps directly from within the 'Apps' page. You're provided confirmation. Generally, you should be cautious about enabling this permission in extensions, because it also allows extensions to install apps or uninstall the extension itself. Unfortunately, the permission is all or nothing, otherwise I'd request the bare minimum. This is the only required permission for the custom 'Apps' page to make sense.  See the <a href="http://developer.chrome.com/extensions/management" title="management summary" target="_blank">development documents</a> for more.
+                        </dd>
+                        <dt>
+                            <em>bookmarks</em>: <strong>"Read and modify your bookmarks"</strong>
+                        </dt>
+                        <dd>
+                            Again, an all-or-nothing permission. The 'Apps' page can display between 5 and 40 bookmarks from your bookmarks bar. There's no modification going on. See the <a href="http://developer.chrome.com/extensions/bookmarks" title="bookmarks summary" target="_blank">development documents</a> for more.
+                        </dd>
+                    </dl>
+                </div>
+                <div ng-show="selected=='donate'" >
+                    <h2>Donate!</h2>
+                    <p>
+                        Some users insisted in 2011 or 2012 that I accept donations. I'm a full-time software engineer and I created this extension as a fun project, so I was reluctant to comply. I'd be just as happy with a nice email or a follow on Google+ or Twitter. But, if you like the extension <em>that much</em> you can donate $1 or $2 to buy me a coffee. That's what usually fuels my development.
+                    </p>
+                    <ng-include src="'js/partials/donate.html'" />
+                </div>
+            </div>
+            <span class="clear"></span>
+        </div>
+    </div>
 </div>
 
-<div id="header">
-    <h1 id="options_heading">New Tab Redirect! Options</h1>
-</div>
-<div class="section-header first">
-    <em id="options_subheading">These settings will replace your 'new tab' page.</em>
-</div>
+<footer>
+    <div style="float:left;">
+        <p>
+            <a href="http://www.ipreferjim.com">&copy; James Schubert, 2009-2014</a> &nbsp; james.schubert@gmail.com &nbsp;
+            <a href="http://github.com/jimschubert/newtab-redirect" target="_blank">Report bugs</a>
+        </p>
+    </div>
 
-<p>
-    <span id="options_url_label" class="desc-text">My new tab page should show this URL:</span>
-    <input type="search" id="custom-url" placeholder="Default: New Tab Redirect 'Apps' Page">
+    <!-- Place this code where you want the badge to render. -->
+    <a href="http://bit.ly/1na6cAc" rel="publisher" target="_blank">
+        <span class="name">Jim Schubert</span><span>on</span>
+        <img src="http://ssl.gstatic.com/images/icons/gplus-32.png" alt="Google+"/></a>
+</footer>
 
-    <button id="btnSave" style="font-weight:bold" title="Save">Save</button>
-    <button id="btnCancel" title="Cancel">Cancel</button>
-    <button id="btnSync" class="fa fa-cloud-download" title="Get Sync URL"></button>
-</p>
+<script type="text/javascript" src="js/vendor/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/vendor/angular/angular.min.js"></script>
 
-<p><i class="fa fa-warning"></i> As of Chrome 33, <code>chrome-internal://newtab/</code> no longer works.</p>
-
-<p><em id="options_localFiles_hint">Note:  Use file:// for local files (e.g. file://C:\example.html)</em></p>
-
-<p>
-  <input type="checkbox" id="chkSync"/><label for="chkSync" id="options_chkSync">Sync Options</label>
-  <input type="checkbox" id="chkShowWelcome"/><label for="chkShowWelcome" id="options_chkShowWelcome">Show Welcome on upgrade</label>
-</p>
-
-<h2>
-    <span id="options_quickSave_headingLarge">Quick Save&hellip;</span>
-    <small id="options_quickSave_headingSmall">click a button below!</small>
-</h2>
-
-<p class="quick-links">Custom New Tab Pages:</p>
-<ul id="customs" class="horizontal-links"></ul>
-
-<p id="options_chromePages" class="quick-links">Original Chrome Pages:</p>
-<ul id="chromes" class="horizontal-links"></ul>
-
-<p id="options_aboutPages" class="fix quick-links">About Pages:</p>
-<ul id="abouts" class="horizontal-links"></ul>
-
-<p id="options_popularPages" class="fix quick-links">Popular Pages:</p>
-<ul id="popular" class="horizontal-links"></ul>
-
-<h2 class="fix">
-    <span id="options_donate_headingLarge">Donate!</span>
-    <small id="options_donate_headingSmall">show support!</small>
-</h2>
-<p class="fix">
-<a href="http://pledgie.com/campaigns/15715" target="_blank"><img src="http://pledgie.com/campaigns/15715.png" alt="pledgie banner" /></a>
-</p>
-<p class="fix">
-    <a href="http://flattr.com/thing/459170/New-Tab-Redirect" target="_blank">
-    <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
-</p>
-
-<div id="footer" class="fix">
-  <div id="answers" class="fix">
-    <p id="options_anyQuestions" class="q">
-    If you have questions, be sure to check out the <a href="https://github.com/jimschubert/newtab-redirect/wiki" target="_blank">wiki</a> for answers and tips.
-    </p>
-  </div>
-
-<em><span id="options_createdBy">Created by</span> <a href="http://www.ipreferjim.com">James Schubert, 2009-2011</a>.  james.schubert@gmail.com</em><br />
-<em><span id="options_footerPlea">Want to contribute, donate, report an issue, etc?</span> <a href="http://github.com/jimschubert/newtab-redirect" target="_blank"><span id="options_githubTitle">Find me on GitHub!</span></a></em>
-</div>
-<a id="original-newtab">Apps</a>
+<script type="text/javascript" src="js/controllers.js"></script>
+<script type="text/javascript" src="js/options_constants.js"></script>
+<script type="text/javascript" src="js/options_controller.js"></script>
+<script type="text/javascript" src="js/directives.js"></script>
+<script type="text/javascript" src="js/filters.js"></script>
+<script type="text/javascript" src="js/services.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
