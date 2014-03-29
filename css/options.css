@@ -55,15 +55,22 @@ ul.options-tabs li.selected {
     background-color:  rgba(186,211,218,0.8);
 }
 
-ul.options-tabs li.selected a {
+ul.options-tabs li a {
     color: black;
     cursor: auto;
     text-decoration: none;
-}
-
-ul.options-tabs li a {
     display:block;
     padding:0.4em;
+    font-weight: 600;
+}
+
+ul.options-tabs li.selected a {
+    font-weight: 800;
+}
+
+ul.options-tabs li:not(.selected) a:hover {
+    cursor: pointer;
+    font-weight: 800;
 }
 
 .column2 {
