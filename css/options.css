@@ -14,6 +14,7 @@ footer {
 }
 
 body.options-page {
+    font-size: 0.9em;
     margin: 40px auto 80px;
     height:auto;
 }
