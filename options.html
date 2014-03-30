@@ -22,6 +22,7 @@
                 <li ng-class="{'selected': selected === 'url'}"><a ng-click="selected='url'">URL</a></li>
                 <li ng-class="{'selected': selected === 'permissions'}"><a ng-click="selected='permissions'">Permissions</a></li>
                 <li ng-class="{'selected': selected === 'donate'}"><a ng-click="selected='donate'">Donate</a></li>
+                <li ng-class="{'selected': selected === 'contact'}"><a ng-click="selected='contact'">Contact</a></li>
             </ul>
             <div class="target">
                 <div ng-show="selected=='url'">
@@ -130,6 +131,33 @@
                         Some users insisted in 2011 or 2012 that I accept donations. I'm a full-time software engineer and I created this extension as a fun project, so I was reluctant to comply. I'd be just as happy with a nice email or a follow on Google+ or Twitter. But, if you like the extension <em>that much</em> you can donate $1 or $2 to buy me a coffee. That's what usually fuels my development.
                     </p>
                     <ng-include src="'js/partials/donate.html'" />
+                </div>
+                <div ng-show="selected=='contact'">
+
+                    <h2><span class="github-icon">Bugs or Features</span></h2>
+
+                    <p>
+                        Please post any new bugs or feature requests to <a href="http://bit.ly/1mU2Ww3" target="_blank">github</a>.
+                    </p>
+
+                    <p>There's a chance that your question is already answered in the <a href="http://bit.ly/Qw6rus"
+                                                                                         target="_blank">FAQ</a>, so
+                        check there before reporting an issue.</p>
+
+                    <p>
+                        Also, feel free to fork the code and contribute.
+                    </p>
+
+                    <h2><span class="twitter-icon">Twitter</span></h2>
+
+                    <p>I tweet sometimes from <a href="http://bit.ly/1mU2ZI7">@jimschubert</a>. I'm not as active as
+                        most people on twitter, and most of the content is related to computer programming.</p>
+
+                    <h2><span class="google-icon">Email</span></h2>
+
+                    <p>You're welcome to <a href="mailto:james.schubert@gmail.com">email me</a> or chat with me on Google (james.schubert@gmail.com).
+                    </p>
+
                 </div>
             </div>
             <span class="clear"></span>
