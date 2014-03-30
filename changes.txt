@@ -6,6 +6,7 @@ v3.1
  * Added ability to grant or deny permissions on the options page
  * Moved donation to a sub-nav on the options page
  * Added explicit MIT license file after finding derivative works online with no attribution
+ * Added full contact information directly to the options page (was previously welcome page only)
 v3.0
  * Added a no-redirect option for the new tab page, which provides an
    experience similar to Chrome's original page (including search bar focus)
