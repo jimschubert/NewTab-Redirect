@@ -94,6 +94,7 @@ h4 { margin: 4px 0; }
     transition: all 0.3s ease-in-out;
     transition-delay:100ms;
     opacity:0;
+    z-index:-999999;
 }
 
 .saved-container {
@@ -107,23 +108,28 @@ h4 { margin: 4px 0; }
 
 .saved.show-saved{
     opacity:1;
+    z-index:999999;
 }
 
-/* Smaller resolution, show tabs across the top */
 @media only screen and (max-width:750px) {
 
+    /* Smaller resolution, show tabs across the top */
     ul.options-tabs {
         display: inline;
     }
 
     ul.options-tabs li {
         display: inline-block;
+        text-align: center;
     }
+
+    /* Position "Options Saved" a little lower */
+    .saved { top: 80px; }
 }
 
-/* Hide superfluous stuff when really small resolution */
 @media only screen and (max-width:545px) {
 
+    /* Hide superfluous stuff when really small resolution */
     a[rel="publisher"],
     x[data-role="store"] {
        display:none !important;
