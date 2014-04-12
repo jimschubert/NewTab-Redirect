@@ -163,18 +163,14 @@ p.blah { }
     background: url(../images/screenshots/NewTabRedirect-options.sync.png) top left no-repeat content-box;
 }
 
-#intro_screenshot.ss-welcome {
-    background: url(../images/screenshots/NewTabRedirect-options.welcome.png) top left no-repeat content-box;
-}
-
 #intro_screenshot.ss-saved {
     background: url(../images/screenshots/NewTabRedirect-options.saved.png) top left no-repeat content-box;
-    background-position: -140px 0;
+    background-position: -280px 0;
 }
 
 #intro_screenshot.ss-quick {
     background: url(../images/screenshots/NewTabRedirect-options.quick.png) top left no-repeat content-box;
-    background-position: -60px -100px;
+    background-position: 0 -100px;
 }
 
 ul#normal_ss:before {

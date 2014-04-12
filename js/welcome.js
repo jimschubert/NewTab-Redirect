@@ -14,8 +14,7 @@ var preloadImages = [
 "NewTabRedirect-options.saved.png",
 "NewTabRedirect-options.save.png",
 "NewTabRedirect-options.sync.png",
-"NewTabRedirect-options.url.png",
-"NewTabRedirect-options.welcome.png"
+"NewTabRedirect-options.url.png"
 ]
 
 function resize_elements(initializing) {
@@ -126,17 +125,6 @@ function init() {
             navigate(false);
         }
     }, true);
-
-    document.getElementById("chkNeverShow")
-    .addEventListener("change", function(evt) {
-        var checked = evt.target.checked;
-        // NOTE: save !checked because checkbox reads as equivalent to
-        // "hide welcome" on the welcome page, but "show welcome" on 
-        // the options page.
-        chrome.storage.local.set({"showWelcome": !checked }, function() {
-            console.log('saved');
-        });
-    });
     
     var screenshots = document.getElementById("intro_screenshot");
     slice.call(document.querySelectorAll('[data-role="screenshot"]'),0)
