@@ -108,3 +108,25 @@ h4 { margin: 4px 0; }
 .saved.show-saved{
     opacity:1;
 }
+
+/* Smaller resolution, show tabs across the top */
+@media only screen and (max-width:750px) {
+
+    ul.options-tabs {
+        display: inline;
+    }
+
+    ul.options-tabs li {
+        display: inline-block;
+    }
+}
+
+/* Hide superfluous stuff when really small resolution */
+@media only screen and (max-width:545px) {
+
+    a[rel="publisher"],
+    x[data-role="store"] {
+       display:none !important;
+    }
+
+}
