@@ -244,13 +244,18 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
                     if(!allowed){
                         deferred.reject();
                     } else {
-                        chrome.bookmarks.search('Bookmarks Bar', function(results){
+                        chrome.bookmarks.getSubTree('0', function(results){
                             if(results.length <= 0) {
                                 $rootScope.$apply(function(){ deferred.reject(); });
                             } else {
-                                chrome.bookmarks.getChildren(results[0].id, function(results) {
-                                    $rootScope.$apply(function(){ deferred.resolve(results.filter(linksOnly).splice(0, limit)); });
-                                });
+                                var bookmarks = results[0].children.filter(function(x) { return x.title === "Bookmarks Bar"; });
+                                if(bookmarks.length === 0) {
+                                    $rootScope.$apply(function(){ deferred.resolve([]); });
+                                } else {
+                                    chrome.bookmarks.getChildren(bookmarks[0].id, function(results) {
+                                        $rootScope.$apply(function(){ deferred.resolve(results.filter(linksOnly).splice(0, limit)); });
+                                    });
+                                }
                             }
                         });
                     }

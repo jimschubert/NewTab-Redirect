@@ -7,6 +7,7 @@ v3.1
  * Moved donation to a sub-nav on the options page
  * Added explicit MIT license file after finding derivative works online with no attribution
  * Added full contact information directly to the options page (was previously welcome page only)
+ * Fix Chrome 34 'bug' which breaks querying for "Bookmarks Bar"
 v3.0
  * Added a no-redirect option for the new tab page, which provides an
    experience similar to Chrome's original page (including search bar focus)
