@@ -121,6 +121,10 @@ controllers.controller('MainController', ['$scope', 'Apps', 'Permissions', '$log
                             $scope.permissions[permission] = true;
                         });
 
+                        if(-1 !== changed.indexOf('management')) {
+                            Apps.duplicate();
+                        }
+
                         bootstrap();
                     });
                 });

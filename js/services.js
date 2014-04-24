@@ -192,6 +192,24 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
             return deferred.promise;
         },
 
+        duplicate: function(id, keepOriginal){
+            var deferred = $q.defer();
+            chrome.tabs.getCurrent(function(current){
+                var target = id || current.id;
+                chrome.tabs.duplicate(target, function(tab){
+                    if(chrome.runtime.lastError){
+                        return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+                    }
+
+                    if(!keepOriginal) {
+                        chrome.tabs.remove(target);
+                    }
+                    return $rootScope.$apply(function(){ deferred.resolve(tab); });
+                });
+            });
+            return deferred.promise;
+        },
+
         navigate: function(url){
             var deferred = $q.defer();
             chrome.tabs.update({active:true, url: url}, function(tab){
