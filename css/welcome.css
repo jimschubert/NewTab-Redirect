@@ -1,3 +1,5 @@
+body { overflow-x: hidden; }
+
 p.answer {
   padding-left:1em;
 }
