@@ -248,7 +248,7 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
                             if(results.length <= 0) {
                                 $rootScope.$apply(function(){ deferred.reject(); });
                             } else {
-                                var bookmarks = results[0].children.filter(function(x) { return x.title === "Bookmarks Bar"; });
+                                var bookmarks = results[0].children.filter(function(x) { return (x.title+"").toLowerCase() === "bookmarks bar"; });
                                 if(bookmarks.length === 0) {
                                     $rootScope.$apply(function(){ deferred.resolve([]); });
                                 } else {
