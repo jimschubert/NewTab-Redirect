@@ -9,15 +9,16 @@ controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions',
         $scope.optional_permissions = Permissions.OPTIONAL;
         $scope.required_permissions = Permissions.REQUIRED;
 
-        function getUrl(){
+        function getOptions(){
             return Storage.getLocal(['syncOptions'])
                 .then(function(result){
                     $scope.sync = result.syncOptions || result.syncOptions !== false;
 
-                    return Storage[$scope.sync ? 'getSync' : 'getLocal'](['url']);
+                    return Storage[$scope.sync ? 'getSync' : 'getLocal'](['url','always-tab-update']);
                 })
                 .then(function(result){
                     $scope.url = result.url;
+                    $scope.alwaysTabUpdate = result['always-tab-update'];
                 });
         }
 
@@ -29,7 +30,10 @@ controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions',
         }
 
         $scope.save = function(){
-            var promise =  Storage[$scope.sync?'saveSync':'saveLocal']({'url':$scope.url}) ;
+            var promise =  Storage[$scope.sync?'saveSync':'saveLocal']({
+                'url':$scope.url,
+                'always-tab-update': $scope.alwaysTabUpdate
+            }) ;
             promise.then(function(){
                 $scope.show_saved = true;
                 $timeout(function(){
@@ -45,11 +49,15 @@ controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions',
         };
 
         $scope.cancel = function(){
-            return getUrl();
+            return getOptions();
         };
 
         $scope.changeSync = function(selected){
             Storage.saveLocal({'syncOptions':selected});
+        };
+
+        $scope.changeRedirect = function(selected){
+            Storage.saveLocal({'always-tab-update':selected});
         };
 
         $scope.getSyncedUrl = function(){
@@ -97,7 +105,7 @@ controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions',
             getPermissions();
         });
 
-        getUrl();
+        getOptions();
         getPermissions();
     }
 ]);

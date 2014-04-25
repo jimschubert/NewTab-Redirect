@@ -2,7 +2,7 @@
 'use strict';
 var slice = Array.prototype.slice;
 var manifest = chrome.runtime.getManifest();
-var allOptions = ["usingStorageApi", "url", "syncOptions", "lastInstall", "showWelcome", "upgrade_3.1"];
+var allOptions = ["usingStorageApi", "url", "syncOptions", "lastInstall", "showWelcome", "upgrade_3.1", "always-tab-update"];
 
 function log(){
     var args = slice.call(arguments);
@@ -104,7 +104,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
                 save({ "lastInstall": +new Date() }, "sync");
 
                 // only display the upgrade message once, and only for true upgrades
-                if(manifest.version === "3.1" && details.reason === "update" && !localQuery["upgrade_3.1"]) {
+                if((manifest.version === "3.1" || manifest.version === "3.1.1" ) && details.reason === "update" && !localQuery["upgrade_3.1"]) {
                     log("background.js: showing v3.1 important upgrade message");
                     save({ "upgrade_3.1": true }, "local");
                     return chrome.tabs.create({"url": "upgraded/3.1.html" });

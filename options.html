@@ -33,6 +33,11 @@
                     <button title="One-time get Synced URL" ng-click="getSyncedUrl()" class="fa fa-cloud-download"></button>
                     <p>
                         <label>
+                            <input type="checkbox" ng-model="alwaysTabUpdate" ng-change="changeRedirect(alwaysTabUpdate)"> Always update tab, not redirect. <small>(Enable for cursor in the address bar)</small>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
                             <input type="checkbox" ng-model="sync" ng-change="changeSync(sync)"> Sync this URL across browsers?
                         </label>
                     </p>

@@ -1,3 +1,5 @@
+v3.1.1
+ * Fix bug introduced in 3.1 where cursor is in address bar rather than page.
 v3.1
  * Made the 'Apps' page extra permissions optional and individually configurable
  * Added icon fix for webpages that are saved as apps at chrome://apps (this extension
