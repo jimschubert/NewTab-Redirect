@@ -349,7 +349,7 @@ span.webstore a i {
 a.bookmark {
     margin:3px;
     font-size:0.8em;
-    /*display:block; removed because it is redundant*/
+    display:block; /*it is redundant. I can't promise how chrome processes the priority*/
     max-width:190px;
     height:20px;
     white-space: nowrap;
