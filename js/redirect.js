@@ -12,7 +12,7 @@
                 var selected = items["tab.selected"] === undefined ? true : (items["tab.selected"] == "true");
                 chrome.tabs.update({
                     "url"     : url,
-                    "selected": selected
+                    "highlighted": selected
                 });
             }
         } else {
