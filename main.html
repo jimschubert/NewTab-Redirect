@@ -54,10 +54,16 @@
         </div>
 
         <div class="container bookmarks-container" ng-show="permissions.bookmarks && enable_bookmarks && bookmarks.length > 0" ng-class="{'populated':bookmarks.length > 0}">
-            <a class="bookmark" ng-if="enable_bookmarks" ng-repeat="b in bookmarks" href="{{b.url}}" title="{{b.title}}" target="_self">
-                <i class="fa" style="background:url('chrome://favicon/{{b.url}}') no-repeat"></i>
-                <span>{{b.title}}</span>
-            </a>
+            <x ng-if="enable_bookmarks" ng-repeat="b in bookmarks">
+                <a class="bookmark" ng-href="{{b.url}}" title="{{b.title}}" target="_self" ng-if="is_special_uri(b.url) == false">
+                    <i class="fa" style="background:url('chrome://favicon/{{b.url||'example.com'}}') no-repeat"></i>
+                    <span>{{b.title}}</span>
+                </a>
+                <a class="bookmark special-href" ng-click="navigate(b.url)" title="{{b.title}}" ng-if="is_special_uri(b.url) == true">
+                    <i class="fa" style="background:url('chrome://favicon/{{b.url||'example.com'}}') no-repeat"></i>
+                    <span>{{b.title}}</span>
+                </a>
+            </x>
         </div>
 
         <div ng-show="permissions.management" class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks && bookmarks.length > 0,'populated':apps.length > 0}">

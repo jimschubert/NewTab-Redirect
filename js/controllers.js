@@ -1,8 +1,8 @@
 'use strict';
 var controllers = angular.module('newTab.controllers', ['newTab.services']);
 
-controllers.controller('MainController', ['$scope', 'Apps', 'Permissions', '$log',
-    function ($scope, Apps, Permissions, $log){
+controllers.controller('MainController', ['$scope', 'Apps', 'Permissions', '$log', 'ANCHOR_HREFS_REQ_UPDATE',
+    function ($scope, Apps, Permissions, $log, ANCHOR_HREFS_REQ_UPDATE){
     var enable_top_key = 'ntr.enable_top',
         enable_bookmarks_key = 'ntr.enable_bookmarks',
         bookmarks_count_key = 'ntr.bookmark_count',
@@ -15,6 +15,14 @@ controllers.controller('MainController', ['$scope', 'Apps', 'Permissions', '$log
     $scope.show_prefs = false;
     $scope.bookmark_count = 10;
     $scope.top_count = 10;
+
+    $scope.is_special_uri = function(url){
+        return ANCHOR_HREFS_REQ_UPDATE.test(url);
+    };
+
+    $scope.navigate = function(url){
+        Apps.navigate(url);
+    };
 
     $scope.save_preferences = function(){
         $scope.show_prefs=false;

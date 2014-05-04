@@ -347,6 +347,10 @@ a.bookmark {
     text-overflow: ellipsis;
 }
 
+a.special-href {
+    cursor:pointer;
+}
+
 a.bookmark i {
     height: 16px; width: 16px;
 }
