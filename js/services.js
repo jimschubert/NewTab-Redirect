@@ -266,7 +266,9 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
                             if(results.length <= 0) {
                                 $rootScope.$apply(function(){ deferred.reject(); });
                             } else {
-                                var bookmarks = results[0].children.filter(function(x) { return (x.title+"").toLowerCase() === "bookmarks bar"; });
+                                // Can't pull by title (not localized)
+                                // Assumption is that id:1 = Bookmarks Bar, id:2 = Other Bookmarks, id:3 = Mobile Bookmarks
+                                var bookmarks = results[0].children.filter(function(x) { return x.id === '1'; });
                                 if(bookmarks.length === 0) {
                                     $rootScope.$apply(function(){ deferred.resolve([]); });
                                 } else {
