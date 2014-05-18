@@ -1,3 +1,11 @@
+v3.1.2
+ * Fix bug (apps page) where bookmarks to local file did not load
+ * Fix bug (apps page) where chrome now requires user gesture to delete app, so I can't call
+   chrome.management.uninstall from within a promise or deeply nested in jqlite click
+ * Fix bug (apps page) where bookmarks would only load for browsers set to English locales
+ * Added logging to all promise rejections to better debug user scenarios (like uninstall)
+ * Fix confusing usage of href attributes for binding URLs to directives in apps page
+ * Merge 'selected'->'highlighted' contribution
 v3.1.1
  * Fix bug introduced in 3.1 where cursor is in address bar rather than page.
 v3.1

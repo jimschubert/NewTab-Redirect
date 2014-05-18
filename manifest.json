@@ -4,7 +4,7 @@
   "short_name": "NTR!",
   "description": "Allows a user to provide the URL of the page that loads in a new tab.",
   "default_locale": "en",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "background": { 
     "scripts" : ["js/background.js"],
     "persistent": false
