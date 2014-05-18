@@ -29,7 +29,7 @@ directives.directive('chromeLaunch', ['$log', 'Apps', function($log, Apps){
         scope: {
             id: '=chromeLaunch',
             type: '=chromeType',
-            url: '=href'
+            url: '=chromeHref'
         },
 
         link: function($scope, $element, $attrs) {
@@ -60,7 +60,7 @@ directives.directive('chromePinned', ['$log', 'Apps', function($log, Apps){
 
         scope: {
             id: '=chromePinned',
-            url: '=href'
+            url: '=chromeHref'
         },
 
         link: function($scope, $element, $attrs) {
@@ -84,7 +84,7 @@ directives.directive('chromeNewTab', ['$log', 'Apps', function($log, Apps){
 
         scope: {
             id: '=chromeNewTab',
-            url: '=href'
+            url: '=chromeHref'
         },
 
         link: function($scope, $element, $attrs) {
@@ -108,7 +108,7 @@ directives.directive('chromeNewWindow', ['$log', 'Apps', function($log, Apps){
 
         scope: {
             id: '=chromeNewWindow',
-            url: '=href'
+            url: '=chromeHref'
         },
 
         link: function($scope, $element, $attrs) {
@@ -132,7 +132,7 @@ directives.directive('chromeOptions', ['$log', 'Apps', function($log, Apps){
 
         scope: {
             id: '=chromeOptions',
-            url: '=href'
+            url: '=chromeHref'
         },
 
         link: function($scope, $element, $attrs) {
@@ -155,19 +155,16 @@ directives.directive('chromeUninstall', ['$log', 'Apps', function($log, Apps){
         restrict: 'A',
 
         scope: {
-            id: '=chromeUninstall'
+            id: '=chromeUninstall',
+            name: '=chromeUninstallName'
         },
 
-        link: function($scope, $element, $attrs) {
-            if($scope.id){
-                $element.bind('click', function(e){
-                    e.preventDefault();
-                    Apps.uninstall($scope.id)
-                        .then(function(){
-                            $log.debug("Uninstalled app id %s", $scope.id);
-                        });
-                });
-            }
+        replace: true,
+
+        template: '<a title="Uninstall {{name}}" ng-click="uninstall()" class="special-href"><i class="fa fa-2x fa-trash-o"></i></a>',
+
+        link: function($scope) {
+            $scope.uninstall = Apps.uninstall($scope.id);
         }
     };
 }]);

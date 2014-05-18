@@ -2,7 +2,7 @@
 /*global chrome*/
 var services = angular.module('newTab.services', []);
 
-services.service('Permissions', ['$rootScope', '$q', function($rootScope, $q){
+services.service('Permissions', ['$rootScope', '$q', '$log', function($rootScope, $q, $log){
     var definedOptionalPermissions = chrome.runtime.getManifest().optional_permissions;
     var definedRequiredPermissions = chrome.runtime.getManifest().permissions;
 
@@ -33,6 +33,7 @@ services.service('Permissions', ['$rootScope', '$q', function($rootScope, $q){
             chrome.permissions.getAll(function (results) {
                 if (chrome.runtime.lastError) {
                     return $rootScope.$apply(function () {
+                        $log.error(chrome.runtime.lastError.message);
                         deferred.reject(chrome.runtime.lastError.message);
                     });
                 }
@@ -51,6 +52,7 @@ services.service('Permissions', ['$rootScope', '$q', function($rootScope, $q){
             }, function (permissionStatus) {
                 if (chrome.runtime.lastError) {
                     return $rootScope.$apply(function () {
+                        $log.error(chrome.runtime.lastError.message);
                         deferred.reject(chrome.runtime.lastError.message);
                     });
                 }
@@ -70,6 +72,7 @@ services.service('Permissions', ['$rootScope', '$q', function($rootScope, $q){
             }, function (removed) {
                 if (chrome.runtime.lastError) {
                     return $rootScope.$apply(function () {
+                        $log.error(chrome.runtime.lastError.message);
                         deferred.reject(chrome.runtime.lastError.message);
                     });
                 }
@@ -84,7 +87,7 @@ services.service('Permissions', ['$rootScope', '$q', function($rootScope, $q){
     };
 }]);
 
-services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function ($rootScope, $q, Permissions, Storage) {
+services.service('Apps', ['$rootScope', '$q', '$log', 'Permissions', 'Storage', function ($rootScope, $q, $log, Permissions, Storage) {
     var verify = function(permission, cb){
         chrome.permissions.contains({
             permissions: [permission]
@@ -101,6 +104,7 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
 
                 return chrome.management.getAll(function (results) {
                     if(chrome.runtime.lastError){
+                        $log.error(chrome.runtime.lastError.message);
                         return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                     }
 
@@ -121,6 +125,7 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
                 }
                 return chrome.management.launchApp(id, function(){
                     if(chrome.runtime.lastError){
+                        $log.error(chrome.runtime.lastError.message);
                         return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                     }
 
@@ -134,6 +139,7 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
             var deferred = $q.defer();
             chrome.tabs.create({pinned:true, url: url}, function(tab){
                 if(chrome.runtime.lastError){
+                    $log.error(chrome.runtime.lastError.message);
                     return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                 }
 
@@ -152,6 +158,7 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
                 }
                 return chrome.windows.create({focused:true, url: url}, function(window){
                     if(chrome.runtime.lastError){
+                        $log.error(chrome.runtime.lastError.message);
                         return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                     }
 
@@ -161,29 +168,32 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
             return deferred.promise;
         },
 
+        /**
+         * Uninstall factory. This function requires a factory because uninstall requires a user gesture. The returned
+         * function must be bound to an HTML element's click event (or an angular ng-click), so no promises.
+         *
+         * @param id
+         * @returns {Function}
+         */
         uninstall: function(id){
-            var deferred = $q.defer();
-
-            verify('management', function(allowed){
-                if(!allowed){
-                    return $rootScope.$apply(function(){ deferred.reject('management permission'); });
-                }
+            return function(){
+                // no need to verify permissions here, because the runtime error will display this.
                 return chrome.management.uninstall(id, {showConfirmDialog: true}, function(){
                     if(chrome.runtime.lastError){
-                        return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
+                        $log.error('Could not uninstall app id %s because: %s', id, chrome.runtime.lastError.message);
                     }
 
+                    $log.warn('Uninstalled app id %s.', id);
                     $rootScope.$broadcast('UninstalledApp');
-                    return $rootScope.$apply(function(){ deferred.resolve(); });
                 });
-            });
-            return deferred.promise;
+            };
         },
 
         tab: function(url){
             var deferred = $q.defer();
             chrome.tabs.create({active:true, url: url}, function(tab){
                 if(chrome.runtime.lastError){
+                    $log.error(chrome.runtime.lastError.message);
                     return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                 }
 
@@ -198,6 +208,7 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
                 var target = id || current.id;
                 chrome.tabs.duplicate(target, function(tab){
                     if(chrome.runtime.lastError){
+                        $log.error(chrome.runtime.lastError.message);
                         return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                     }
 
@@ -214,6 +225,7 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
             var deferred = $q.defer();
             chrome.tabs.update({active:true, url: url}, function(tab){
                 if(chrome.runtime.lastError){
+                    $log.error(chrome.runtime.lastError.message);
                     return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                 }
 
@@ -232,6 +244,7 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
                     } else {
                         chrome.topSites.get(function(sites){
                             if(chrome.runtime.lastError){
+                                $log.error(chrome.runtime.lastError.message);
                                 return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                             }
 
@@ -287,7 +300,7 @@ services.service('Apps', ['$rootScope', '$q', 'Permissions', 'Storage', function
     };
 }]);
 
-services.service('Storage', ['$q', '$rootScope', function($q, $rootScope){
+services.service('Storage', ['$q', '$rootScope', '$log', function($q, $rootScope, $log){
     return {
 
         saveSync: function(obj){
@@ -297,6 +310,7 @@ services.service('Storage', ['$q', '$rootScope', function($q, $rootScope){
             } else {
                 chrome.storage.sync.set(obj, function() {
                     if(chrome.runtime.lastError){
+                        $log.error(chrome.runtime.lastError.message);
                         return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                     }
 
@@ -318,6 +332,7 @@ services.service('Storage', ['$q', '$rootScope', function($q, $rootScope){
 
             chrome.storage.sync.get(query, function(settings) {
                 if(chrome.runtime.lastError){
+                    $log.error(chrome.runtime.lastError.message);
                     return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                 }
 
@@ -333,6 +348,7 @@ services.service('Storage', ['$q', '$rootScope', function($q, $rootScope){
             } else {
                 chrome.storage.local.set(obj, function() {
                     if(chrome.runtime.lastError){
+                        $log.error(chrome.runtime.lastError.message);
                         return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                     }
 
@@ -354,6 +370,7 @@ services.service('Storage', ['$q', '$rootScope', function($q, $rootScope){
 
             chrome.storage.local.get(query, function(settings) {
                 if(chrome.runtime.lastError){
+                    $log.error(chrome.runtime.lastError.message);
                     return $rootScope.$apply(function(){ deferred.reject(chrome.runtime.lastError.message); });
                 }
 
