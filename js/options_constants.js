@@ -24,5 +24,6 @@ controllers.constant('internalPages', [
     { name: 'Flags', location: 'chrome://flags/' },
     { name: 'Inspect', location: 'chrome://inspect/' },
     { name: 'Memory', location: 'chrome://memory-redirect/' },
-    { name: 'version', location: 'chrome://version/' }
+    { name: 'Version', location: 'chrome://version/' },
+    { name: 'Blank Page', location: 'about:blank' }
 ]);
