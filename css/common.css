@@ -155,7 +155,7 @@ div.app-icon {
     float: left;
     text-align: center;
     line-height: 1.2em;
-    font-size: 0.6em;
+    font-size: 0.9em;
 }
 
 .app-logo a,
@@ -300,8 +300,8 @@ span.webstore a i {
     background: rgba(186,211,218,0.95);
     -webkit-transition-duration: 0.3s;
     border-radius: 0 5px 5px 0;
-    width:215px;
-    left:-190px;
+    width:15.4em;
+    left:-14em;
     top:40px;
 }
 
@@ -310,16 +310,18 @@ span.webstore a i {
     height:auto;
     min-height:120px;
     padding-left: 2px;
+    padding-right: 1.4em;
 }
 
 .top-sites-header {
     position: absolute;
     top: 3px;
-    left: 135px;
+    right: 1em;
     display: block;
     -webkit-transform: rotate(-90deg);
     -webkit-transform-origin: 100% 0%;
     font-size: 0.9em;
+    margin:0.2em;
 }
 
 #top-sites:hover {

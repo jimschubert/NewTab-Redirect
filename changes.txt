@@ -1,3 +1,6 @@
+v3.1.4
+ * Fix bug (apps page) where scripts sometimes load out of order causing redirect to fail
+ * Fix rendering issue with font sizes. Recent chrome update changed the display of 0.6em.
 v3.1.2
  * Fix bug (apps page) where bookmarks to local file did not load
  * Fix bug (apps page) where chrome now requires user gesture to delete app, so I can't call
