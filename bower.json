@@ -1,0 +1,23 @@
+{
+  "name": "NewTab-Redirect",
+  "version": "3.1.4",
+  "homepage": "https://github.com/jimschubert/NewTab-Redirect",
+  "authors": [
+    "Jim Schubert <james.schubert@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.3.9",
+    "jquery": "components/jquery#~2.1.3",
+    "angular-loader": "~1.3.9"
+  }
+}
