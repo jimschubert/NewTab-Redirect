@@ -7,8 +7,10 @@
     <script type="text/javascript" src="js/defer_bootstrap.js"></script>
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/common.css" type="text/css">
+    <script type="text/javascript" src="js/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="js/vendor/angular-loader/angular-loader.min.js"></script>
     <script type="text/javascript" src="js/vendor/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/vendor/dragon-drop/dist/dragon-drop.min.js"></script>
 </head>
 <body>
 
@@ -70,7 +72,9 @@
 
         <div ng-show="permissions.management" class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks && bookmarks.length > 0,'populated':apps.length > 0}">
             <div><input type="search" ng-model="q.name" ng-show="apps.length > 5" placeholder="Filter apps"></div>
-            <chrome-app ng-repeat="app in (apps | filter:q)" app="app" permissions="permissions"></chrome-app>
+            <div data-dragon="app in apps | filter:q" data-dragon-sortable="" data-dragon-placeholder-template="js/partials/drag_placeholder.html">
+                <chrome-app app="app" permissions="permissions"></chrome-app>
+            </div>
             <div ng-show="(apps | filter:q).length == 0" style="margin:1.5em">No matches found.</div>
             <span class="clear"></span>
         </div>

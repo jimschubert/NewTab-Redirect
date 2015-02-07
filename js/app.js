@@ -1,6 +1,6 @@
 (function(angular) {
     'use strict';
-    var app = angular.module('newTab', ['newTab.controllers', 'newTab.directives', 'newTab.filters']);
+    var app = angular.module('newTab', ['newTab.controllers', 'newTab.directives', 'newTab.filters', 'dragon-drop']);
 
     app.constant('IMAGE_SOURCES', /^\s*(https?|ftp|file|blob|chrome):|data:image\//);
     app.constant('ANCHOR_HREFS', /^\s*(https?|ftp|mailto|tel|file|chrome|about|chrome-extension):/);

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dragon Drop for AngularJS</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.1/spruce/bootstrap.min.css">
+    <style>
+        [data-dragon],
+        [data-dragon-trash] {
+            padding: 20px;
+            border: 1px solid red;
+            min-height:40px;
+            border-radius: 4px;
+        }
+
+        pre {
+            min-height:120px;
+        }
+
+        [ng-cloak] {
+            display: none;
+        }
+
+        ul.nice-list {
+            margin-left:0;
+            list-style-type: none;
+        }
+        ul.nice-list li {
+            /* margin:2px; display:inline-block; */
+            width: 80px;
+            background-color: azure;
+        }
+        ul.nice-list li span {
+            padding:0 2px;
+            display:inline-block;
+            width: 76px;
+        }
+        div > button { margin: 12px 0; }
+
+        ul.grid {
+            width: 130px;
+            margin: auto;
+            padding: 20px 160px;
+        }
+        ul.grid li {
+            display: inline-block;
+            width: 40px;
+        }
+        ul.grid li span {
+            width: 30px;
+        }
+    </style>
+    <script type="text/javascript">
+        // Don't want logging output? Remove this line.
+        window.DEBUG = 'dragon-drop';
+    </script>
+</head>
+<body ng-app="ExampleApp">
+
+<div ng-cloak class="container" ng-controller="MainCtrl">
+
+    <div class="row">
+        <h2>Dragon Drop Example (with on-drop)</h2>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+
+            <div data-dragon="thing in things" data-dragon-on-drop="log">{{thing}}</div>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+
+            <div data-dragon="thing in otherThings" data-dragon-on-drop="log">{{thing}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12 text-center"><button ng-click="things=['one','two','three'];otherThings=[]">reset</button></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+            <pre>{{things | json}}</pre>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+            <pre>{{otherThings | json}}</pre>
+        </div>
+    </div>
+
+</div>
+
+<div ng-cloak class="container" ng-controller="MainCtrl">
+
+    <div class="row">
+        <h2>Dragon Drop Sortable Example</h2>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+
+            <div>
+                <ul data-dragon="thing in things"
+                    data-dragon-sortable="sortCallback">
+                    <li>{{thing}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="span6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12 text-center"><button ng-click="things=['one','two','three'];otherThings=[]">reset</button></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+            <pre>{{things | json}}</pre>
+        </div>
+        <div class="span6">
+        </div>
+    </div>
+
+</div>
+
+<div ng-cloak class="container" ng-controller="MainCtrl">
+
+    <div class="row">
+        <h2>Dragon Drop Eliminate Example</h2>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+
+            <div data-dragon="thing in things" data-dragon-eliminate>{{thing}}</div>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+
+            <div data-dragon="thing in otherThings" data-dragon-eliminate>{{thing}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12 text-center"><p style="margin-top:1em;">To eliminate, drop here (or anywhere there's no drop target)</p></div>
+        <div class="span12 text-center"><button ng-click="things=['one','two','three'];otherThings=[]">reset</button></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+            <pre>{{things | json}}</pre>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+            <pre>{{otherThings | json}}</pre>
+        </div>
+    </div>
+
+</div>
+
+<div ng-cloak class="container" ng-controller="MainCtrl">
+
+    <div class="row">
+        <h2>Dragon Drop with Double Example</h2>
+    </div>
+
+
+    <hr>
+
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+
+            <div data-dragon="thing in things track by $index" data-dragon-duplicate>{{thing}}</div>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+
+            <div data-dragon="thing in otherThings track by $index">{{thing}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12 text-center"><button ng-click="things=['one','two','three'];otherThings=[]">reset</button></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+            <pre>{{things | json}}</pre>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+            <pre>{{otherThings | json}}</pre>
+        </div>
+    </div>
+
+</div>
+
+<div ng-cloak class="container" ng-controller="MainCtrl">
+
+    <div class="row">
+        <h2>Dragon Drop with Trash Example</h2>
+    </div>
+
+
+    <hr>
+
+    <div class="row">
+        <div class="span4">
+            <h3>Things</h3>
+
+            <div data-dragon="thing in things track by $index" data-dragon-duplicate>{{thing}}</div>
+        </div>
+        <div class="span4">
+            <h3>Other Things</h3>
+
+            <div data-dragon="thing in otherThings track by $index">{{thing}}</div>
+        </div>
+        <div class="span4">
+            <h3>Trash</h3>
+
+            <div data-dragon-trash></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12 text-center"><button ng-click="things=['one','two','three'];otherThings=[]">reset</button></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+            <pre>{{things | json}}</pre>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+            <pre>{{otherThings | json}}</pre>
+        </div>
+    </div>
+
+</div>
+
+<div ng-cloak class="container" ng-controller="MainCtrl">
+
+    <div class="row">
+        <h2>Dragon Drop Example with drag placeholder</h2>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+
+            <ul class="nice-list"
+                data-dragon="thing in things"
+                data-dragon-sortable=""
+                data-dragon-placeholder-template="/partials/placeholder1.html">
+                <li><span ng-bind="thing"></span></li>
+            </ul>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+
+            <ul class="nice-list"
+                data-dragon="thing in otherThings"
+                data-dragon-sortable=""
+                data-dragon-placeholder-template="/partials/placeholder1.html">
+                <li><span ng-bind="thing"></span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12 text-center"><button ng-click="things=['one','two','three'];otherThings=[]">reset</button></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+            <pre>{{things | json}}</pre>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+            <pre>{{otherThings | json}}</pre>
+        </div>
+    </div>
+
+</div>
+
+<div ng-cloak class="container" ng-controller="MainCtrl" ng-init="things=['one','two','three','four','five','six','seven','eight','nine'];otherThings=[]">
+
+    <div class="row">
+        <h2>Dragon Drop Example with drag placeholder (grid)</h2>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+
+            <ul class="nice-list grid"
+                data-dragon="thing in things"
+                data-dragon-sortable=""
+                data-dragon-placeholder-template="/partials/placeholder1.html">
+                <li><span ng-bind="thing"></span></li>
+            </ul>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+
+            <ul class="nice-list grid"
+                data-dragon="thing in otherThings"
+                data-dragon-sortable=""
+                data-dragon-placeholder-template="/partials/placeholder1.html">
+                <li><span ng-bind="thing"></span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12 text-center"><button ng-click="things=['one','two','three','four','five','six','seven','eight','nine'];otherThings=[]">reset</button></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="span6">
+            <h3>Things</h3>
+            <pre>{{things | json}}</pre>
+        </div>
+        <div class="span6">
+            <h3>Other Things</h3>
+            <pre>{{otherThings | json}}</pre>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+<script src="dist/dragon-drop.min.js"></script>
+<script>
+    angular.module('ExampleApp', ['dragon-drop']).
+            controller('MainCtrl', function ($scope, $log) {
+                $scope.things = ['one', 'two', 'three'];
+                $scope.otherThings = [];
+                $scope.log = function(value, key) {
+                    $log.debug('Key: %s, Value: %s', key, value);
+                }
+            });
+</script>
+</body>
+</html>
