@@ -1,5 +1,7 @@
 # NewTab Redirect!
 
+[![Join the chat at https://gitter.im/jimschubert/NewTab-Redirect](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jimschubert/NewTab-Redirect?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Donate](http://pledgie.com/campaigns/15715.png)](http://pledgie.com/campaigns/15715)  
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jimschubert&url=https://github.com/jimschubert/NewTab-Redirect&title=New Tab Redirect!&language=&tags=github&category=software)
