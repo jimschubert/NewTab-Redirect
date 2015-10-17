@@ -5,7 +5,7 @@
         chrome.storage.local.get(["url", "tab.selected", "always-tab-update"], function (items) {
             var url = items.url;
             if (url) {
-                url = (0 !== url.indexOf("about:") && -1 === url.indexOf("://")) ? ("http://" + url) : url;
+                url = (0 !== url.indexOf("about:") && 0 !== url.indexOf("data:") && -1 === url.indexOf("://")) ? ("http://" + url) : url;
                 if (/^http[s]?:/i.test(url) && items["always-tab-update"] !== true) {
                     document.location.href = url;
                 } else {
