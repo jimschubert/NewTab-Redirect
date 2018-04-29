@@ -7,7 +7,7 @@
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jimschubert&url=https://github.com/jimschubert/NewTab-Redirect&title=New%20Tab%20Redirect!&language=&tags=github&category=software)
 
 ## Google Chrome Extension
-_disclaimer: Google and Google Chrome are trademarks of Google, Inc. NewTab Redirect! is an extension for Google Chrome_
+_disclaimer: Google and Google Chrome are trademarks of Google, Inc. [NewTab Redirect! is an extension for Google Chrome](https://chrome.google.com/webstore/detail/new-tab-redirect/icpgjfneehieebagbmdbhnlpiopdcmna?hl=en)_
 
 Sets a custom URL to load in new tabs.  Choose from:
  *  Chrome's about pages
