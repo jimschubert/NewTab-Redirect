@@ -3,15 +3,13 @@
     var controllers = angular.module('newTab.controllers');
 
     controllers.constant('popularPages', [
-        {name: 'Google+', location: 'https://plus.google.com'},
         {name: 'Facebook', location: 'https://www.facebook.com'},
         {name: 'Twitter', location: 'https://twitter.com'},
-        {name: 'Reddit', location: 'http://www.reddit.com/'},
-        {name: 'Wikipedia', location: 'http://www.wikipedia.org'},
+        {name: 'Reddit', location: 'https://www.reddit.com/'},
+        {name: 'Wikipedia', location: 'https://www.wikipedia.org'},
         {name: 'Yahoo', location: 'https://www.yahoo.com'},
-        {name: 'Digg', location: 'http://digg.com'},
-        {name: 'Delicious', location: 'https://delicious.com'},
-        {name: 'Slashdot', location: 'http://www.slashdot.org'}
+        {name: 'Digg', location: 'https://digg.com'},
+        {name: 'Slashdot', location: 'https://www.slashdot.org'}
     ]);
 
     controllers.constant('internalPages', [

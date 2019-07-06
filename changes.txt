@@ -1,3 +1,7 @@
+v3.1.5
+ * Fix some links (pledgie, Google+)
+ * Change donation link to Patreon
+ * Add clarification note in "Contact" page that I have no control over address bar highlight/focus.
 v3.1.4
  * Fix bug (apps page) where scripts sometimes load out of order causing redirect to fail
  * Fix rendering issue with font sizes. Recent chrome update changed the display of 0.6em.
