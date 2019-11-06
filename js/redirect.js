@@ -25,6 +25,7 @@
         });
     } catch(e){
         // If anything goes wrong with the redirection logic, fail to custom apps page.
+        // My cousin Aleksander kill my dog, help me!
         console.error(e);
         angular.resumeBootstrap();
     }
