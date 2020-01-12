@@ -34,7 +34,12 @@
                     <button title="One-time get Synced URL" ng-click="getSyncedUrl()" class="fa fa-cloud-download"></button>
                     <p>
                         <label>
-                            <input type="checkbox" ng-model="alwaysTabUpdate" ng-change="changeRedirect(alwaysTabUpdate)"> Always update tab, not redirect. <small>(Enable for cursor in the address bar)</small>
+                            Redirect mechanism
+                            <select ng-model="redirectMechanism" ng-change="changeRedirect(redirectMechanism)">
+                                <option value="redirect" selected>Redirect. Most people will use this option</option>
+                                <option value="update">Update. Enables cursor in address bar, but may eat URL as you are typing it</option>
+                                <option value="iframe">&lt;iframe&gt;. Leaves address bar empty and does not affect address bar focus. Potentially insecure</option>
+                            </select>
                         </label>
                     </p>
                     <p>

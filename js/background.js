@@ -2,7 +2,7 @@
 'use strict';
 var slice = Array.prototype.slice;
 var manifest = chrome.runtime.getManifest();
-var allOptions = ["usingStorageApi", "url", "syncOptions", "lastInstall", "showWelcome", "upgrade_3.1", "always-tab-update"];
+var allOptions = ["usingStorageApi", "url", "syncOptions", "lastInstall", "showWelcome", "upgrade_3.1", "redirectMechanism", /*deprecated*/"always-tab-update"];
 
 function log(){
     var args = slice.call(arguments);
