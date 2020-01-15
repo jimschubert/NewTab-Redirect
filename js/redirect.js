@@ -7,7 +7,7 @@
             if (url) {
                 url = (0 !== url.indexOf("about:") && 0 !== url.indexOf("data:") && -1 === url.indexOf("://")) ? ("http://" + url) : url;
                 if (/^http[s]?:/i.test(url) && items["always-tab-update"] !== true) {
-                    document.location.href = url;
+                    document.location.replace(url);
                 } else {
                     chrome.tabs.getCurrent(function (tab) {
                         // a keen user may open the extension's background page and set:
