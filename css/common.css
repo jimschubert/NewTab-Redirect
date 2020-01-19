@@ -238,8 +238,8 @@ div.bookmarks-container {
     margin-top:35px;
     padding:8px;
     width:90%;
-    border-radius:4px;
-    background-color: rgba(178, 255, 131, 0.90);
+    border-radius:20px;
+    background-color: rgba(223, 223, 223, 0.90);
     opacity:0;
 }
 
@@ -248,12 +248,22 @@ div.bookmarks-container.populated {
     transition: all 320ms ease-in-out;
 }
 
-div.bookmarks-container .bookmark {
+div.bookmarks-container .bookmark { /*maybe can be merged into a.bookmark*/
     display: inline-block;
-    border-radius: 2px;
-    background-color: rgba(255,255,255,0.4);
+    color:inherit;
+    text-decoration:none;
+    border-radius: 5px;
     padding: 4px 3px 2px 3px;
-    -webkit-box-shadow: 1px 1px 2px 0 rgba(50, 50, 50, 0.66);
+}
+
+div.bookmarks-container .bookmark:hover{
+    background-color:rgba(255,255,255,0.35);
+    box-shadow: 1px 1px 2px 0 rgba(50, 50, 50, 0.66); /*I use this rather than -webkit since chrome also supports this standard property*/
+}
+
+div.bookmarks-container .bookmark:active{
+    background-color:rgba(0,0,0,0.2);
+    box-shadow: -1px -1px 2px 0 rgba(50, 50, 50, 0.66);
 }
 
 div.app-header {
@@ -341,7 +351,7 @@ span.webstore a i {
 a.bookmark {
     margin:3px;
     font-size:0.8em;
-    display:block;
+    display:block; /*it is redundant. I can't promise how chrome processes the priority*/
     max-width:190px;
     height:20px;
     white-space: nowrap;
