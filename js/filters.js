@@ -28,6 +28,9 @@
                         append = '?grayscale=true';
                     }
 
+                    // Replace $CHROME_EXT_ID$ with extensionID if it exists.
+                    found.url = found.url.replace("$CHROME_EXT_ID$", chrome.runtime.id);
+
                     return found.url + append;
                 }
                 return void 0;

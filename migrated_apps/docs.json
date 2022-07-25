@@ -1,0 +1,28 @@
+{
+  "appLaunchUrl": "chrome-extension://aohghmighlieiainnegkcijnfilokake/main.html",
+  "availableLaunchTypes": [
+    "OPEN_AS_REGULAR_TAB",
+    "OPEN_AS_WINDOW"
+  ],
+  "description": "Create and edit documents ",
+  "enabled": true,
+  "homepageUrl": "https://chrome.google.com/webstore/detail/aohghmighlieiainnegkcijnfilokake",
+  "hostPermissions": [],
+  "icons": [
+    {
+      "size": 128,
+      "url": "chrome-extension://$CHROME_EXT_ID$/images/migrated_app_icons/docs.png"
+    }
+  ],
+  "id": "aohghmighlieiainnegkcijnfilokake",
+  "installType": "normal",
+  "isApp": true,
+  "launchType": "OPEN_AS_REGULAR_TAB",
+  "mayDisable": true,
+  "name": "Docs",
+  "offlineEnabled": true,
+  "optionsUrl": "",
+  "permissions": [],
+  "shortName": "Docs",
+  "type": "legacy_packaged_app"
+}

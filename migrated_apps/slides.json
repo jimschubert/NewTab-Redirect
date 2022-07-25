@@ -1,0 +1,28 @@
+{
+  "appLaunchUrl": "chrome-extension://aapocclcgogkmnckokdopfmhonfmgoek/main.html",
+  "availableLaunchTypes": [
+    "OPEN_AS_REGULAR_TAB",
+    "OPEN_AS_WINDOW"
+  ],
+  "description": "Create and edit presentations ",
+  "enabled": true,
+  "homepageUrl": "https://chrome.google.com/webstore/detail/aapocclcgogkmnckokdopfmhonfmgoek",
+  "hostPermissions": [],
+  "icons": [
+    {
+      "size": 128,
+      "url": "chrome-extension://$CHROME_EXT_ID$/images/migrated_app_icons/slides.png"
+    }
+  ],
+  "id": "aapocclcgogkmnckokdopfmhonfmgoek",
+  "installType": "normal",
+  "isApp": true,
+  "launchType": "OPEN_AS_REGULAR_TAB",
+  "mayDisable": false,
+  "name": "Slides",
+  "offlineEnabled": true,
+  "optionsUrl": "",
+  "permissions": [],
+  "shortName": "Slides",
+  "type": "legacy_packaged_app"
+}
