@@ -1,0 +1,30 @@
+{
+  "appLaunchUrl": "https://mail.google.com/mail",
+  "availableLaunchTypes": [
+    "OPEN_AS_REGULAR_TAB",
+    "OPEN_AS_WINDOW"
+  ],
+  "description": "Fast, searchable email with less spam.",
+  "enabled": true,
+  "homepageUrl": "https://chrome.google.com/webstore/detail/pjkljhegncpnkpknbcohdijeoejaedia",
+  "hostPermissions": [],
+  "icons": [
+    {
+      "size": 128,
+      "url": "chrome-extension://$CHROME_EXT_ID$/images/migrated_app_icons/gmail.png"
+    }
+  ],
+  "id": "pjkljhegncpnkpknbcohdijeoejaedia",
+  "installType": "normal",
+  "isApp": true,
+  "launchType": "OPEN_AS_REGULAR_TAB",
+  "mayDisable": true,
+  "name": "Gmail",
+  "offlineEnabled": false,
+  "optionsUrl": "https://mail.google.com/mail/#settings",
+  "permissions": [
+    "notifications"
+  ],
+  "shortName": "Gmail",
+  "type": "hosted_app"
+}

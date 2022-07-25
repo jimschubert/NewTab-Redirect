@@ -2,7 +2,7 @@
     'use strict';
     var app = angular.module('newTab', ['newTab.controllers', 'newTab.directives', 'newTab.filters']);
 
-    app.constant('IMAGE_SOURCES', /^\s*(https?|ftp|file|blob|chrome):|data:image\//);
+    app.constant('IMAGE_SOURCES', /^\s*(https?|ftp|file|blob|chrome|chrome-extension):|data:image\//);
     app.constant('ANCHOR_HREFS', /^\s*(https?|ftp|mailto|tel|file|chrome|about|chrome-extension):/);
     app.constant('ANCHOR_HREFS_REQ_UPDATE', /^\s*(file|chrome|chrome-extension):/);
 

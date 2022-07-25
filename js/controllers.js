@@ -78,7 +78,30 @@
                         $scope.apps = results.filter(function (result) {
                             return (/^(extension|theme)$/).test(result.type) === false;
                         });
+                    }).then(async function() {
+                        $scope.apps.push(...await getMigratedApps())
                     });
+            }
+
+            async function getMigratedApps() {
+                const basePath = "../migrated_apps/";
+                const jsonPaths = ["slides.json", "docs.json", "drive.json", "youtube.json", "sheets.json", "gmail.json"];
+                let migratedApps = [];
+
+                for (const path of jsonPaths) {
+                    const i = jsonPaths.indexOf(path);
+                   let url = basePath + path;
+                   await fetch(url)
+                       .then(res => res.json())
+                       .then(function(data) {
+                           migratedApps.push(data);
+                       })
+                       .catch((error) => {
+                           console.error(error);
+                       })
+                }
+
+                return migratedApps;
             }
 
             $scope.$on('UninstalledApp', loadApps);
