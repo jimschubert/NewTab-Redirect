@@ -15,7 +15,7 @@
 
         <div class="app-header">
             <span class="app-logo"><a href="options.html" target="_self"><i class="fa">&nbsp;</i> New Tab Redirect Options</a></span>
-            <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self" class="plain"><i class="fa" style="background:url('chrome://favicon/https://chrome.google.com/webstore/category/apps') no-repeat;"></i> <x data-role="store">Chrome Web Store</x></a></span>
+            <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self" class="plain"><i class="fa" style="background:url('/_favicon/?pageUrl=chrome.google.com/webstore/category/apps') no-repeat;"></i> <x data-role="store">Chrome Web Store</x></a></span>
         </div>
 
         <div class="container options-container">
@@ -47,14 +47,14 @@
                         <h4>Popular Pages</h4>
                         <div ng-repeat="page in popular">
                             <a href="{{page.location}}" class="bookmark" style="font-size:1.1em" ng-click="quickSave(page.location, $event)">
-                                <i class="fa" style="background:url('chrome://favicon/{{page.location}}') no-repeat"></i>
+                                <i class="fa" style="background:url('_favicon/?pageUrl={{page.location}}') no-repeat"></i>
                                 <span ng-bind="page.name"></span>
                             </a>
                         </div>
                         <h4>Chrome Pages</h4>
                         <div ng-repeat="page in internal">
                             <a href="{{page.location}}" class="bookmark" style="font-size:1.1em" ng-click="quickSave(page.location, $event)">
-                                <i class="fa" style="background:url('chrome://favicon/{{page.location}}') no-repeat"></i>
+                                <i class="fa" style="background:url('_favicon/?pageUrl={{page.location}}') no-repeat"></i>
                                 <span ng-bind="page.name"></span>
                             </a>
                         </div>
@@ -180,7 +180,7 @@
 <footer>
     <div style="float:left;">
         <p>
-            <a href="http://www.ipreferjim.com">&copy; James Schubert, 2009-2019</a>
+            <a href="http://www.ipreferjim.com">&copy; James Schubert, 2009-2023</a>
             &nbsp;|&nbsp;
             <a href="http://github.com/jimschubert/newtab-redirect" target="_blank">Report bugs</a>
             &nbsp;|&nbsp;

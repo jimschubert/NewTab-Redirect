@@ -18,11 +18,11 @@ function init() {
     log("background.js: init()");
 }
 
-function saveInitial() {
+async function saveInitial() {
     log("background.js: Initial setup.");
     var options = {};
-    var arr = window.localStorage.options;
-    if (arr) {
+    var arr = await chrome.storage.local.get('syncOptions');
+    if (Object.keys(arr).length) {
         log('Found options on localStorage');
         options = JSON.parse(arr);
     }

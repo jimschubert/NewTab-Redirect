@@ -1,24 +1,23 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "New Tab Redirect",
   "short_name": "NTR!",
   "description": "Allows a user to provide the URL of the page that loads in a new tab.",
-  "version": "3.1.5",
-  "background": { 
-    "scripts" : ["js/background.js"],
-    "persistent": false
+  "version": "3.1.6",
+  "background": {
+    "service_worker" : "js/background.js"
   },
   "options_page":"options.html",
   "chrome_url_overrides": {
     "newtab": "main.html"
   },
-  "permissions": ["storage", "chrome://favicon/"],
+  "permissions": ["storage", "favicon"],
   "optional_permissions": ["tabs", "topSites", "management", "bookmarks"],
   "icons": {
     "200": "images/icon200.png",
     "128": "images/icon128.png",
-	"19":"images/icon19.png"
+    "19":"images/icon19.png"
   },
   "incognito": "split",
-  "minimum_chrome_version" : "22"
+  "minimum_chrome_version" : "89"
 }

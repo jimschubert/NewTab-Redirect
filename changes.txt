@@ -1,3 +1,5 @@
+v3.1.6
+ * Migrate to Manifest v3
 v3.1.5
  * Fix some links (pledgie, Google+)
  * Change donation link to Patreon
