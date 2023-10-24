@@ -13,6 +13,7 @@
     "newtab": "main.html"
   },
   "permissions": ["storage", "chrome://favicon/"],
+  "host_permissions": ["file:///", "file://", ":///*"],
   "optional_permissions": ["tabs", "topSites", "management", "bookmarks"],
   "icons": {
     "200": "images/icon200.png",
