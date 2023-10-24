@@ -1,7 +1,5 @@
 # NewTab Redirect!
 
-[![Join the chat at https://gitter.im/jimschubert/NewTab-Redirect](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jimschubert/NewTab-Redirect?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 ## Google Chrome Extension
 _disclaimer: Google and Google Chrome are trademarks of Google, Inc. [NewTab Redirect! is an extension for Google Chrome](https://chrome.google.com/webstore/detail/new-tab-redirect/icpgjfneehieebagbmdbhnlpiopdcmna?hl=en)_
 
