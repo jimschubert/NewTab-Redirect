@@ -1,3 +1,5 @@
+v3.1.6
+ * Contribution from Talesh, fixing file:// loading
 v3.1.5
  * Fix some links (pledgie, Google+)
  * Change donation link to Patreon
