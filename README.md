@@ -19,6 +19,13 @@ Files can begin with: `file:\\`, `file://`, and `file:///`
 **Important:** 
 This is not meant to replace your homepage, only new tabs.  If your browser is set to load the New Tab page as your homepage, there may be odd consequences.
 
+## Missing Local Files?
+
+This is due to a change in Google Chrome, not a change to the extension.
+
+You'll now need to navigate to `chrome://extensions` and find the New Tab Redirect options. Click Details here, then scroll down and toggle on `Allow access to file URLs`.
+
+Chrome doesn't allow for an extension developer to warn/notify on changed behavior, and there's no logical place for me to embed browser tutorials into the extension. Whenever you see an extension update with changed permissions, you should always be reviewing the extension's settings and detais.
 
 ## Omnibar support
 
