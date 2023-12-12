@@ -16,11 +16,11 @@
                     .then(function (result) {
                         $scope.sync = result.syncOptions || result.syncOptions !== false;
 
-                        return Storage[$scope.sync ? 'getSync' : 'getLocal'](['url', 'always-tab-update']);
+                        return Storage[$scope.sync ? 'getSync' : 'getLocal'](['url', 'redirectMechanism', /*deprecated*/'always-tab-update']);
                     })
                     .then(function (result) {
                         $scope.url = result.url;
-                        $scope.alwaysTabUpdate = result['always-tab-update'];
+                        $scope.redirectMechanism = result.redirectMechanism || (result['always-tab-update'] ? 'update' : 'redirect');
                     });
             }
 
@@ -34,7 +34,7 @@
             $scope.save = function () {
                 var promise = Storage[$scope.sync ? 'saveSync' : 'saveLocal']({
                     'url': $scope.url,
-                    'always-tab-update': $scope.alwaysTabUpdate
+                    'redirectMechanism': $scope.redirectMechanism
                 });
                 promise.then(function () {
                     $scope.show_saved = true;
@@ -58,8 +58,8 @@
                 Storage.saveLocal({'syncOptions': selected});
             };
 
-            $scope.changeRedirect = function (selected) {
-                Storage.saveLocal({'always-tab-update': selected});
+            $scope.changeRedirect = function (redirectMechanism) {
+                Storage.saveLocal({'redirectMechanism': redirectMechanism});
             };
 
             $scope.getSyncedUrl = function () {
