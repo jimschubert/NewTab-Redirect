@@ -6,11 +6,11 @@ footer {
     margin-top: 0;
     margin-left: auto;
     margin-right: auto;
-    height: 40px;
+    height: 30px;
     padding: 0 2px 5px 8px;
     max-width: 99%;
     width: 100%;
-    background: #FFFFFF;
+    background: rgb(41, 42, 45);
 }
 
 body.options-page {
@@ -48,16 +48,16 @@ ul.options-tabs li {
 }
 
 ul.options-tabs li:hover {
-    background-color:  rgba(186,211,218,0.8);
+    background-color: rgb(41, 42, 45);
     cursor: pointer;
 }
 
 ul.options-tabs li.selected {
-    background-color:  rgba(186,211,218,0.8);
+    background-color: rgb(41, 42, 45);
 }
 
 ul.options-tabs li a {
-    color: black;
+    #color: black;
     cursor: auto;
     text-decoration: none;
     display:block;
@@ -71,7 +71,7 @@ ul.options-tabs li.selected a {
 
 ul.options-tabs li:not(.selected) a:hover {
     cursor: pointer;
-    font-weight: 800;
+    #font-weight: 800;
 }
 
 .column2 {
@@ -101,7 +101,7 @@ h4 { margin: 4px 0; }
     padding: 14px;
     font-size: 1.3em;
     border: 2px solid #7c82bf;
-    background-color: rgba(180, 255, 165, 0.8);
+    background-color: rgb(41, 42, 45);
     border-radius: 7px;
     font-weight: 800;
 }
